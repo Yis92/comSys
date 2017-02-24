@@ -27,7 +27,7 @@ function login(){
         success:function(data){
             var result = eval('(' + data + ')');
             if(result == 'SUC'){
-                    //$("#lgForm").attr("action","../home/doLogin");
+                    $("#lgForm").attr("action","../home/doLogin");
                    //$("#lgForm").submit();
                 $("#lgForm").ajaxSubmit(function (data) {
                     alert(data);

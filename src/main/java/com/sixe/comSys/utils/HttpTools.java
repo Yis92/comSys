@@ -6,8 +6,11 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
 /**
  * Created by labiStronger on 2017/2/24.
  */
@@ -66,16 +69,37 @@ public class HttpTools {
         return result;
     }
 
+    private static final String EMPTY = "";
+    private static final String URL_PARAM_CONNECT_FLAG = "&";
+
+    public static String getString(Map<String,Object> map){
+        StringBuffer param = new StringBuffer();
+        Set<String> keys = map.keySet();
+        for (Iterator<String> it = keys.iterator(); it.hasNext();) {
+            String key = it.next();
+            if (map.containsKey(key)) {
+                String val = (String) map.get(key);
+                String str = val != null ? val : EMPTY;
+                param.append(key).append("=").append(str).append(URL_PARAM_CONNECT_FLAG);
+            }
+        }
+        if(Tools.isEmpty(param)){
+            return "";
+        }
+        return param.toString();
+    }
+
     /**
      * 向指定 URL 发送POST方法的请求
      *
      * @param url
      *            发送请求的 URL
-     * @param param
+     * @param map
      *            请求参数，请求参数应该是 name1=value1&name2=value2 的形式。
      * @return 所代表远程资源的响应结果
      */
-    public static String sendPost(String url, String param) {
+    public static String sendPost(String url,Map<String,Object> map ) {
+        String param = getString(map);
         PrintWriter out = null;
         BufferedReader in = null;
         String result = "";

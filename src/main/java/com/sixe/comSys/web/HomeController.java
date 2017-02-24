@@ -4,6 +4,7 @@ import com.sixe.comSys.base.imgCode.ValidateCode;
 import com.sixe.comSys.utils.HttpTools;
 import com.sixe.comSys.utils.Tools;
 import com.sun.istack.internal.logging.Logger;
+import org.apache.commons.collections.map.HashedMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Map;
 
 
 /**
@@ -74,10 +76,17 @@ public class HomeController {
     @RequestMapping(value="/doLogin")
     public String doLogin(String user_id,String pwd){
 
-        logger.info("userId:"+user_id+"\npwd:"+pwd);
+        logger.info("userId:"+user_id);
+        Map<String,Object> map = new HashedMap();
 
-        String result = HttpTools.sendPost("http://139.129.239.172:7710/php/check_usr2.php","user_id="+user_id+"&pwd="+pwd);
+        map.put("user_id",user_id);
+        map.put("pwd",pwd);
+
+        String result = HttpTools.sendPost("http://139.129.239.172:7710/php/check_usr2.php",map);
         System.out.println(result);
+
+
+
         return "SUC";
     }
 
