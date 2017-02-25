@@ -20,17 +20,23 @@ function login(){
     var code = $('#code').val();
     $.ajax({
         type : "POST",
-        url:"../home/checkCode.do",
+        url:$("#basePath").val()+"home/checkCode",
         data : {
             code : code
         },
         success:function(data){
             var result = eval('(' + data + ')');
             if(result == 'SUC'){
-                    $("#lgForm").attr("action","../home/doLogin");
+                    $("#lgForm").attr("action",$("#basePath").val()+"home/doLogin");
                    //$("#lgForm").submit();
                 $("#lgForm").ajaxSubmit(function (data) {
-                    alert(data);
+                  //  alert(data);
+
+                    if(data == "SUC"){
+                        window.location.href=$("#basePath").val()+"myHome/goMyHome";
+                    }else{
+                        window.location.href=$("#basePath").val()+"myHome/goMyHome2";
+                    }
                 });
 
                /* $.ajax({
@@ -67,7 +73,7 @@ function checkCode(){
     }
     $.ajax({
         type : "POST",
-        url:"../home/checkCode.do",
+        url:$("#basePath").val()+"home/checkCode",
         data : {
             code : code
         },

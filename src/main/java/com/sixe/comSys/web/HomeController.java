@@ -26,6 +26,10 @@ public class HomeController {
 
     private static final Logger logger = Logger.getLogger(HomeController.class);
 
+    /**
+     * 进入登录页...
+     * @return
+     */
     @RequestMapping(value="login")
     public String login(){
         logger.info("进入登录页...");
@@ -39,7 +43,7 @@ public class HomeController {
      * @param response
      * @throws IOException
      */
-    @RequestMapping("/randomImg.do")
+    @RequestMapping("/randomImg")
     public void randomImg(HttpServletRequest request, HttpServletResponse response) throws IOException {
         // 设置响应的类型格式为图片格式
         response.setContentType("image/jpeg");
@@ -47,8 +51,9 @@ public class HomeController {
         response.setHeader("Pragma", "no-cache");
         response.setHeader("Cache-Control", "no-cache");
         response.setDateHeader("Expires", 0);
-        ValidateCode vCode = new ValidateCode(120,40,5,100,response);
+        ValidateCode vCode = new ValidateCode(120,40,4,60,response);
         vCode.write(response.getOutputStream());
+        System.out.println("Code::"+vCode.getCode());
         request.getSession().setAttribute("code", vCode.getCode());
     }
 
@@ -60,7 +65,7 @@ public class HomeController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value="/checkCode.do")
+    @RequestMapping(value="/checkCode")
     public String checkCode(String code,HttpServletRequest request, HttpServletResponse response){
         String sessionCode = (String) request.getSession().getAttribute("code");
 		/*设置不区分大小写  全部转为大写比较*/
@@ -72,22 +77,29 @@ public class HomeController {
         return Tools.sendJson("FIL");
     }
 
+    /**
+     * 执行登录操作
+     * @param user_id
+     * @param pwd
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value="/doLogin")
     public String doLogin(String user_id,String pwd){
 
         logger.info("userId:"+user_id);
         Map<String,Object> map = new HashedMap();
-
         map.put("user_id",user_id);
         map.put("pwd",pwd);
 
-        String result = HttpTools.sendPost("http://139.129.239.172:7710/php/check_usr2.php",map);
+        String result = HttpTools.sendPost("http://139.129.239.172:7710/php/check_usr.php",map);
         System.out.println(result);
 
-
-
-        return "SUC";
+        if("wk".equals(user_id)){
+            return "SUC";
+        }else{
+            return "SUC1";
+        }
     }
 
 }
