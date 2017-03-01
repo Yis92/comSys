@@ -27,32 +27,17 @@ function login(){
         success:function(data){
             var result = eval('(' + data + ')');
             if(result == 'SUC'){
-                    $("#lgForm").attr("action",$("#basePath").val()+"home/doLogin");
+                $("#lgForm").attr("action",$("#basePath").val()+"home/doLogin");
                    //$("#lgForm").submit();
                 $("#lgForm").ajaxSubmit(function (data) {
-                  //  alert(data);
-
-                    if(data == "SUC"){
+                    var result = eval('(' + data + ')');
+                    if(result == "SUC"){
                         window.location.href=$("#basePath").val()+"myHome/goMyHome";
                     }else{
-                        window.location.href=$("#basePath").val()+"myHome/goMyHome2";
+                        $("#errMsg").html(result);
+                        return false;
                     }
                 });
-
-               /* $.ajax({
-                    url:"http://139.129.239.172:7710/php/check_usr2.php",
-                    type:"POST",
-                    data:{
-                        "user_id":userName,
-                        "pwd":password
-                    },
-                    dataType:'String',
-                    success:function(data){
-                        alert(data);
-                    }
-                });*/
-
-               // $("#isOk").show();
                 return false;
             }else{
                 $("#errMsg").html("验证码输入有误！请重新输入.");

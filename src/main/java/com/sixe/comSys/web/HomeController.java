@@ -1,9 +1,17 @@
 package com.sixe.comSys.web;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.google.gson.Gson;
+import com.sixe.comSys.base.Contants;
+import com.sixe.comSys.base.SpringContextHolder;
 import com.sixe.comSys.base.imgCode.ValidateCode;
+import com.sixe.comSys.dto.DoLogin.DoLoginParam;
 import com.sixe.comSys.utils.HttpTools;
+import com.sixe.comSys.utils.ProperUtils;
 import com.sixe.comSys.utils.Tools;
 import com.sun.istack.internal.logging.Logger;
+
 import org.apache.commons.collections.map.HashedMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,8 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.net.URL;
-import java.net.URLConnection;
+import java.util.Enumeration;
 import java.util.Map;
 
 
@@ -86,20 +93,43 @@ public class HomeController {
     @ResponseBody
     @RequestMapping(value="/doLogin")
     public String doLogin(String user_id,String pwd){
-
-        logger.info("userId:"+user_id);
+        logger.info("登录名【userId】:"+user_id);
+        logger.info("密码【pwd】:"+pwd);
         Map<String,Object> map = new HashedMap();
         map.put("user_id",user_id);
         map.put("pwd",pwd);
+        logger.info("请求参数："+map.toString());
+        String result = HttpTools.sendPost(ProperUtils.getVal("reqUrl")+"check_usr.php",map);
+        logger.info("返回结果："+result);
 
-        String result = HttpTools.sendPost("http://139.129.239.172:7710/php/check_usr.php",map);
-        System.out.println(result);
+        JSONObject jsonObj = JSON.parseObject(result);
+        String state=jsonObj.getString("state");
 
-        if("wk".equals(user_id)){
-            return "SUC";
-        }else{
-            return "SUC1";
+        if("200".equals(state)){
+            //登录成功...
+            logger.info("登录成功...");
+            Gson gson = new Gson();
+            DoLoginParam param = gson.fromJson(result,DoLoginParam.class);
+            logger.info("user_level:"+param.getResult().getUser_level());
+            logger.info("units的长度："+param.getResult().getUnits().size());
+            logger.info("dtus的长度："+param.getResult().getUnits().get(0).getDtu().size());
+            //登录成功 保存Session
+            SpringContextHolder.getSession().setAttribute(Contants.USER_SESSION_INFO,param);
+            return Tools.sendJson("SUC");
         }
+        String message = jsonObj.getString("message");
+        logger.info("登录失败【message】:"+message);
+        return Tools.sendJson(message);
+    }
+
+    @RequestMapping(value = "/exit")
+    public String exit(HttpServletRequest request,
+                       HttpServletResponse response){
+        Enumeration e = SpringContextHolder.getSession().getAttributeNames();
+        while (e.hasMoreElements()){
+            SpringContextHolder.getRequest().getSession().removeAttribute(e.nextElement().toString());
+        }
+        return "redirect:/home/login";
     }
 
 }

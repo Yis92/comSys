@@ -104,6 +104,7 @@ public class HttpTools {
         BufferedReader in = null;
         String result = "";
         try {
+            System.out.println("请求URL:"+url);
             URL realUrl = new URL(url);
             // 打开和URL之间的连接
             URLConnection conn = realUrl.openConnection();

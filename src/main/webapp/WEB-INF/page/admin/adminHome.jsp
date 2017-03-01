@@ -29,11 +29,11 @@
             <nav id="Hui-userbar" class="nav navbar-nav navbar-userbar ">
                 <ul class="cl">
                     <!-- <li>超级管理员</li> -->
-                    <li class="dropDown dropDown_hover"> <a href="#" class="dropDown_A">sysadmin <i class="Hui-iconfont">&#xe6d5;</i></a>
+                    <li class="dropDown dropDown_hover"> <a href="#" class="dropDown_A">${sessionScope.loginInfoSession.result.user_id}<i class="Hui-iconfont">&#xe6d5;</i></a>
                         <ul class="dropDown-menu menu radius box-shadow">
                             <!--<li><a href="#">我的信息</a></li>-->
                            <%-- <li><a href="${basePath}userHome/myInfo" >我的信息</a></li>--%>
-                            <li><a href="${basePath}home/exit.do">退出</a></li>
+                            <li><a href="${basePath}home/exit">退出</a></li>
                         </ul>
                     </li>
                     <%--  <li id="Hui-msg"> <a href="#" title="消息"><span class="badge badge-danger">1</span><i class="Hui-iconfont" style="font-size:18px">&#xe68a;</i></a> </li>--%>
@@ -63,30 +63,45 @@
                 </ul>
             </dd>
         </dl>
-        <dl id="menu-picture">
+        <c:forEach items="${units}" var="com" varStatus ="status">
+            <dl id="menu-picture">
+                <dt><i class="Hui-iconfont">&#xe616;</i> ${com.unit_name}<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+                <dd>
+                    <ul>
+                        <li><a _href="${basePath }myHome/goComInfo?id=${com.unit_no}" data-title="本单位信息维护" href="javascript:void(0)">本单位信息维护</a></li>
+                        <li><a _href="${basePath }myHome/goComUser?id=${com.unit_no}" data-title="本单位信息维护" href="javascript:void(0)">本单位用户维护</a></li>
+                        <li><a _href="${basePath }myHome/goDTUConfig?id=${com.unit_no}" data-title="DTU维护" href="javascript:void(0)">DTU维护</a></li>
+                            <%-- <li><a _href="${basePath}userHome/myInfo" data-title="我的信息" href="javascript:void(0)">我的信息</a></li>--%>
+                        <!--                    <li><a _href="${basePath }userHome/otherReply.do" data-title="非关键字回复" href="javascript:void(0)">非关键字回复</a></li>-->
+                    </ul>
+                </dd>
+            </dl>
+        </c:forEach>
+        <%--<dl id="menu-picture">
             <dt><i class="Hui-iconfont">&#xe616;</i> 迪辉科技（北京）<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
                     <li><a _href="${basePath }myHome/goComInfo" data-title="本单位信息维护" href="javascript:void(0)">本单位信息维护</a></li>
                     <li><a _href="${basePath }myHome/goComUser" data-title="本单位信息维护" href="javascript:void(0)">本单位用户维护</a></li>
                     <li><a _href="${basePath }myHome/goDTUConfig" data-title="DTU维护" href="javascript:void(0)">DTU维护</a></li>
-                   <%-- <li><a _href="${basePath}userHome/myInfo" data-title="我的信息" href="javascript:void(0)">我的信息</a></li>--%>
+                   &lt;%&ndash; <li><a _href="${basePath}userHome/myInfo" data-title="我的信息" href="javascript:void(0)">我的信息</a></li>&ndash;%&gt;
                     <!--                    <li><a _href="${basePath }userHome/otherReply.do" data-title="非关键字回复" href="javascript:void(0)">非关键字回复</a></li>-->
                 </ul>
             </dd>
-        </dl>
-        <dl id="menu-product">
+        </dl>--%>
+
+        <%--<dl id="menu-product">
             <dt><i class="Hui-iconfont">&#xe616;</i> 迪辉科技（天津）<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
                     <li><a _href="${basePath }myHome/goComInfo" data-title="本单位信息维护" href="javascript:void(0)">本单位信息维护</a></li>
                     <li><a _href="${basePath }myHome/goComUser" data-title="本单位信息维护" href="javascript:void(0)">本单位用户维护</a></li>
                     <li><a _href="${basePath }myHome/goDTUConfig" data-title="DTU维护" href="javascript:void(0)">DTU维护</a></li>
-                   <%-- <li><a _href="${basePath}userHome/myInfo" data-title="我的信息" href="javascript:void(0)">我的信息</a></li>--%>
+                   &lt;%&ndash; <li><a _href="${basePath}userHome/myInfo" data-title="我的信息" href="javascript:void(0)">我的信息</a></li>&ndash;%&gt;
                     <!--                    <li><a _href="${basePath }userHome/otherReply.do" data-title="非关键字回复" href="javascript:void(0)">非关键字回复</a></li>-->
                 </ul>
             </dd>
-        </dl>
+        </dl>--%>
         <!--<dl id="menu-product">
             <dt><i class="Hui-iconfont">&#xe60d;</i> 关注推送<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
