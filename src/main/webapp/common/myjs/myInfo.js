@@ -1,9 +1,13 @@
 
-/*打开修改框*/
+/**打开修改框*/
 function edit(){
     $("#edit").show();
 }
+/**修改信息*/
+function updInfo(){
+    $().val();
 
+}
 /**打开修改密码弹窗*/
 function openPwd(){
     $("#bpassword").val('');
@@ -11,4 +15,5 @@ function openPwd(){
     $("#apass").val('');
     $("#pmsg").empty();
 }
+
 

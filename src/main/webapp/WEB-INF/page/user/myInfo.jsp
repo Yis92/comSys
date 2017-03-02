@@ -25,35 +25,35 @@
     <tbody class="text-center">
     <tr class="info">
         <td style="width: 35%;">用户ID：</td>
-        <td style="width: 65%;" id="userName"></td>
+        <td style="width: 65%;">${userInfo.user_id}</td>
     </tr>
     <tr class="active">
-        <td>用户组：</td>
-        <td id="roleName"></td>
+        <td>用户等级：</td>
+        <td>${userInfo.user_level}</td>
     </tr>
     <tr class="info">
         <td>用户全名：</td>
-        <td id="nikeName"></td>
+        <td>${userInfo.user_full_name}</td>
     </tr>
     <tr class="active">
         <td>用户描述:</td>
-        <td id="email"></td>
+        <td>${userInfo.user_describ}</td>
     </tr>
-    <tr class="info">
+   <%-- <tr class="info">
         <td>居住地址:</td>
         <td id="addr"></td>
+    </tr>--%>
+    <tr class="info">
+        <td>用户单位编号:</td>
+        <td>${userInfo.user_unit_num}</td>
     </tr>
     <tr class="active">
-        <td>用户单位编号:</td>
-        <td id="phone"></td>
+        <td>用户电话1:</td>
+        <td>${userInfo.user_tel1}</td>
     </tr>
     <tr class="info">
-        <td>用户电话1:</td>
-        <td id="phone1"></td>
-    </tr>
-    <tr class="active">
         <td>用户电话2:</td>
-        <td id="phone2"></td>
+        <td>${userInfo.user_tel2}</td>
     </tr>
     </tbody>
 </table>
@@ -71,35 +71,41 @@
                 <table class="table table-striped table-bordered table-hover" style="text-align: center;">
                     <tr class="info">
                         <td style="width: 35%;">用户ID：</td>
-                        <td style="width: 65%;" id="uId"></td>
+                        <td style="width: 65%;">
+                            ${userInfo.user_id}
+                            <input type="hidden" value="${userInfo.user_id}" id="userId" />
+                        </td>
                     </tr>
                     <tr class="active">
-                        <td>用户组：</td>
-                        <td id="uusers"></td>
+                        <td>用户等级：</td>
+                        <td>
+                            ${userInfo.user_level}
+                            <input type="hidden" value="${userInfo.user_level}" id="userLevel">
+                        </td>
                     </tr>
                     <tr class="info">
                         <td>用户全名：</td>
-                        <td id="unikeName"></td>
+                        <td><input type="text" value="${userInfo.user_full_name}" id="fullName" /></td>
                     </tr>
                     <tr class="active">
                         <td>用户描述:</td>
-                        <td id="uUserRemark"></td>
+                        <td><textarea id="desc" rows="3" cols="20" >${userInfo.user_describ}</textarea></td>
                     </tr>
-                    <tr class="info">
+                    <%--<tr class="info">
                         <td>居住地址:</td>
                         <td id="uAddr"></td>
+                    </tr>--%>
+                    <tr class="info">
+                        <td>用户单位编号:</td>
+                        <td><input type="text" id="unitNum" value="${userInfo.user_unit_num}" /></td>
                     </tr>
                     <tr class="active">
-                        <td>用户单位编号:</td>
-                        <td id="uComId"></td>
+                        <td>用户电话1:</td>
+                        <td><input type="text" id="phone1" value="${userInfo.user_tel1}"/></td>
                     </tr>
                     <tr class="info">
-                        <td>用户电话1:</td>
-                        <td id="uPhone1"></td>
-                    </tr>
-                    <tr class="active">
                         <td>用户电话2:</td>
-                        <td id="uPhone2"></td>
+                        <td><input type="text" id="phone2" value="${userInfo.user_tel2}" /></td>
                     </tr>
                 </table>
                 <span id="upd_msg" style="color: red;"></span>
