@@ -5,7 +5,10 @@ function edit(){
 }
 /**修改信息*/
 function updInfo(){
-    $().val();
+    var userId = $("#userId").val();
+    var userLevel = $("#userLevel").val();
+    var fullName = $("#fullName").val();
+
 
 }
 /**打开修改密码弹窗*/
