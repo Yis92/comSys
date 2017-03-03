@@ -2,15 +2,17 @@
 <%@ include file="/common/public.jsp" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>单位用户维护</title>
+    <script type="text/javascript" src="${basePath }common/myjs/comUser.js?ran=<%=Math.random()%>"></script>
 </head>
 <body style="font-family: '微软雅黑';">
 <div class="container con_title" style="" >
     <input id="basePath" value="${basePath }" type="hidden">
+    <input id="unitNo" value="${unitNo}" type="hidden">
     <h3 style="margin-left: 30px;margin-top: 30px;">单位用户</h3>
     <hr/>
-    <div style="margin-left: 10px;margin-bottom: 10px; ">
-
+    <div style="margin-left: 30px;margin-top: 10px;margin-bottom: 10px; ">
+        <button type="button" style="" class="btn btn-primary" onclick="" data-toggle="modal" data-target="#myModal_add" ><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;新增</button>&nbsp;
         <span id="msg" class = ""></span>
     </div>
     <table class="table table-striped table-bordered table-hover" style="width: 100%;">
@@ -26,32 +28,21 @@
         </tr>
         </thead>
         <tbody class="text-center">
-            <tr class="info">
-                <td>1</td>
-                <td>用户组1</td>
-                <td>用户1</td>
-                <td>用户1****</td>
-                <td>13455254455</td>
-                <td>2017-02-26 15:31:45</td>
-                <td>
-                    <button type="button" style="" class="btn btn-primary" onclick="edit();" data-toggle="modal" data-target="#myModal_upd" ><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;修改</button>&nbsp;
-                    <button type="button" style="" class="btn btn-danger" onclick="edit();" data-toggle="modal" data-target="#pwdUpd" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;删除</button>&nbsp;
-                    <button type="button" style="" class="btn btn-success" onclick="edit();" data-toggle="modal" data-target="#myModal" ><span class="glyphicon glyphicon-th" aria-hidden="true"></span>&nbsp;密码</button>&nbsp;
-                </td>
-            </tr>
-            <tr class="active">
-                <td>2</td>
-                <td>用户组2</td>
-                <td>用户2</td>
-                <td>用户2****</td>
-                <td>13455254455</td>
-                <td>2017-02-26 15:31:45</td>
-                <td>
-                    <button type="button" style="" class="btn btn-primary" onclick="edit();" data-toggle="modal" data-target="#myModal_upd" ><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;修改</button>&nbsp;
-                    <button type="button" style="" class="btn btn-danger" onclick="edit();" data-toggle="modal" data-target="#pwdUpd" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;删除</button>&nbsp;
-                    <button type="button" style="" class="btn btn-success" onclick="edit();" data-toggle="modal" data-target="#myModal" ><span class="glyphicon glyphicon-th" aria-hidden="true"></span>&nbsp;密码</button>&nbsp;
-                </td>
-            </tr>
+            <c:forEach items="${userList}" var="com" varStatus ="status">
+                    <tr class="cls_${(status.index+1)%2 == 1}" >
+                        <td>${com.user_id}</td>
+                        <td>${com.user_level}</td>
+                        <td>${com.user_full_name}</td>
+                        <td>${com.user_describ}</td>
+                        <td>${com.user_tel1}</td>
+                        <td>${com.user_tel2}</td>
+                        <td>
+                            <button type="button" style="" class="btn btn-primary" onclick="edit('${com.user_id}','${com.user_level}','${com.user_full_name}','${com.user_describ}','${com.user_tel1}','${com.user_tel2}');" data-toggle="modal" data-target="#myModal_upd" ><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;修改</button>&nbsp;
+                            <button type="button" style="" class="btn btn-danger" onclick="del('${com.user_id}','${com.user_full_name}');" data-toggle="modal" data-target="#pwdUpd" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;删除</button>&nbsp;
+                            <button type="button" style="" class="btn btn-success" onclick="pwd('${com.user_id}');" data-toggle="modal" data-target="#myModal" ><span class="glyphicon glyphicon-th" aria-hidden="true"></span>&nbsp;密码</button>&nbsp;
+                        </td>
+                    </tr>
+            </c:forEach>
         </tbody>
     </table>
 </div>
@@ -158,7 +149,7 @@
 <!--修改密码 DIV  ------end -->
 
 <!-- 重置密码提示窗 -->
-<div class="modal fade" id="pwdUpd">
+<div class="modal fade" id="delV">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -166,13 +157,13 @@
                 <h4 class="modal-title">删除用户</h4>
             </div>
             <div class="modal-body">
-                <h5>您确定要删除<span id="uPwdName"></span>用户吗？</h5>
+                <h5>您确定要删除<span id="delName"></span>用户吗？</h5>
                 <span id="pMsg" style="color: red;"></span>
-                <input type="hidden" id="uPwdId"/>
+                <input type="hidden" id="del_userId" />
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary" onclick="doUpdPwd();">确定</button>
+                <button type="button" class="btn btn-primary" onclick="Dodel();">确定</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

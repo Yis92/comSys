@@ -84,10 +84,14 @@
                         </td>
                     </tr>
                     <tr class="info">
+                        <td>用户单位编号:</td>
+                        <td>${userInfo.user_unit_num}</td>
+                    </tr>
+                    <tr class="active">
                         <td>用户全名：</td>
                         <td><input type="text" value="${userInfo.user_full_name}" id="fullName" /></td>
                     </tr>
-                    <tr class="active">
+                    <tr class="info">
                         <td>用户描述:</td>
                         <td><textarea id="desc" rows="3" cols="20" id="desc" >${userInfo.user_describ}</textarea></td>
                     </tr>
@@ -95,10 +99,6 @@
                         <td>居住地址:</td>
                         <td id="uAddr"></td>
                     </tr>--%>
-                    <tr class="info">
-                        <td>用户单位编号:</td>
-                        <td><input type="text" id="unitNum" value="${userInfo.user_unit_num}" /></td>
-                    </tr>
                     <tr class="active">
                         <td>用户电话1:</td>
                         <td><input type="text" id="phone1" value="${userInfo.user_tel1}"/></td>
