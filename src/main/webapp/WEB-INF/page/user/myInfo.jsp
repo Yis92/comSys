@@ -89,7 +89,7 @@
                     </tr>
                     <tr class="active">
                         <td>用户描述:</td>
-                        <td><textarea id="desc" rows="3" cols="20" >${userInfo.user_describ}</textarea></td>
+                        <td><textarea id="desc" rows="3" cols="20" id="desc" >${userInfo.user_describ}</textarea></td>
                     </tr>
                     <%--<tr class="info">
                         <td>居住地址:</td>
@@ -112,7 +112,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" onclick="updPwd();">保存</button>
+                <button type="button" class="btn btn-primary" onclick="updInfo();">保存</button>
             </div>
         </div>
     </div>
@@ -158,5 +158,25 @@
     </div>
 </div>
 <!--修改密码 DIV  ------end -->
+
+<!--修改密码成功 DIV -->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" >修改密码</h4>
+            </div>
+            <div class="modal-body" align="center">
+                <h3 style="color: blue;">密码修改成功！</h3>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <%--<button type="button" class="btn btn-primary" onclick="updPwd();">保存</button>--%>
+            </div>
+        </div>
+    </div>
+</div>
+<!--修改密码成功 DIV  ------end -->
 </body>
 </html>
