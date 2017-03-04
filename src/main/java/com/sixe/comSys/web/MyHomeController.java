@@ -141,4 +141,132 @@ public class MyHomeController {
             return Tools.sendJson("系统异常");
         }
     }
+
+    /**
+     * 保存修改用户
+     * @param id
+     * @param level
+     * @param fullName
+     * @param desc
+     * @param phone1
+     * @param phone2
+     * @param unitNo
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/doUpd")
+    public String doUpd(String id,String level,
+                        String fullName,String desc,
+                        String phone1,String phone2,
+                        String unitNo){
+        logger.info("修改User_Id:"+id);
+        logger.info("所属公司NO："+unitNo);
+        Map<String,String> map = new HashedMap();
+       // map.put("unit_no",unitNo);
+        map.put("user_id",id);
+        map.put("user_level",level);
+        map.put("user_full_name",fullName);
+        map.put("user_describ",desc);
+        map.put("user_tel1",phone1);
+        map.put("user_tel2",phone2);
+        map.put("host_user_id",SpringContextHolder.getCurrentUser().getResult().getUser_id());
+        logger.info("请求参数："+map.toString());
+        try {
+            String result = HttpClientUtil.doHttpPost(ProperUtils.getVal("reqUrl")+"update_user_info_by_host.php","UTF-8",map,10000);
+            logger.info("返回结果:"+result);
+            JSONObject jsonObj = JSON.parseObject(result);
+            String state=jsonObj.getString("state");
+            if("200".equals(state)){
+                return Tools.sendJson("SUC");
+            }else{
+                String message=jsonObj.getString("message");
+                logger.info("请求失败【message】:"+message);
+                return Tools.sendJson(message);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Tools.sendJson("系统异常");
+        }
+    }
+
+    /**
+     * 添加用户
+     * @param user_id
+     * @param password
+     * @param level
+     * @param desc
+     * @param unitNo
+     * @param fullName
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/doAdd")
+    public String doAdd(String user_id,String password,
+                            String level,String desc,String unitNo,String fullName){
+        logger.info("新增User_Id:"+user_id);
+        logger.info("所属公司NO："+unitNo);
+        logger.info("密码："+password);
+        Map<String,String> map = new HashedMap();
+        map.put("user_id",user_id);
+        map.put("pwd",password);
+        map.put("user_level",level);
+        map.put("user_describ",desc);
+        map.put("unit_no",unitNo);
+        map.put("user_full_name",fullName);
+        map.put("host_user_id",SpringContextHolder.getCurrentUser().getResult().getUser_id());
+        logger.info("请求参数："+map.toString());
+        try {
+            String result = HttpClientUtil.doHttpPost(ProperUtils.getVal("reqUrl")+"add_user.php","UTF-8",map,10000);
+            logger.info("返回结果:"+result);
+            JSONObject jsonObj = JSON.parseObject(result);
+            String state=jsonObj.getString("state");
+            if("200".equals(state)){
+                return Tools.sendJson("SUC");
+            }else{
+                String message=jsonObj.getString("message");
+                logger.info("请求失败【message】:"+message);
+                return Tools.sendJson(message);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Tools.sendJson("系统异常");
+        }
+    }
+
+    /**
+     * 修改密码（管理员修改员工密码）
+     * @param user_id
+     * @param upass
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/doUpwd")
+    public String doUpwd(String user_id,String upass){
+        logger.info("修改密码user_Id:"+user_id);
+        logger.info("修改密码 upass:"+upass);
+        Map<String,String> map = new HashedMap();
+        map.put("user_id",user_id);
+        map.put("pwd_new",upass);
+        map.put("host_user_id",SpringContextHolder.getCurrentUser().getResult().getUser_id());
+
+        logger.info("请求参数："+map.toString());
+        try {
+            String result = HttpClientUtil.doHttpPost(ProperUtils.getVal("reqUrl")+"update_user_pwd_by_host.php","UTF-8",map,10000);
+            logger.info("返回结果:"+result);
+            JSONObject jsonObj = JSON.parseObject(result);
+            String state=jsonObj.getString("state");
+            if("200".equals(state)){
+                return Tools.sendJson("SUC");
+            }else{
+                String message=jsonObj.getString("message");
+                logger.info("请求失败【message】:"+message);
+                return Tools.sendJson(message);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Tools.sendJson("系统异常");
+        }
+    }
+
+
 }

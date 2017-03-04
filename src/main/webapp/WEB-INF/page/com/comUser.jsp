@@ -12,7 +12,7 @@
     <h3 style="margin-left: 30px;margin-top: 30px;">单位用户</h3>
     <hr/>
     <div style="margin-left: 30px;margin-top: 10px;margin-bottom: 10px; ">
-        <button type="button" style="" class="btn btn-primary" onclick="" data-toggle="modal" data-target="#myModal_add" ><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;新增</button>&nbsp;
+        <button type="button" style="" class="btn btn-primary" onclick="add();" data-toggle="modal" data-target="#myModal_add" ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;新增</button>&nbsp;
         <span id="msg" class = ""></span>
     </div>
     <table class="table table-striped table-bordered table-hover" style="width: 100%;">
@@ -47,6 +47,65 @@
     </table>
 </div>
 
+<!--添加信息 DIV-->
+<div class="modal fade" id="myModal_add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabeladd">添加信息</h4>
+            </div>
+            <div class="modal-body" align="center">
+                <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                    <tr class="active">
+                        <td style="width: 35%;">用户名：</td>
+                        <td style="width: 65%;"><input type="text" class="form-control" id="user_id" placeholder="请输入用户名"></td>
+                    </tr>
+
+                    <tr class="info">
+                        <td style="width: 35%;">密码：</td>
+                        <td style="width: 65%;"><input type="password" class="form-control" id="user_password" placeholder="请输入用户密码"></td>
+                    </tr>
+                    <tr class="active">
+                        <td>用户等级：</td>
+                        <td>
+                            <select class="form-control" id="levelA">
+                                <option value="11">高级用户</option>
+                                <option value="12">普通用户</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr class="info">
+                        <td>用户全名：</td>
+                        <td><input class="form-control" type="text" id="add_fullName" placeholder="请输入用户全名"  /></td>
+                    </tr>
+                    <tr class="active">
+                        <td>用户描述:</td>
+                        <td>
+                            <textarea class="form-control" rows="3" cols="20" id="add_desc">
+                            </textarea>
+                        </td>
+                    </tr>
+                   <%-- <tr class="info">
+                        <td>电话1:</td>
+                        <td><input class="form-control" type="text" id="add_phone1" placeholder="请输入电话1" /></td>
+                    </tr>
+                    <tr class="active">
+                        <td>电话2:</td>
+                        <td><input class="form-control" type="text" id="add_phone2" placeholder="请输入电话2" /></td>
+                    </tr>--%>
+                </table>
+                <span id="add_msg" style="color: red;"></span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" onclick="doAdd();">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--添加信息 DIV-->
+
 
 <!--修改信息 DIV-->
 <div class="modal fade" id="myModal_upd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
@@ -60,42 +119,44 @@
                 <table class="table table-striped table-bordered table-hover" style="text-align: center;">
                     <tr class="info">
                         <td style="width: 35%;">用户ID：</td>
-                        <td style="width: 65%;" id="uId"></td>
+                        <td style="width: 65%;" >
+                            <input type="text" class="form-control"  id="uId" readonly="readonly" >
+                        </td>
                     </tr>
                     <tr class="active">
-                        <td>用户组：</td>
-                        <td id="uusers"></td>
+                        <td>用户等级：</td>
+                        <td id="uusers">
+                            <select class="form-control" id="levelS">
+                                <option value="11">高级用户</option>
+                                <option value="12">普通用户</option>
+                            </select>
+                        </td>
                     </tr>
                     <tr class="info">
                         <td>用户全名：</td>
-                        <td id="unikeName"></td>
+                        <td><input class="form-control" type="text" id="fullName" placeholder="请输入用户全名"  /></td>
                     </tr>
                     <tr class="active">
                         <td>用户描述:</td>
-                        <td id="uUserRemark"></td>
+                        <td id="uUserRemark">
+                            <textarea class="form-control" rows="3" cols="20" id="desc">
+                            </textarea>
+                        </td>
                     </tr>
                     <tr class="info">
-                        <td>居住地址:</td>
-                        <td id="uAddr"></td>
+                        <td>电话1:</td>
+                        <td><input class="form-control" type="text" id="phone1" placeholder="请输入电话1" /></td>
                     </tr>
                     <tr class="active">
-                        <td>用户单位编号:</td>
-                        <td id="uComId"></td>
-                    </tr>
-                    <tr class="info">
-                        <td>用户电话1:</td>
-                        <td id="uPhone1"></td>
-                    </tr>
-                    <tr class="active">
-                        <td>用户电话2:</td>
-                        <td id="uPhone2"></td>
+                        <td>电话2:</td>
+                        <td><input class="form-control" type="text" id="phone2" placeholder="请输入电话2" /></td>
                     </tr>
                 </table>
                 <span id="upd_msg" style="color: red;"></span>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" onclick="updPwd();">保存</button>
+                <button type="button" class="btn btn-primary" onclick="doUpd();">保存</button>
             </div>
         </div>
     </div>
@@ -115,13 +176,7 @@
                     <tr class="active">
                         <td>用户ID：</td>
                         <td>
-                            <input type="password" class="form-control input-sm" id="buserId" title="长度在6~22位之间" placeholder="用户Id">
-                        </td>
-                    </tr>
-                    <tr class="active">
-                        <td>初始密码：</td>
-                        <td>
-                            <input type="password" class="form-control input-sm" id="bpassword" title="长度在6~22位之间" placeholder="请输入初始密码">
+                            <input type="text" class="form-control input-sm" id="buserId"  readonly="readonly" placeholder="用户Id">
                         </td>
                     </tr>
                     <tr class="success">
@@ -133,7 +188,7 @@
                     <tr class="info">
                         <td>确认密码：</td>
                         <td>
-                            <input type="password" class="form-control input-sm" id="apass" title="长度在6~22位之间" onblur="checkPwd();" placeholder="请输入确认密码">
+                            <input type="password" class="form-control input-sm" id="apass" title="长度在6~22位之间" placeholder="请输入确认密码">
                         </td>
                     </tr>
                 </table>
@@ -141,14 +196,14 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" onclick="updPwd();">保存</button>
+                <button type="button" class="btn btn-primary" onclick="doPwd();">保存</button>
             </div>
         </div>
     </div>
 </div>
 <!--修改密码 DIV  ------end -->
 
-<!-- 重置密码提示窗 -->
+<!-- 删除用户提示窗 -->
 <div class="modal fade" id="delV">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -168,6 +223,26 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-<!-- 重置密码 -----end-->
+<!-- 删除用户-----end-->
+
+
+<!-- 密码修改成功提示窗 -->
+<div class="modal fade" id="pdwV">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">修改提示</h4>
+            </div>
+            <div class="modal-body" align="center">
+                <h5>密码修改成功！</h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- 修改密码成功-----end-->
 </body>
 </html>

@@ -93,7 +93,7 @@
                     </tr>
                     <tr class="info">
                         <td>用户描述:</td>
-                        <td><textarea id="desc" rows="3" cols="20" id="desc" >${userInfo.user_describ}</textarea></td>
+                        <td><textarea id="desc" rows="3" cols="20"  >${userInfo.user_describ}</textarea></td>
                     </tr>
                     <%--<tr class="info">
                         <td>居住地址:</td>

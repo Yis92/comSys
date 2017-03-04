@@ -10,6 +10,23 @@ function updInfo(){
     var desc = $("#desc").val();
     var phone1 = $("#phone1").val();
     var phone2 = $("#phone2").val();
+    if(fullName == '' ||fullName.length==0){
+        $("#upd_msg").html("请输入用户全名");
+        return false;
+    }
+    if(desc == '' || desc.length ==0){
+        $("#upd_msg").html("请输入用户描述");
+        return false;
+    }
+    if(phone1 == ''||phone1.length==0){
+        $("#upd_msg").html("请输入电话1");
+        return false;
+    }
+    if(phone2 == ''||phone2.length==0){
+        $("#upd_msg").html("请输入电话2");
+        return false;
+    }
+
     $("#upd_msg").empty();
     $("#upd_msg").html("");
     $.ajax({
