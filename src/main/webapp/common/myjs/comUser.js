@@ -35,7 +35,7 @@ function doAdd(){
         return false;
     }
     if(desc == '' || desc.length ==0){
-        $("#desc").html("请输入用户说明");
+        $("#add_msg").html("请输入用户说明");
         return false;
     }
     $.ajax({
@@ -55,7 +55,7 @@ function doAdd(){
                 window.location.href = $("#basePath").val()+"myHome/goComUser?id="+unitNo;
                 return false;
             }else{
-                $("#desc").html(result);
+                $("#add_msg").html(result);
                 return false;
             }
             }
@@ -114,7 +114,7 @@ function doUpd(){
         success:function(data){
             var result = eval('('+data+')');
             if(result == 'SUC'){
-                window.location.href=$("#basePath").val()+"myHome/goComUser?id="+unitNo;
+                    window.location.href=$("#basePath").val()+"myHome/goComUser?id="+unitNo;
                     return false;
                 }else{
                     $("#upd_msg").html(result);

@@ -24,59 +24,66 @@
         <tbody class="text-center">
             <tr class="info">
                 <td style="width: 35%;">单位编号：</td>
-                <td style="width: 65%;" id="userName"></td>
+                <td style="width: 65%;">${comInfo.unit_no}</td>
             </tr>
             <tr class="active">
                 <td>单位名称：</td>
-                <td id="roleName"></td>
+                <td>${comInfo.unit_name}</td>
             </tr>
             <tr class="info">
-                <td style="width: 35%;">位置-X：</td>
-                <td style="width: 65%;" id="x"></td>
+                <td>地理经度：</td>
+                <td>${comInfo.unit_long}</td>
             </tr>
             <tr class="active">
-                <td>位置-Y：</td>
-                <td id="y"></td>
+                <td>地理纬度:</td>
+                <td>${comInfo.unit_lat}</td>
             </tr>
             <tr class="info">
-                <td style="width: 35%;">联系电话1：</td>
-                <td style="width: 65%;" id="phone1"></td>
+                <td>地理位置：</td>
+                <td>${comInfo.address}</td>
             </tr>
             <tr class="active">
-                <td>联系电话2：</td>
-                <td id="phone2"></td>
+                <td>公司电话1:</td>
+                <td>${comInfo.unit_tel1}</td>
             </tr>
             <tr class="info">
-                <td style="width: 35%;">联系电话3：</td>
-                <td style="width: 65%;" id="phone3"></td>
+                <td>公司电话2:</td>
+                <td>${comInfo.unit_tel2}</td>
             </tr>
             <tr class="active">
-                <td>联系电话4：</td>
-                <td id="phone4"></td>
+                <td>公司电话3:</td>
+                <td>${comInfo.unit_tel3}</td>
             </tr>
             <tr class="info">
-                <td style="width: 35%;">联系电话5：</td>
-                <td style="width: 65%;" id="phone5"></td>
+                <td>公司电话4:</td>
+                <td>${comInfo.unit_tel4}</td>
             </tr>
             <tr class="active">
-                <td>联系电话6：</td>
-                <td id="phone6"></td>
+                <td>公司电话5:</td>
+                <td>${comInfo.unit_tel5}</td>
             </tr>
             <tr class="info">
-                <td style="width: 35%;">单位地址：</td>
-                <td style="width: 65%;" id="addr"></td>
+                <td>公司电话6:</td>
+                <td>${comInfo.unit_tel6}</td>
             </tr>
             <tr class="active">
-                <td>使用的DTU总数：</td>
-                <td id="dtuNums">1</td>
-            </tr><tr class="info">
-                <td style="width: 35%;">DTU 1：</td>
-                <td style="width: 65%;" id="dtu1">1612020003000006</td>
+                <td>dtu数量：</td>
+                <td>${comInfo.dtu_num}</td>
             </tr>
-            <tr class="active">
-                <td>DTU 2：</td>
-                <td id="dtu2">1612020003000002</td>
-            </tr>
+            <c:forEach items="${comInfo.dtu}" var="dtu" varStatus ="status">
+                <c:if test="${(status.index+1)%2 == 1}">
+                    <tr class="info">
+                        <td>dtu${status.index+1}</td>
+                        <td>${dtu.dtu_sn}</td>
+                    </tr>
+                </c:if>
+                <c:if test="${(status.index+1)%2 == 0}">
+                    <tr class="active">
+                        <td>dtu${status.index+1}</td>
+                        <td>${dtu.dtu_sn}</td>
+                    </tr>
+                </c:if>
+            </c:forEach>
         </tbody>
     </table>
 </div>
@@ -91,48 +98,57 @@
             </div>
             <div class="modal-body" align="center">
                 <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                    <tr class="active">
+                        <td>单位名称:</td>
+                        <td>
+                            <input type="hidden" value="${comInfo.unit_no}" id="unitNo">
+                            <input class="form-control" type="text" value="${comInfo.unit_name}" id="unitName" placeholder="请输入单位名称" />
+                        </td>
+                    </tr>
                     <tr class="info">
-                        <td style="width: 35%;">单位编号：</td>
-                        <td style="width: 65%;" id="uId"></td>
+                        <td>地理经度:</td>
+                        <td><input class="form-control" type="text" id="long" value="${comInfo.unit_long}" placeholder="请输入公司地理经度" /></td>
                     </tr>
                     <tr class="active">
-                        <td>单位名称：</td>
-                        <td id="uusers"></td>
+                        <td>地理纬度:</td>
+                        <td><input class="form-control" type="text" value="${comInfo.unit_lat}" id="lat" placeholder="请输入公司地理纬度"></td>
                     </tr>
                     <tr class="info">
-                        <td>位置-X：</td>
-                        <td id="unikeName"></td>
+                        <td>地理位置:</td>
+                        <td>
+                            <input class="form-control" type="text" value="${comInfo.address}" id="adress" placeholder="请输入公司地理位置" />
+                        </td>
                     </tr>
                     <tr class="active">
-                        <td>位置-Y:</td>
-                        <td id="uUserRemark"></td>
+                        <td>公司电话1:</td>
+                        <td><input class="form-control" type="text" value="${comInfo.unit_tel1}" id="tel1" placeholder="请输入公司电话1" /></td>
                     </tr>
                     <tr class="info">
-                        <td>联系电话1:</td>
-                        <td id="uAddr"></td>
+                        <td>公司电话2:</td>
+                        <td><input class="form-control" type="text" value="${comInfo.unit_tel2}" id="tel2" placeholder="请输入公司电话2"/></td>
                     </tr>
                     <tr class="active">
-                        <td>联系电话2:</td>
-                        <td id="uComId"></td>
+                        <td>公司电话3:</td>
+                        <td><input class="form-control" type="text" value="${comInfo.unit_tel3}" id="tel3" placeholder="请输入公司电话3"/></td>
                     </tr>
                     <tr class="info">
-                        <td>联系电话3:</td>
-                        <td id="uPhone1"></td>
+                        <td>公司电话4:</td>
+                        <td><input class="form-control" type="text" value="${comInfo.unit_tel4}" id="tel4" placeholder="请输入公司电话4"/></td>
                     </tr>
                     <tr class="active">
-                        <td>联系电话4:</td>
-                        <td id="uPhone2"></td>
+                        <td>公司电话5:</td>
+                        <td><input class="form-control" type="text" value="${comInfo.unit_tel5}" id="tel5" placeholder="请输入公司电话5"/></td>
                     </tr>
                     <tr class="info">
-                        <td>...</td>
-                        <td id="uPhone1">...</td>
+                        <td>公司电话6:</td>
+                        <td><input class="form-control" type="text" value="${comInfo.unit_tel6}" id="tel6" placeholder="请输入公司电话6"/></td>
                     </tr>
                 </table>
                 <span id="upd_msg" style="color: red;"></span>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" onclick="updPwd();">保存</button>
+                <button type="button" class="btn btn-primary" onclick="updInfo();">保存</button>
             </div>
         </div>
     </div>

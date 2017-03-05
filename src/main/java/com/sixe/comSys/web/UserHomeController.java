@@ -3,6 +3,7 @@ package com.sixe.comSys.web;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
+import com.sixe.comSys.base.Contants;
 import com.sixe.comSys.base.SpringContextHolder;
 import com.sixe.comSys.dto.QueryUserInfo.QueryUserInfoParam;
 import com.sixe.comSys.utils.HttpClientUtil;
@@ -39,7 +40,7 @@ public class UserHomeController {
         Map<String,Object> map = new HashedMap();
         map.put("user_id", SpringContextHolder.getCurrentUser().getResult().getUser_id());
         logger.info("请求参数："+map.toString());
-        String result = HttpTools.sendPost(ProperUtils.getVal("reqUrl")+"querry_user_info.php",map);
+        String result = HttpTools.sendPost(ProperUtils.getVal("reqUrl")+ Contants.Query_User_Info_Url,map);
         logger.info("返回结果："+result);
         JSONObject jsonObj = JSON.parseObject(result);
         String state=jsonObj.getString("state");
@@ -73,7 +74,7 @@ public class UserHomeController {
         map.put("user_tel1",phone1);
         map.put("user_tel2",phone2);
         logger.info("请求参数："+map.toString());
-        String result = HttpClientUtil.doHttpPost(ProperUtils.getVal("reqUrl")+"update_user_info.php","UTF-8",map,10000);
+        String result = HttpClientUtil.doHttpPost(ProperUtils.getVal("reqUrl")+Contants.Update_User_Info_Url,"UTF-8",map,10000);
         //String result = HttpTools.sendPost(ProperUtils.getVal("reqUrl")+"update_user_info.php",map);
         logger.info("返回结果："+result);
         JSONObject jsonObj = JSON.parseObject(result);
@@ -101,7 +102,7 @@ public class UserHomeController {
         map.put("pwd_old",password);
         map.put("pwd_new",upass);
         logger.info("请求参数："+map.toString());
-        String result = HttpTools.sendPost(ProperUtils.getVal("reqUrl")+"update_user_pwd.php",map);
+        String result = HttpTools.sendPost(ProperUtils.getVal("reqUrl")+Contants.Update_User_Pwd_Url,map);
         logger.info("返回结果："+result);
         JSONObject jsonObj = JSON.parseObject(result);
         String state=jsonObj.getString("state");

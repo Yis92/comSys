@@ -1,10 +1,15 @@
 package com.sixe.comSys.web;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
+import com.sixe.comSys.base.Contants;
 import com.sixe.comSys.base.SessionInterceptor;
 import com.sixe.comSys.base.SpringContextHolder;
+import com.sixe.comSys.dto.QueryComInfo.ComInfoParam;
+import com.sixe.comSys.dto.QueryComInfo.QueryComInfoParam;
+import com.sixe.comSys.dto.QueryDtuInfo.QueryDTUStatusParam;
 import com.sixe.comSys.dto.QueryUserList.QueryUserListParam;
 import com.sixe.comSys.dto.QueryUserList.UserParam;
 import com.sixe.comSys.utils.HttpClientUtil;
@@ -14,6 +19,7 @@ import org.apache.commons.collections.map.HashedMap;
 import com.sun.istack.internal.logging.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -23,7 +29,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Administrator on 2017/2/24.
+ * Created by wuqiang on 2017/2/24.
  */
 
 @Controller
@@ -40,14 +46,52 @@ public class MyHomeController {
     public String goMyHome(HttpServletRequest request, HttpServletResponse response){
         //判断用户角色
         int user_level = SpringContextHolder.getCurrentUser().getResult().getUser_level();
+        request.setAttribute("units",SpringContextHolder.getCurrentUser().getResult().getUnits());
         if("12".equals(user_level+"")){//12.普通用户,11.高级用户，10.公司管理员
             //普通用户进入...
             return "/user/home";
-        }else{
+        }else if("10".equals(user_level+"")){
             //管理员用户进入...
-            request.setAttribute("units",SpringContextHolder.getCurrentUser().getResult().getUnits());
             return "/admin/adminHome";
+        }else{
+            //普通用户进入...
+            return "/user/home";
         }
+    }
+
+    /**
+     * DTU页面
+     * @param id
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping(value = "/goDTUPage")
+    public String goDTUPage(String id,HttpServletRequest request, HttpServletResponse response){
+        logger.info("DTUPage【dtu_sn】:"+id);
+        request.setAttribute("dtu_sn",id);
+        Map<String,String> map = new HashedMap();
+        map.put("dtu_sn","1512110003000001");
+        logger.info("请求参数："+map.toString());
+        try {
+            String result = HttpClientUtil.doHttpPost(ProperUtils.getVal("reqUrl") + Contants.Query_Dtu_Info_Url, "UTF-8", map, 10000);
+            logger.info("返回结果:" + result);
+            JSONObject jsonObj = JSON.parseObject(result);
+            String state=jsonObj.getString("state");
+            if("200".equals(state)){
+                logger.info("查询成功...");
+                //Gson gson = new Gson();
+                // QueryDTUStatusParam param = gson.fromJson(result,QueryDTUStatusParam.class);
+                //request.setAttribute("dtuInfo",param);
+            }else{
+                String message=jsonObj.getString("message");
+                logger.info("请求失败【message】:"+message);
+                request.setAttribute("dtuInfo",null);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "/com/dtuPage";
     }
 
     /**
@@ -55,19 +99,165 @@ public class MyHomeController {
      * @return
      */
     @RequestMapping(value = "/goComInfo")
-    public String goComInfo(String id){
-
-        return "/com/info";
+    public String goComInfo(String id,HttpServletRequest request, HttpServletResponse response){
+        logger.info("进入信息管理，单位NO："+id);
+        Map<String,String> map = new HashedMap();
+        map.put("unit_no",id);
+        logger.info("请求参数："+map.toString());
+        String result = null;
+        try {
+            result = HttpClientUtil.doHttpPost(ProperUtils.getVal("reqUrl")+Contants.Query_Unit_Info_Url,"UTF-8",map,10000);
+            logger.info("返回结果:"+result);
+            JSONObject jsonObj = JSON.parseObject(result);
+            String state=jsonObj.getString("state");
+            if("200".equals(state)){
+                Gson gson = new Gson();
+                QueryComInfoParam param = gson.fromJson(result, QueryComInfoParam.class);
+                ComInfoParam pam = param.getResult();
+                logger.info("DTU列表长度："+pam.getDtu().size());
+                request.setAttribute("comInfo",pam);
+            }else{
+                String message=jsonObj.getString("message");
+                logger.info("请求失败【message】:"+message);
+                request.setAttribute("comInfo","");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.info("查询公司信息异常.....");
+        }
+        if("10".equals(SpringContextHolder.getCurrentUser().getResult().getUser_level()+"")){
+            return "/com/info";
+        }
+        return "/com/p_info";
     }
 
     /**
+     *
+     * @param unitNo
+     * @param unitName
+     * @param unitLong
+     * @param unitLat
+     * @param adress
+     * @param tel1
+     * @param tel2
+     * @param tel3
+     * @param tel4
+     * @param tel5
+     * @param tel6
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/doUpdComInfo")
+    public String doUpdComInfo(String unitNo,String unitName,String unitLong,String unitLat,String adress,
+                               String tel1,String tel2,String tel3,String tel4,String tel5,String tel6){
+        logger.info("修改单位信息："+unitNo);
+        logger.info("修改单位信息："+unitName);
+        Map<String,String> map = new HashedMap();
+        map.put("unit_no",unitNo);
+        map.put("unit_name",unitName);
+        map.put("unit_long",unitLong);
+        map.put("unit_lat",unitLat);
+        map.put("unit_adress",adress);
+        map.put("unit_tel1",tel1);
+        map.put("unit_tel2",tel2);
+        map.put("unit_tel3",tel3);
+        map.put("unit_tel4",tel4);
+        map.put("unit_tel5",tel5);
+        map.put("unit_tel6",tel6);
+        logger.info("请求参数："+map.toString());
+        String result = null;
+        try {
+            result = HttpClientUtil.doHttpPost(ProperUtils.getVal("reqUrl")+Contants.Update_Unit_Info_Url,"UTF-8",map,10000);
+            logger.info("返回结果:"+result);
+            JSONObject jsonObj = JSON.parseObject(result);
+            String state=jsonObj.getString("state");
+            if("200".equals(state)){
+                return Tools.sendJson("SUC");
+            }else{
+                String message=jsonObj.getString("message");
+                logger.info("请求失败【message】:"+message);
+                return Tools.sendJson(message);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.info("请求失败......");
+            return Tools.sendJson("系统异常");
+        }
+    }
+    /**
      * 进入DTU管理
+     * @param id  公司编号
      * @return
      */
     @RequestMapping(value = "/goDTUConfig")
-    public String goDTUConfig(String id){
-
+    public String goDTUConfig(String id,HttpServletRequest request){
+        logger.info("进入DTU管理界面【unitNo】："+id);
+        Map<String,String> map = new HashedMap();
+        map.put("unit_no",id);
+        logger.info("请求参数："+map.toString());
+        try {
+            String result = HttpClientUtil.doHttpPost(ProperUtils.getVal("reqUrl")+Contants.Query_Unit_Info2_Url,"UTF-8",map,10000);
+            logger.info("返回结果:"+result);
+            JSONObject jsonObj = JSON.parseObject(result);
+            String state=jsonObj.getString("state");
+            if("200".equals(state)){
+                JSONArray list = jsonObj.getJSONArray("result");
+                logger.info("DTU个数="+list.size());
+                request.setAttribute("dtuList",list);
+            }else{
+                String message=jsonObj.getString("message");
+                logger.info("请求失败【message】:"+message);
+                request.setAttribute("dtuList","");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return "/com/DTU";
+    }
+
+    /**
+     * 进入DTU状态界面
+     * @param dtuId
+     * @return
+     */
+    @RequestMapping(value = "/goDTUState")
+    @ResponseBody
+    public String goDTUState(String dtuId,HttpServletRequest request){
+        logger.info("进入DTU状态界面【dtuId】："+dtuId);
+        Map<String,String> map = new HashedMap();
+        map.put("dtu_sn",dtuId);
+        logger.info("请求参数："+map.toString());
+        try {
+            String result = HttpClientUtil.doHttpPost(ProperUtils.getVal("reqUrl")+Contants.Query_Dtu_State_Url,"UTF-8",map,10000);
+            logger.info("返回结果:"+result);
+            JSONObject jsonObj = JSON.parseObject(result);
+            String state=jsonObj.getString("state");
+            if("200".equals(state)){
+                JSONArray list = jsonObj.getJSONArray("result");
+                logger.info("dtu状态="+list.size());
+                Map<String,Object> resultMap = new HashedMap();
+                resultMap.put("code","0");
+                resultMap.put("list",list);
+                resultMap.put("date",jsonObj.getString("dt"));
+                return JSONObject.toJSONString(resultMap);
+            }else{
+                String message=jsonObj.getString("message");
+                logger.info("请求失败【message】:"+message);
+                Map<String,Object> resultMap = new HashedMap();
+                resultMap.put("code","1");
+                resultMap.put("list",null);
+                resultMap.put("date","");
+                return JSONObject.toJSONString(resultMap);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Map<String,Object> resultMap = new HashedMap();
+            resultMap.put("code","1");
+            resultMap.put("list",null);
+            resultMap.put("date","");
+            return JSONObject.toJSONString(resultMap);
+        }
     }
 
     /**
@@ -82,7 +272,7 @@ public class MyHomeController {
         try {
             request.setAttribute("unitNo",id);
             logger.info("请求参数："+map.toString());
-            String result = HttpClientUtil.doHttpPost(ProperUtils.getVal("reqUrl")+"querry_all_users_info.php","UTF-8",map,10000);
+            String result = HttpClientUtil.doHttpPost(ProperUtils.getVal("reqUrl")+Contants.QUERY_ALL_USERS_INFO_URL,"UTF-8",map,10000);
             logger.info("返回结果:"+result);
 
             JSONObject jsonObj = JSON.parseObject(result);
@@ -124,7 +314,7 @@ public class MyHomeController {
         logger.info("请求参数："+map.toString());
         String result = null;
         try {
-            result = HttpClientUtil.doHttpPost(ProperUtils.getVal("reqUrl")+"del_user.php","UTF-8",map,10000);
+            result = HttpClientUtil.doHttpPost(ProperUtils.getVal("reqUrl")+Contants.DEL_USER_URL,"UTF-8",map,10000);
             logger.info("返回结果:"+result);
             JSONObject jsonObj = JSON.parseObject(result);
             String state=jsonObj.getString("state");
@@ -172,7 +362,7 @@ public class MyHomeController {
         map.put("host_user_id",SpringContextHolder.getCurrentUser().getResult().getUser_id());
         logger.info("请求参数："+map.toString());
         try {
-            String result = HttpClientUtil.doHttpPost(ProperUtils.getVal("reqUrl")+"update_user_info_by_host.php","UTF-8",map,10000);
+            String result = HttpClientUtil.doHttpPost(ProperUtils.getVal("reqUrl")+Contants.UPDATE_USER_INFO_BY_HOST_URL,"UTF-8",map,10000);
             logger.info("返回结果:"+result);
             JSONObject jsonObj = JSON.parseObject(result);
             String state=jsonObj.getString("state");
@@ -216,7 +406,7 @@ public class MyHomeController {
         map.put("host_user_id",SpringContextHolder.getCurrentUser().getResult().getUser_id());
         logger.info("请求参数："+map.toString());
         try {
-            String result = HttpClientUtil.doHttpPost(ProperUtils.getVal("reqUrl")+"add_user.php","UTF-8",map,10000);
+            String result = HttpClientUtil.doHttpPost(ProperUtils.getVal("reqUrl")+Contants.ADD_USER_URL,"UTF-8",map,10000);
             logger.info("返回结果:"+result);
             JSONObject jsonObj = JSON.parseObject(result);
             String state=jsonObj.getString("state");
@@ -251,7 +441,7 @@ public class MyHomeController {
 
         logger.info("请求参数："+map.toString());
         try {
-            String result = HttpClientUtil.doHttpPost(ProperUtils.getVal("reqUrl")+"update_user_pwd_by_host.php","UTF-8",map,10000);
+            String result = HttpClientUtil.doHttpPost(ProperUtils.getVal("reqUrl")+Contants.UPDATE_USER_PWD_BY_HOST_URL,"UTF-8",map,10000);
             logger.info("返回结果:"+result);
             JSONObject jsonObj = JSON.parseObject(result);
             String state=jsonObj.getString("state");

@@ -44,8 +44,8 @@
         <div class="lg_list">
             <form action = "${basePath}home/doLogin" id="lgForm" method="POST">
                 <ul>
-                    <li><input type="text" placeholder="用户名" class="ipt1" name="user_id" autocomplete="off" id="userName"></li>
-                    <li><input type="password" placeholder="密码" class="ipt1 ipt_tit" name="pwd" autocomplete="off" id="password"></li>
+                    <li><input type="text" placeholder="用户名" class="ipt1" value="dhmaster" name="user_id" autocomplete="off" id="userName"></li>
+                    <li><input type="password" placeholder="密码" class="ipt1 ipt_tit" value="123456" name="pwd" autocomplete="off" id="password"></li>
                     <li><input type="text" placeholder="验证码" class="ipt2" autocomplete="off" id="code" onblur="checkCode();">
                         <div class="yzm"><img src="${basePath}home/randomImg"  width="" height="42" alt="" id="rCode" onclick="loadimage();"></div>
                         <div class="yzm_ok" id="isOk"><img src="${basePath}common/images/yzm_ok.png" width="21" height="21" alt=""></div></li>

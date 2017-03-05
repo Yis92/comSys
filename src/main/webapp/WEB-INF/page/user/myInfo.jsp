@@ -29,7 +29,17 @@
     </tr>
     <tr class="active">
         <td>用户等级：</td>
-        <td>${userInfo.user_level}</td>
+        <td>
+            <c:if test="${userInfo.user_level == 10}">
+                管理员
+            </c:if>
+            <c:if test="${userInfo.user_level == 12}">
+                普通用户
+            </c:if>
+            <c:if test="${userInfo.user_level == 11}">
+                高级用户
+            </c:if>
+        </td>
     </tr>
     <tr class="info">
         <td>用户全名：</td>
@@ -79,7 +89,15 @@
                     <tr class="active">
                         <td>用户等级：</td>
                         <td>
-                            ${userInfo.user_level}
+                            <c:if test="${userInfo.user_level == 10}">
+                                管理员
+                            </c:if>
+                            <c:if test="${userInfo.user_level == 12}">
+                                普通用户
+                            </c:if>
+                            <c:if test="${userInfo.user_level == 11}">
+                                高级用户
+                            </c:if>
                             <input type="hidden" value="${userInfo.user_level}" id="userLevel">
                         </td>
                     </tr>
@@ -89,11 +107,11 @@
                     </tr>
                     <tr class="active">
                         <td>用户全名：</td>
-                        <td><input type="text" value="${userInfo.user_full_name}" id="fullName" /></td>
+                        <td><input class="form-control" type="text" value="${userInfo.user_full_name}" id="fullName" /></td>
                     </tr>
                     <tr class="info">
                         <td>用户描述:</td>
-                        <td><textarea id="desc" rows="3" cols="20"  >${userInfo.user_describ}</textarea></td>
+                        <td><textarea class="form-control" id="desc" rows="3" cols="20"  >${userInfo.user_describ}</textarea></td>
                     </tr>
                     <%--<tr class="info">
                         <td>居住地址:</td>
@@ -101,11 +119,11 @@
                     </tr>--%>
                     <tr class="active">
                         <td>用户电话1:</td>
-                        <td><input type="text" id="phone1" value="${userInfo.user_tel1}"/></td>
+                        <td><input class="form-control" type="text" id="phone1" value="${userInfo.user_tel1}"/></td>
                     </tr>
                     <tr class="info">
                         <td>用户电话2:</td>
-                        <td><input type="text" id="phone2" value="${userInfo.user_tel2}" /></td>
+                        <td><input class="form-control" type="text" id="phone2" value="${userInfo.user_tel2}" /></td>
                     </tr>
                 </table>
                 <span id="upd_msg" style="color: red;"></span>

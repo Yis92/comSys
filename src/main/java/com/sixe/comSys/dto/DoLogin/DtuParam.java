@@ -7,22 +7,22 @@ import java.io.Serializable;
  */
 public class DtuParam implements Serializable{
 
-    private String dtu1_name;//dtu名字
-    private String dtu1_sn;//dtu编号
+    private String dtu_name;//dtu名字
+    private String dtu_sn;//dtu编号
 
-    public String getDtu1_name() {
-        return dtu1_name;
+    public String getDtu_name() {
+        return dtu_name;
     }
 
-    public void setDtu1_name(String dtu1_name) {
-        this.dtu1_name = dtu1_name;
+    public void setDtu_name(String dtu_name) {
+        this.dtu_name = dtu_name;
     }
 
-    public String getDtu1_sn() {
-        return dtu1_sn;
+    public String getDtu_sn() {
+        return dtu_sn;
     }
 
-    public void setDtu1_sn(String dtu1_sn) {
-        this.dtu1_sn = dtu1_sn;
+    public void setDtu_sn(String dtu_sn) {
+        this.dtu_sn = dtu_sn;
     }
 }

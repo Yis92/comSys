@@ -19,11 +19,11 @@
         <thead class="text-center">
         <tr class="" style="background-color: #3278f7;color: white;">
             <td>用户编号</td>
-            <td>用户组</td>
+            <td>用户等级</td>
             <td>用户全名</td>
             <td>用户描述</td>
-            <td>用户电话</td>
-            <td>创建时间</td>
+            <td>电话1</td>
+            <td>电话2</td>
             <td>操作</td>
         </tr>
         </thead>
@@ -31,7 +31,15 @@
             <c:forEach items="${userList}" var="com" varStatus ="status">
                     <tr class="cls_${(status.index+1)%2 == 1}" >
                         <td>${com.user_id}</td>
-                        <td>${com.user_level}</td>
+                        <c:if test="${com.user_level == 12}" >
+                            <td>普通用户</td>
+                        </c:if>
+                        <c:if test="${com.user_level == 11}" >
+                            <td>高级用户</td>
+                        </c:if>
+                        <c:if test="${com.user_level == 10}" >
+                            <td>公司管理员</td>
+                        </c:if>
                         <td>${com.user_full_name}</td>
                         <td>${com.user_describ}</td>
                         <td>${com.user_tel1}</td>

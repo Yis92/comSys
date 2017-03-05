@@ -99,7 +99,7 @@ public class HomeController {
         map.put("user_id",user_id);
         map.put("pwd",pwd);
         logger.info("请求参数："+map.toString());
-        String result = HttpTools.sendPost(ProperUtils.getVal("reqUrl")+"check_usr.php",map);
+        String result = HttpTools.sendPost(ProperUtils.getVal("reqUrl")+Contants.Do_Login_Url,map);
         logger.info("返回结果："+result);
 
         JSONObject jsonObj = JSON.parseObject(result);
