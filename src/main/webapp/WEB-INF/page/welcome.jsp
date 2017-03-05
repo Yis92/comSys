@@ -25,8 +25,19 @@
     // 编写自定义函数,创建标注
     function addMarker(point){
         var marker = new BMap.Marker(point);
-        marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+        //marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
         map.addOverlay(marker);
+        var opts = {
+            width : 200,     // 信息窗口宽度
+            height: 100,     // 信息窗口高度
+            title : "海底捞王府井店" , // 信息窗口标题
+            enableMessage:true,//设置允许信息窗发送短息
+            message:"亲耐滴，晚上一起吃个饭吧？戳下面的链接看下地址喔~"
+        }
+        var infoWindow = new BMap.InfoWindow("地址：北京市东城区王府井大街88号乐天银泰百货八层", opts)
+        marker.addEventListener("click", function(){
+            map.openInfoWindow(infoWindow,point); //开启信息窗口
+        });
     }
     // 随机向地图添加25个标注
     var bounds = map.getBounds();
