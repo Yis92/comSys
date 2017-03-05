@@ -3,7 +3,8 @@
 <html>
 <head>
     <title>Title</title>
-    <script type="text/javascript" src="${basePath }common/myjs/dtuPage.js?ran=<%=Math.random()%>"></script>
+    <script type="text/javascript" src="${basePath }common/myjs/groupingPage.js?ran=<%=Math.random()%>"></script>
+    <script type="text/javascript" src="${basePath }common/echarts/echarts.js"></script>
 </head>
 <body style="font-family: '微软雅黑';">
 <input id="basePath" value="${basePath }" type="hidden">
@@ -24,56 +25,19 @@
     <!--导航菜单...-->
 </div>
 <div class="container con_title" style="margin-top: 100px;" >
-    <div style="margin-left: 30px;margin-top: 10px;margin-bottom: 10px; ">
-        <button type="button" style="" class="btn btn-primary" onclick="add();" data-toggle="modal" data-target="#myModal_upd" ><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;修改</button>&nbsp;
+    <ul class="nav nav-pills">
+        <li role="presentation" class="dropdown">
+            <select class="form-control">
+                <option>办公区监控</option>
+                <option>前台监控</option>
+                <option>会议室监控</option>
+            </select>
+        </li>
+    </ul>
+    <div class="container-fluid" style="margin-top: 20px;">
+        <div id="main" style="width: 100%;height:640px;">
+        </div>
     </div>
-    <table class="table table-striped table-bordered table-hover" style="width: 100%;">
-        <thead class="text-center">
-        <tr class="" style="background-color: #3278f7;color: white;">
-            <td>项目</td>
-            <td>数值</td>
-        </tr>
-        </thead>
-        <tbody class="text-center">
-        <tr class="info">
-            <td style="width: 35%;">DTU名称：</td>
-            <td style="width: 65%;"></td>
-        </tr>
-        <tr class="active">
-            <td>设备描述：</td>
-            <td></td>
-        </tr>
-        <tr class="info">
-            <td>安装位置：</td>
-            <td></td>
-        </tr>
-        <tr class="active">
-            <td>安装经度：</td>
-            <td></td>
-        </tr>
-        <tr class="info">
-            <td>安装纬度：</td>
-            <td></td>
-        </tr>
-        <tr class="active">
-            <td>报警类型：</td>
-            <td></td>
-        </tr>
-        <tr class="info">
-            <td>上传频率：</td>
-            <td></td>
-        </tr>
-        <tr class="active">
-            <td>通信类型：</td>
-            <td></td>
-        </tr>
-        <tr class="info">
-            <td>sim卡号：</td>
-            <td></td>
-        </tr>
-        </tbody>
-    </table>
 </div>
-
 </body>
 </html>

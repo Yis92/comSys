@@ -34,5 +34,6 @@ public class Contants {
     public static final String ADD_USER_URL = "add_user.php";
     /*管理员修改用户密码*/
     public static final String UPDATE_USER_PWD_BY_HOST_URL = "update_user_pwd_by_host.php";
-
+    /*查询dtu分组*/
+    public static final String QUERRY_DTU_GROUP_DATA_URL = "querry_dtu_group_data.php";
 }
