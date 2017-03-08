@@ -39,7 +39,6 @@ public class DtuHomeController {
      */
     @RequestMapping(value = "/goWarningPage")
     public String goWarningPage(String nodeId, HttpServletRequest request, HttpServletResponse response){
-
         return "/dtu/warningPage";
     }
 
@@ -52,7 +51,6 @@ public class DtuHomeController {
      */
     @RequestMapping(value = "/goGroupingPage")
     public String goGroupingPage(String nodeId, HttpServletRequest request, HttpServletResponse response){
-
         return "/dtu/groupingPage";
     }
 
