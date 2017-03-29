@@ -132,4 +132,10 @@ public class HomeController {
         return "redirect:/home/login";
     }
 
+    @RequestMapping(value = "/permissionDenied")
+    public String permissionDenied(){
+        logger.info("用户权限不足.....");
+        return "/err/permissionDenied";
+    }
+
 }

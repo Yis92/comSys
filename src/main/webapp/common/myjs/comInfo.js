@@ -54,7 +54,7 @@ function updInfo(){
     $("#upd_msg").empty();
 
     $.ajax({
-        url: $("#basePath").val()+'myHome/doUpdComInfo',
+        url: $("#basePath").val()+'myHome/doUpdComInfo.admin',
         type : "POST",
         data : {
             unitNo:unitNo,

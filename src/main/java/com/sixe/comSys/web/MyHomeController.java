@@ -55,7 +55,7 @@ public class MyHomeController {
             //管理员用户进入...
             return "/admin/adminHome";
         }else{
-            //普通用户进入...
+            //高级用户进入...
             return "/user/home";
         }
     }
@@ -148,7 +148,7 @@ public class MyHomeController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/doUpdComInfo")
+    @RequestMapping(value = "/doUpdComInfo.admin")
     public String doUpdComInfo(String unitNo,String unitName,String unitLong,String unitLat,String adress,
                                String tel1,String tel2,String tel3,String tel4,String tel5,String tel6){
         logger.info("修改单位信息："+unitNo);
@@ -265,7 +265,7 @@ public class MyHomeController {
      * 进入单位用户管理
      * @return
      */
-    @RequestMapping(value = "/goComUser")
+    @RequestMapping(value = "/goComUser.admin")
     public String goComUser(String id,HttpServletRequest request, HttpServletResponse response){
         logger.info("单位No:"+id);
         Map<String,String> map = new HashedMap();
@@ -304,7 +304,7 @@ public class MyHomeController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "doDel")
+    @RequestMapping(value = "doDel.admin")
     public String doDel(String userId,String unitNo){
         logger.info("删除User_Id:"+userId);
         logger.info("所属公司NO："+unitNo);
@@ -345,7 +345,7 @@ public class MyHomeController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/doUpd")
+    @RequestMapping(value = "/doUpd.admin")
     public String doUpd(String id,String level,
                         String fullName,String desc,
                         String phone1,String phone2,
@@ -391,7 +391,7 @@ public class MyHomeController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/doAdd")
+    @RequestMapping(value = "/doAdd.admin")
     public String doAdd(String user_id,String password,
                             String level,String desc,String unitNo,String fullName){
         logger.info("新增User_Id:"+user_id);
@@ -431,7 +431,7 @@ public class MyHomeController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/doUpwd")
+    @RequestMapping(value = "/doUpwd.admin")
     public String doUpwd(String user_id,String upass){
         logger.info("修改密码user_Id:"+user_id);
         logger.info("修改密码 upass:"+upass);

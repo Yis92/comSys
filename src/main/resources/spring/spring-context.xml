@@ -28,34 +28,67 @@
     <aop:aspectj-autoproxy />
     <context:component-scan base-package="com.sixe.comSys"></context:component-scan>
 
-    <!-- 登录拦截器 -->
     <!--myHome  -->
    <mvc:interceptors>
+       <!--*************登录拦截器****************-->
         <mvc:interceptor>
             <mvc:mapping path="/myHome/*"/>
             <bean class="com.sixe.comSys.base.SessionInterceptor"></bean>
         </mvc:interceptor>
-    </mvc:interceptors>
-    <!--userHome-->
-    <mvc:interceptors>
-        <mvc:interceptor>
-            <mvc:mapping path="/userHome/*"/>
-            <bean class="com.sixe.comSys.base.SessionInterceptor"></bean>
-        </mvc:interceptor>
-    </mvc:interceptors>
-    <!--dtuHome-->
-    <mvc:interceptors>
+       <!--userHome-->
+       <mvc:interceptor>
+           <mvc:mapping path="/userHome/*"/>
+           <bean class="com.sixe.comSys.base.SessionInterceptor"></bean>
+       </mvc:interceptor>
+        <!--dtuHome-->
         <mvc:interceptor>
             <mvc:mapping path="/dtuHome/*"/>
             <bean class="com.sixe.comSys.base.SessionInterceptor"></bean>
         </mvc:interceptor>
-    </mvc:interceptors>
-    <!--druData-->
-    <mvc:interceptors>
+        <!--druData-->
         <mvc:interceptor>
             <mvc:mapping path="/dtuData/*"/>
             <bean class="com.sixe.comSys.base.SessionInterceptor"></bean>
         </mvc:interceptor>
+
+       <!--**************用户权限拦截器**************-->
+       <!--管理员用户操作过滤-->
+       <mvc:interceptor>
+           <mvc:mapping path="/myHome/*.admin"/>
+           <bean class="com.sixe.comSys.base.UserPermissionAdminInterceptor"></bean>
+       </mvc:interceptor>
+       <mvc:interceptor>
+           <mvc:mapping path="/userHome/*.admin"/>
+           <bean class="com.sixe.comSys.base.UserPermissionAdminInterceptor"></bean>
+       </mvc:interceptor>
+       <mvc:interceptor>
+           <mvc:mapping path="/dtuHome/*.admin"/>
+           <bean class="com.sixe.comSys.base.UserPermissionAdminInterceptor"></bean>
+       </mvc:interceptor>
+       <!--druData-->
+       <mvc:interceptor>
+           <mvc:mapping path="/dtuData/*.admin"/>
+           <bean class="com.sixe.comSys.base.UserPermissionAdminInterceptor"></bean>
+       </mvc:interceptor>
+
+       <!--高级用户操作过滤-->
+       <mvc:interceptor>
+           <mvc:mapping path="/myHome/*.adv"/>
+           <bean class="com.sixe.comSys.base.UserPermissionAdvancedInterceptor"></bean>
+       </mvc:interceptor>
+       <mvc:interceptor>
+           <mvc:mapping path="/userHome/*.adv"/>
+           <bean class="com.sixe.comSys.base.UserPermissionAdvancedInterceptor"></bean>
+       </mvc:interceptor>
+       <mvc:interceptor>
+           <mvc:mapping path="/dtuHome/*.adv"/>
+           <bean class="com.sixe.comSys.base.UserPermissionAdvancedInterceptor"></bean>
+       </mvc:interceptor>
+       <!--druData-->
+       <mvc:interceptor>
+           <mvc:mapping path="/dtuData/*.adv"/>
+           <bean class="com.sixe.comSys.base.UserPermissionAdvancedInterceptor"></bean>
+       </mvc:interceptor>
     </mvc:interceptors>
 
     <bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">

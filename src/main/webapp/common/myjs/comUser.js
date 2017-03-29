@@ -52,7 +52,7 @@ function doAdd(){
         success:function (data) {
             var result = eval('('+data+')') ;
             if(result == 'SUC'){
-                window.location.href = $("#basePath").val()+"myHome/goComUser?id="+unitNo;
+                window.location.href = $("#basePath").val()+"myHome/goComUser.admin?id="+unitNo;
                 return false;
             }else{
                 $("#add_msg").html(result);
@@ -100,7 +100,7 @@ function doUpd(){
         return false;
     }
     $.ajax({
-        url:$("#basePath").val()+"myHome/doUpd",
+        url:$("#basePath").val()+"myHome/doUpd.admin",
         type:"post",
         data:{
             id:id,
@@ -114,7 +114,7 @@ function doUpd(){
         success:function(data){
             var result = eval('('+data+')');
             if(result == 'SUC'){
-                    window.location.href=$("#basePath").val()+"myHome/goComUser?id="+unitNo;
+                    window.location.href=$("#basePath").val()+"myHome/goComUser.admin?id="+unitNo;
                     return false;
                 }else{
                     $("#upd_msg").html(result);
@@ -136,7 +136,7 @@ function Dodel(){
     var userId = $("#del_userId").val();
     var unitNo = $("#unitNo").val();
     $.ajax({
-        url:$("#basePath").val()+"myHome/doDel",
+        url:$("#basePath").val()+"myHome/doDel.admin",
         type:"POST",
         data:{
             userId : userId,
@@ -145,7 +145,7 @@ function Dodel(){
         success:function(data){
             var result = eval('('+data+')');
             if(result == 'SUC'){
-                window.location.href=$("#basePath").val()+"myHome/goComUser?id="+unitNo;
+                window.location.href=$("#basePath").val()+"myHome/goComUser.admin?id="+unitNo;
                 return false;
             }else{
                 $("#pMsg").html(result);
@@ -183,7 +183,7 @@ function  doPwd() {
     }
     $("#upmsg").html("");
     $.ajax({
-        url:$("#basePath").val()+"myHome/doUpwd",
+        url:$("#basePath").val()+"myHome/doUpwd.admin",
         type:"POST",
         data:{
             user_id:id,
