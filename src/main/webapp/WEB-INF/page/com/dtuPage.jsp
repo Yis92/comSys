@@ -37,39 +37,39 @@
         <tbody class="text-center">
         <tr class="info">
             <td style="width: 35%;">DTU名称：</td>
-            <td style="width: 65%;"></td>
+            <td style="width: 65%;">${dtuInfo.dtu_name}</td>
         </tr>
         <tr class="active">
             <td>设备描述：</td>
-            <td></td>
+            <td>${dtuInfo.dtu_describ}</td>
         </tr>
         <tr class="info">
             <td>安装位置：</td>
-            <td></td>
+            <td>${dtuInfo.dtu_address}</td>
         </tr>
         <tr class="active">
             <td>安装经度：</td>
-            <td></td>
+            <td>${dtuInfo.dtu_long}</td>
         </tr>
         <tr class="info">
             <td>安装纬度：</td>
-            <td></td>
+            <td>${dtuInfo.dtu_lat}</td>
         </tr>
         <tr class="active">
             <td>报警类型：</td>
-            <td></td>
+            <td>${dtuInfo.dtu_comm_type}</td>
         </tr>
         <tr class="info">
             <td>上传频率：</td>
-            <td></td>
+            <td>${dtuInfo.dtu_sim_no}</td>
         </tr>
         <tr class="active">
             <td>通信类型：</td>
-            <td></td>
+            <td>${dtuInfo.dtu_warning_type}</td>
         </tr>
         <tr class="info">
             <td>sim卡号：</td>
-            <td></td>
+            <td>${dtuInfo.dtu_upfreq}</td>
         </tr>
         </tbody>
     </table>

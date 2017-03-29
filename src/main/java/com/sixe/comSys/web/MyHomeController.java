@@ -9,6 +9,7 @@ import com.sixe.comSys.base.SessionInterceptor;
 import com.sixe.comSys.base.SpringContextHolder;
 import com.sixe.comSys.dto.QueryComInfo.ComInfoParam;
 import com.sixe.comSys.dto.QueryComInfo.QueryComInfoParam;
+import com.sixe.comSys.dto.QueryDtuInfo.QueryDTUInfoParam;
 import com.sixe.comSys.dto.QueryDtuInfo.QueryDTUStatusParam;
 import com.sixe.comSys.dto.QueryUserList.QueryUserListParam;
 import com.sixe.comSys.dto.QueryUserList.UserParam;
@@ -80,9 +81,9 @@ public class MyHomeController {
             String state=jsonObj.getString("state");
             if("200".equals(state)){
                 logger.info("查询成功...");
-                //Gson gson = new Gson();
-                // QueryDTUStatusParam param = gson.fromJson(result,QueryDTUStatusParam.class);
-                //request.setAttribute("dtuInfo",param);
+                Gson gson = new Gson();
+                QueryDTUInfoParam param = gson.fromJson(result,QueryDTUInfoParam.class);
+                request.setAttribute("dtuInfo",param.getResult());
             }else{
                 String message=jsonObj.getString("message");
                 logger.info("请求失败【message】:"+message);

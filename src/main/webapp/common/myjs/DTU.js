@@ -13,10 +13,11 @@ function dtuState(dtuNo) {
         success: function (data) {
             var result = eval('('+data+')') ;
             //json = eval(json);
-            console.log(result)
-            console.log(result.code)
-            console.log(result.date)
-            console.log(result.list)
+            //console.log(result)
+            //console.log(result.code)
+            //console.log(result.date)
+            //console.log(result.list)
+            $(".stateTable").empty();
             if (result.code == "0") {
                   var htmlTab='';
                 for (var i = 0; i < result.list.length; i++) {
@@ -27,8 +28,9 @@ function dtuState(dtuNo) {
                     }
                     htmlTab+='</tr>';
                 }
-                console.log(htmlTab)
+                //console.log(htmlTab)
                 $(".stateTable").append(htmlTab);
+                $("#dtuState").modal("show");
                 //window.location.href = $("#basePath").val()+"myHome/goComUser?id="+dtuNo;
             } else {
                 //$("#add_msg").html(result);

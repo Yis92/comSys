@@ -25,6 +25,7 @@
     <!--导航菜单...-->
 </div>
 <div class="container con_title" style="margin-top: 100px;" >
+    <input type="hidden" value="${nodeId}" id="nodeId" />
     <ul class="nav nav-pills">
         <li role="presentation" class="dropdown">
             <select class="form-control">

@@ -13,6 +13,7 @@ public class SessionInterceptor implements HandlerInterceptor {
 
     public boolean preHandle(HttpServletRequest req, HttpServletResponse resp,
                              Object o) throws Exception {
+        System.out.println("进入登录拦截器.....");
         // TODO Auto-generated method stub
         if (Tools.isEmpty(req.getSession())) {
             resp.sendRedirect("/comSys/home/login");

@@ -27,6 +27,7 @@ public class DtuHomeController {
     @RequestMapping(value = "/goNodePage")
     public String goNodePage(String nodeId, HttpServletRequest request, HttpServletResponse response){
         logger.info("节点信息页面【nodeId】："+nodeId);
+        request.setAttribute("nodeId",nodeId);
         return "/dtu/nodePage";
     }
 
@@ -39,6 +40,8 @@ public class DtuHomeController {
      */
     @RequestMapping(value = "/goWarningPage")
     public String goWarningPage(String nodeId, HttpServletRequest request, HttpServletResponse response){
+        logger.info("进入报价信息页面【nodeId】"+nodeId);
+        request.setAttribute("nodeId",nodeId);
         return "/dtu/warningPage";
     }
 
@@ -51,6 +54,8 @@ public class DtuHomeController {
      */
     @RequestMapping(value = "/goGroupingPage")
     public String goGroupingPage(String nodeId, HttpServletRequest request, HttpServletResponse response){
+        logger.info("进入分组页面【nodeId】"+nodeId);
+        request.setAttribute("nodeId",nodeId);
         return "/dtu/groupingPage";
     }
 
@@ -63,7 +68,8 @@ public class DtuHomeController {
      */
     @RequestMapping(value = "/goStatusPage")
     public String goStatusPage(String nodeId, HttpServletRequest request, HttpServletResponse response){
-
+        logger.info("进入状态页面【nodeId】"+nodeId);
+        request.setAttribute("nodeId",nodeId);
         return "/dtu/ststusPage";
     }
 
@@ -76,6 +82,8 @@ public class DtuHomeController {
      */
     @RequestMapping(value = "/goHistoryPage")
     public String goHistoryPage(String nodeId, HttpServletRequest request, HttpServletResponse response){
+        logger.info("进入历史数据页面【nodeId】"+nodeId);
+        request.setAttribute("nodeId",nodeId);
         return "/dtu/historyPage";
     }
 }

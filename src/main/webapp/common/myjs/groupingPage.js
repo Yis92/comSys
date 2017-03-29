@@ -1,4 +1,20 @@
 $(function() {
+    var nodeId = $("#nodeId").val();
+    $.ajax({
+        url:$("#basePath").val() + "dtuData/groupingData",
+        type:"POST",
+        data:{
+            nodeId:nodeId
+        },
+        success:function (data) {
+            var result = eval('('+data+')') ;
+            console.log(result);
+
+        }
+        
+    });
+
+
     var myChart = echarts.init(document.getElementById('main'));
     // 指定图表的配置项和数据
     var option = {

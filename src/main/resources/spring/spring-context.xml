@@ -29,14 +29,34 @@
     <context:component-scan base-package="com.sixe.comSys"></context:component-scan>
 
     <!-- 登录拦截器 -->
-   <!--
+    <!--myHome  -->
    <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/myHome/*"/>
-            <bean class="com.sixe.comSys.base.SpringContextHolder"></bean>
+            <bean class="com.sixe.comSys.base.SessionInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>
-    -->
+    <!--userHome-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/userHome/*"/>
+            <bean class="com.sixe.comSys.base.SessionInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+    <!--dtuHome-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/dtuHome/*"/>
+            <bean class="com.sixe.comSys.base.SessionInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+    <!--druData-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/dtuData/*"/>
+            <bean class="com.sixe.comSys.base.SessionInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
     <bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
         <property name="viewClass"
