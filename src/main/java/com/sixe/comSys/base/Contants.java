@@ -16,6 +16,8 @@ public class Contants {
     public static final String Update_User_Pwd_Url = "update_user_pwd.php";
     /*查询dtu信息*/
     public static final String Query_Dtu_Info_Url = "querry_dtu_info.php";
+    /*修改dtu信息*/
+    public static final String Update_Dtu_Info_Url = "update_dtu_info.php";
     /*查询公司信息*/
     public static final String Query_Unit_Info_Url = "querry_unit_info.php";
     /*修改公司信息*/
@@ -36,4 +38,5 @@ public class Contants {
     public static final String UPDATE_USER_PWD_BY_HOST_URL = "update_user_pwd_by_host.php";
     /*查询dtu分组数据*/
     public static final String QUERRY_DTU_GROUP_DATA_URL = "querry_dtu_group_data.php";
+
 }

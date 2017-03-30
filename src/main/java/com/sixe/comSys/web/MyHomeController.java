@@ -62,17 +62,17 @@ public class MyHomeController {
 
     /**
      * DTU页面
-     * @param id
+     * @param nodeId
      * @param request
      * @param response
      * @return
      */
     @RequestMapping(value = "/goDTUPage")
-    public String goDTUPage(String id,HttpServletRequest request, HttpServletResponse response){
-        logger.info("DTUPage【dtu_sn】:"+id);
-        request.setAttribute("dtu_sn",id);
+    public String goDTUPage(String nodeId,HttpServletRequest request, HttpServletResponse response){
+        logger.info("DTUPage【dtu_sn】:"+nodeId);
+        request.setAttribute("dtu_sn",nodeId);
         Map<String,String> map = new HashedMap();
-        map.put("dtu_sn","1512110003000001");
+        map.put("dtu_sn",nodeId);
         logger.info("请求参数："+map.toString());
         try {
             String result = HttpClientUtil.doHttpPost(ProperUtils.getVal("reqUrl") + Contants.Query_Dtu_Info_Url, "UTF-8", map, 10000);

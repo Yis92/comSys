@@ -4,29 +4,44 @@
 <head>
     <title>Title</title>
     <script type="text/javascript" src="${basePath }common/myjs/dtuPage.js?ran=<%=Math.random()%>"></script>
+    <script type="text/javascript">
+        function showDiv(){
+            $("#dtu_name").val('${dtuInfo.dtu_name}');
+            $("#dtu_describ").val('${dtuInfo.dtu_describ}');
+            $("#dtu_address").val('${dtuInfo.dtu_address}');
+            $("#dtu_long").val('${dtuInfo.dtu_long}');
+            $("#dtu_lat").val('${dtuInfo.dtu_lat}');
+            $("#dtu_comm_type").val(${dtuInfo.dtu_comm_type});
+            $("#dtu_upfreq").val('${dtuInfo.dtu_upfreq}');
+            $("#dtu_warning_type").val('${dtuInfo.dtu_warning_type}');
+            $("#dtu_sim_no").val('${dtuInfo.dtu_sim_no}');
+            $("#dtu_type").val('${dtuInfo.dtu_type}');
+        }
+    </script>
 </head>
 <body style="font-family: '微软雅黑';">
 <input id="basePath" value="${basePath }" type="hidden">
 <h3 style="margin-left: 30px;margin-top: 30px;">DTU信息</h3>
 <hr/>
 <div style="width: 98%;float: left;margin-left: 20px;margin-right:10px;background-color:  #c2e8ef;">
-    <%--<ul class="nav nav-tabs nav-justified">--%>
     <!--导航菜单...-->
     <ul class="nav nav-pills nav-justified">
-        <li role="presentation" class="active"><a href="javascript(void);">DTU信息</a></li>
-        <li role="presentation"><a href="${basePath }dtuHome/goNodePage?nodeId=${dtu_sn}">节点信息</a></li>
+        <li role="presentation" class="active"><a href="${basePath }myHome/goDTUPage?nodeId=${dtu_sn}">DTU信息</a></li>
+        <li role="presentation"><a href="${basePath }dtuHome/goSensorNodePage?nodeId=${dtu_sn}">传感器节点信息</a></li>
+        <li role="presentation"><a href="${basePath }dtuHome/goControlNodePage?nodeId=${dtu_sn}">控制节点信息</a></li>
         <li role="presentation"><a href="${basePath }dtuHome/goWarningPage?nodeId=${dtu_sn}">报警信息</a></li>
         <li role="presentation"><a href="${basePath }dtuHome/goGroupingPage?nodeId=${dtu_sn}">分组信息</a></li>
-        <%--<li role="presentation"><a href="#">实时数据</a></li>--%>
-        <li role="presentation"><a href="${basePath }dtuHome/goStatusPage?nodeId=${dtu_sn}">状态数据</a></li>
-        <li role="presentation"><a href="${basePath }dtuHome/goHistoryPage?nodeId=${dtu_sn}">历史数据</a></li>
+        <li role="presentation"><a href="${basePath }dtuHome/goDataDisplayPage?nodeId=${dtu_sn}">数据显示</a></li>
     </ul>
     <!--导航菜单...-->
 </div>
 <div class="container con_title" style="margin-top: 70px;" >
-    <div style="margin-left: 30px;margin-top: 10px;margin-bottom: 10px; ">
-        <button type="button" style="" class="btn btn-primary" onclick="add();" data-toggle="modal" data-target="#myModal_upd" ><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;修改</button>&nbsp;
-    </div>
+    <c:if test="${sessionScope.loginInfoSession.result.user_level == '10'|| sessionScope.loginInfoSession.result.user_level == '11'}">
+        <div style="margin-left: 30px;margin-top: 10px;margin-bottom: 10px; ">
+            <button type="button" style="" class="btn btn-primary" onclick="showDiv();" data-toggle="modal" data-target="#myModal_upd" ><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;修改</button>&nbsp;
+        </div>
+    </c:if>
+
     <table class="table table-striped table-bordered table-hover" style="width: 100%;">
         <thead class="text-center">
         <tr class="" style="background-color: #3278f7;color: white;">
@@ -57,31 +72,43 @@
         </tr>
         <tr class="active">
             <td>报警类型：</td>
-            <td>${dtuInfo.dtu_comm_type}</td>
-        </tr>
-        <tr class="info">
-            <td>上传频率：</td>
-            <td>${dtuInfo.dtu_sim_no}</td>
-        </tr>
-        <tr class="active">
-            <td>通信类型：</td>
             <td>${dtuInfo.dtu_warning_type}</td>
         </tr>
         <tr class="info">
-            <td>sim卡号：</td>
+            <td>上传频率：</td>
             <td>${dtuInfo.dtu_upfreq}</td>
+        </tr>
+        <tr class="active">
+            <td>通信类型：</td>
+            <td>
+                <c:if test="${dtuInfo.dtu_comm_type == '0'}">
+                    gprs
+                </c:if>
+                <c:if test="${dtuInfo.dtu_comm_type == '1'}">
+                   wifi
+                </c:if>
+            </td>
+        </tr>
+        <tr class="info">
+            <td>sim卡号：</td>
+            <td>${dtuInfo.dtu_sim_no}</td>
+        </tr>
+        <tr class="active">
+            <td>DTU类型</td>
+            <td>${dtuInfo.dtu_type}</td>
         </tr>
         </tbody>
     </table>
 </div>
 
-<!--添加信息 DIV-->
+<!--修改信息 DIV-->
 <div class="modal fade" id="myModal_upd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabeladd">添加信息</h4>
+                <h4 class="modal-title" id="myModalLabeladd">修改DTU信息</h4>
+                <input type="hidden" value="${dtu_sn}" id="dtu_sn">
             </div>
             <div class="modal-body" align="center">
                 <table class="table table-striped table-bordered table-hover" style="text-align: center;">
@@ -94,52 +121,79 @@
                     <tbody class="text-center">
                     <tr class="info">
                         <td style="width: 35%;">DTU名称：</td>
-                        <td style="width: 65%;"></td>
+                        <td style="width: 65%;">
+                            <input class="form-control" type="text" value="" id="dtu_name" placeholder="请输入DTU名称" />
+                        </td>
                     </tr>
                     <tr class="active">
                         <td>设备描述：</td>
-                        <td></td>
+                        <td>
+                            <input class="form-control" type="text" value="" id="dtu_describ" placeholder="请输入设备描述" />
+
+                        </td>
                     </tr>
                     <tr class="info">
                         <td>安装位置：</td>
-                        <td></td>
+                        <td>
+                            <input class="form-control" type="text" value="" id="dtu_address" placeholder="请输入安装位置" />
+                        </td>
                     </tr>
                     <tr class="active">
                         <td>安装经度：</td>
-                        <td></td>
+                        <td>
+                            <input class="form-control" type="text" value="" id="dtu_long" placeholder="请输入安装经度" />
+                        </td>
                     </tr>
                     <tr class="info">
                         <td>安装纬度：</td>
-                        <td></td>
+                        <td>
+                            <input class="form-control" type="text" value="" id="dtu_lat" placeholder="请输入安装纬度" />
+                        </td>
                     </tr>
                     <tr class="active">
                         <td>报警类型：</td>
-                        <td></td>
+                        <td>
+                            <input class="form-control" type="text" value=""  id="dtu_warning_type" readonly="readonly" />
+                        </td>
                     </tr>
                     <tr class="info">
                         <td>上传频率：</td>
-                        <td></td>
+                        <td>
+                            <input class="form-control" type="text" value="" id="dtu_upfreq" placeholder="请输入上传频率" />
+                        </td>
                     </tr>
                     <tr class="active">
                         <td>通信类型：</td>
-                        <td></td>
+                        <td>
+                            <select class="form-control" id="dtu_comm_type" value="">
+                                <option value="0">gprs</option>
+                                <option value="1">wifi</option>
+                            </select>
+                        </td>
                     </tr>
                     <tr class="info">
                         <td>sim卡号：</td>
-                        <td></td>
+                        <td>
+                            <input class="form-control" type="text" value="" id="dtu_sim_no" placeholder="请输入sim卡卡号" />
+                        </td>
+                    </tr>
+                    <tr class="active">
+                        <td>DTU类型</td>
+                        <td>
+                            <input class="form-control" type="text" value="" id="dtu_type" readonly="readonly" />
+                        </td>
                     </tr>
                     </tbody>
                 </table>
-                <span id="add_msg" style="color: red;"></span>
+                <span id="upd_msg" style="color: red;"></span>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" onclick="doAdd();">保存</button>
+                <button type="button" class="btn btn-primary" onclick="updDTUInfo();">保存</button>
             </div>
         </div>
     </div>
 </div>
-<!--添加信息 DIV-->
-
+<!--修改信息 DIV-->
 </body>
 </html>

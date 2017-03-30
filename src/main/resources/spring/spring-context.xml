@@ -89,6 +89,11 @@
            <mvc:mapping path="/dtuData/*.adv"/>
            <bean class="com.sixe.comSys.base.UserPermissionAdvancedInterceptor"></bean>
        </mvc:interceptor>
+       <!--dtuOperate-->
+       <mvc:interceptor>
+           <mvc:mapping path="/dtuOperate/*.adv"/>
+           <bean class="com.sixe.comSys.base.UserPermissionAdvancedInterceptor"></bean>
+       </mvc:interceptor>
     </mvc:interceptors>
 
     <bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">

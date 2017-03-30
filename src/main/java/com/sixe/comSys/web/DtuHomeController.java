@@ -18,17 +18,31 @@ public class DtuHomeController {
     private static final Logger logger = Logger.getLogger(DtuHomeController.class);
 
     /**
-     * 进入节点信息页面
+     * 进入传感器节点信息页面
      * @param nodeId
      * @param request
      * @param response
      * @return
      */
-    @RequestMapping(value = "/goNodePage")
-    public String goNodePage(String nodeId, HttpServletRequest request, HttpServletResponse response){
+    @RequestMapping(value = "/goSensorNodePage")
+    public String goSensorNodePage(String nodeId, HttpServletRequest request, HttpServletResponse response){
         logger.info("节点信息页面【nodeId】："+nodeId);
         request.setAttribute("nodeId",nodeId);
-        return "/dtu/nodePage";
+        return "/dtu/sensorNodePage";
+    }
+
+    /**
+     * 进入控制节点信息页面
+     * @param nodeId
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping(value = "/goControlNodePage")
+    public String goControlNodePage(String nodeId, HttpServletRequest request, HttpServletResponse response){
+        logger.info("节点信息页面【nodeId】："+nodeId);
+        request.setAttribute("nodeId",nodeId);
+        return "/dtu/controlNodePage";
     }
 
     /**
@@ -60,30 +74,21 @@ public class DtuHomeController {
     }
 
     /**
-     * 去状态页面
+     * 去数据显示页面
+     *      。历史数据
+     *      。站内节点地图方式
+     *      。列表式 实时数据
+     *      。分组式 实时数据
      * @param nodeId
      * @param request
      * @param response
      * @return
      */
-    @RequestMapping(value = "/goStatusPage")
-    public String goStatusPage(String nodeId, HttpServletRequest request, HttpServletResponse response){
+    @RequestMapping(value = "/goDataDisplayPage")
+    public String goDataDisplayPage(String nodeId, HttpServletRequest request, HttpServletResponse response){
         logger.info("进入状态页面【nodeId】"+nodeId);
         request.setAttribute("nodeId",nodeId);
-        return "/dtu/ststusPage";
+        return "/dtu/dataDisplayPage";
     }
 
-    /**
-     * 历史数据页面
-     * @param nodeId
-     * @param request
-     * @param response
-     * @return
-     */
-    @RequestMapping(value = "/goHistoryPage")
-    public String goHistoryPage(String nodeId, HttpServletRequest request, HttpServletResponse response){
-        logger.info("进入历史数据页面【nodeId】"+nodeId);
-        request.setAttribute("nodeId",nodeId);
-        return "/dtu/historyPage";
-    }
 }

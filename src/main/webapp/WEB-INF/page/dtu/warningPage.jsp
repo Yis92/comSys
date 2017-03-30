@@ -14,12 +14,11 @@
     <!--导航菜单...-->
     <ul class="nav nav-pills nav-justified">
         <li role="presentation"><a href="${basePath }myHome/goDTUPage?nodeId=${dtu_sn}">DTU信息</a></li>
-        <li role="presentation"><a href="${basePath }dtuHome/goNodePage?nodeId=${dtu_sn}">节点信息</a></li>
-        <li role="presentation" class="active"><a href="javascript(void);">报警信息</a></li>
+        <li role="presentation"><a href="${basePath }dtuHome/goSensorNodePage?nodeId=${dtu_sn}">传感器节点信息</a></li>
+        <li role="presentation"><a href="${basePath }dtuHome/goControlNodePage?nodeId=${dtu_sn}">控制节点信息</a></li>
+        <li role="presentation"  class="active"><a href="${basePath }dtuHome/goWarningPage?nodeId=${dtu_sn}">报警信息</a></li>
         <li role="presentation"><a href="${basePath }dtuHome/goGroupingPage?nodeId=${dtu_sn}">分组信息</a></li>
-        <%--<li role="presentation"><a href="#">实时数据</a></li>--%>
-        <li role="presentation"><a href="${basePath }dtuHome/goStatusPage?nodeId=${dtu_sn}">状态数据</a></li>
-        <li role="presentation"><a href="${basePath }dtuHome/goHistoryPage?nodeId=${dtu_sn}">历史数据</a></li>
+        <li role="presentation"><a href="${basePath }dtuHome/goDataDisplayPage?nodeId=${dtu_sn}">数据显示</a></li>
     </ul>
     <!--导航菜单...-->
 </div>

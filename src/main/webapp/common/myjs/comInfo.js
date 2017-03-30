@@ -72,7 +72,7 @@ function updInfo(){
         success : function (data) {
             var result = eval("("+data+")");
             if(result == 'SUC'){
-                window.location.href == $("#basePath").val()+'myHome/goComInfo?id='+unitNo;
+                window.location.href = $("#basePath").val()+'myHome/goComInfo?id='+unitNo;
                 return false ;
             }else{
                 $("#upd_msg").html(result);
