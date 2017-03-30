@@ -21,17 +21,17 @@
 </head>
 <body style="font-family: '微软雅黑';">
 <input id="basePath" value="${basePath }" type="hidden">
-<h3 style="margin-left: 30px;margin-top: 30px;">DTU信息</h3>
+<h3 style="margin-left: 30px;margin-top: 30px;">DTU信息（${dtuInfo.dtu_name}）</h3>
 <hr/>
 <div style="width: 98%;float: left;margin-left: 20px;margin-right:10px;background-color:  #c2e8ef;">
     <!--导航菜单...-->
     <ul class="nav nav-pills nav-justified">
-        <li role="presentation" class="active"><a href="${basePath }myHome/goDTUPage?nodeId=${dtu_sn}">DTU信息</a></li>
-        <li role="presentation"><a href="${basePath }dtuHome/goSensorNodePage?nodeId=${dtu_sn}">传感器节点信息</a></li>
-        <li role="presentation"><a href="${basePath }dtuHome/goControlNodePage?nodeId=${dtu_sn}">控制节点信息</a></li>
-        <li role="presentation"><a href="${basePath }dtuHome/goWarningPage?nodeId=${dtu_sn}">报警信息</a></li>
-        <li role="presentation"><a href="${basePath }dtuHome/goGroupingPage?nodeId=${dtu_sn}">分组信息</a></li>
-        <li role="presentation"><a href="${basePath }dtuHome/goDataDisplayPage?nodeId=${dtu_sn}">数据显示</a></li>
+        <li role="presentation" class="active"><a href="${basePath }dtuHome/goDTUPage?nodeId=${dtu_sn}&type=1">DTU信息</a></li>
+        <li role="presentation"><a href="${basePath }dtuHome/goDTUPage?nodeId=${dtu_sn}&type=2">传感器节点信息</a></li>
+        <li role="presentation"><a href="${basePath }dtuHome/goDTUPage?nodeId=${dtu_sn}&type=3">控制节点信息</a></li>
+        <li role="presentation"><a href="${basePath }dtuHome/goDTUPage?nodeId=${dtu_sn}&type=4">报警信息</a></li>
+        <li role="presentation"><a href="${basePath }dtuHome/goDTUPage?nodeId=${dtu_sn}&type=5">分组信息</a></li>
+        <li role="presentation"><a href="${basePath }dtuHome/goDTUPage?nodeId=${dtu_sn}&type=6">数据显示</a></li>
     </ul>
     <!--导航菜单...-->
 </div>
@@ -72,7 +72,14 @@
         </tr>
         <tr class="active">
             <td>报警类型：</td>
-            <td>${dtuInfo.dtu_warning_type}</td>
+            <td>
+                    <c:if test="${dtuInfo.dtu_warning_type == '0'}">
+                        APP
+                    </c:if>
+                    <c:if test="${dtuInfo.dtu_warning_type == '1'}">
+                        短信
+                    </c:if>
+            </td>
         </tr>
         <tr class="info">
             <td>上传频率：</td>
@@ -82,10 +89,10 @@
             <td>通信类型：</td>
             <td>
                 <c:if test="${dtuInfo.dtu_comm_type == '0'}">
-                    gprs
+                    GPRS
                 </c:if>
                 <c:if test="${dtuInfo.dtu_comm_type == '1'}">
-                   wifi
+                   WIFI
                 </c:if>
             </td>
         </tr>
@@ -153,21 +160,24 @@
                     <tr class="active">
                         <td>报警类型：</td>
                         <td>
-                            <input class="form-control" type="text" value=""  id="dtu_warning_type" readonly="readonly" />
+                            <select class="form-control" id="dtu_warning_type" value="">
+                                <option value="0">app</option>
+                                <option value="1">短信</option>
+                            </select>
                         </td>
                     </tr>
                     <tr class="info">
                         <td>上传频率：</td>
                         <td>
-                            <input class="form-control" type="text" value="" id="dtu_upfreq" placeholder="请输入上传频率" />
+                            <input class="form-control" type="text" value="" id="dtu_upfreq" readonly="readonly"/>
                         </td>
                     </tr>
                     <tr class="active">
                         <td>通信类型：</td>
                         <td>
                             <select class="form-control" id="dtu_comm_type" value="">
-                                <option value="0">gprs</option>
-                                <option value="1">wifi</option>
+                                <option value="0">GPRS</option>
+                                <option value="1">WIFI</option>
                             </select>
                         </td>
                     </tr>

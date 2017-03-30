@@ -1,12 +1,21 @@
 package com.sixe.comSys.web;
 
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.google.gson.Gson;
+import com.sixe.comSys.base.Contants;
+import com.sixe.comSys.dto.QueryDtuInfo.QueryDTUInfoParam;
+import com.sixe.comSys.utils.HttpClientUtil;
+import com.sixe.comSys.utils.ProperUtils;
 import com.sun.istack.internal.logging.Logger;
+import org.apache.commons.collections.map.HashedMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 
 /**
  * Created by wuqiang on 2017/3/5.
@@ -18,77 +27,51 @@ public class DtuHomeController {
     private static final Logger logger = Logger.getLogger(DtuHomeController.class);
 
     /**
-     * 进入传感器节点信息页面
+     * DTU页面
      * @param nodeId
      * @param request
      * @param response
      * @return
      */
-    @RequestMapping(value = "/goSensorNodePage")
-    public String goSensorNodePage(String nodeId, HttpServletRequest request, HttpServletResponse response){
-        logger.info("节点信息页面【nodeId】："+nodeId);
-        request.setAttribute("nodeId",nodeId);
-        return "/dtu/sensorNodePage";
-    }
-
-    /**
-     * 进入控制节点信息页面
-     * @param nodeId
-     * @param request
-     * @param response
-     * @return
-     */
-    @RequestMapping(value = "/goControlNodePage")
-    public String goControlNodePage(String nodeId, HttpServletRequest request, HttpServletResponse response){
-        logger.info("节点信息页面【nodeId】："+nodeId);
-        request.setAttribute("nodeId",nodeId);
-        return "/dtu/controlNodePage";
-    }
-
-    /**
-     * 进入报警信息页面
-     * @param nodeId
-     * @param request
-     * @param response
-     * @return
-     */
-    @RequestMapping(value = "/goWarningPage")
-    public String goWarningPage(String nodeId, HttpServletRequest request, HttpServletResponse response){
-        logger.info("进入报价信息页面【nodeId】"+nodeId);
-        request.setAttribute("nodeId",nodeId);
-        return "/dtu/warningPage";
-    }
-
-    /**
-     * 去分组页面
-     * @param nodeId
-     * @param request
-     * @param response
-     * @return
-     */
-    @RequestMapping(value = "/goGroupingPage")
-    public String goGroupingPage(String nodeId, HttpServletRequest request, HttpServletResponse response){
-        logger.info("进入分组页面【nodeId】"+nodeId);
-        request.setAttribute("nodeId",nodeId);
-        return "/dtu/groupingPage";
-    }
-
-    /**
-     * 去数据显示页面
-     *      。历史数据
-     *      。站内节点地图方式
-     *      。列表式 实时数据
-     *      。分组式 实时数据
-     * @param nodeId
-     * @param request
-     * @param response
-     * @return
-     */
-    @RequestMapping(value = "/goDataDisplayPage")
-    public String goDataDisplayPage(String nodeId, HttpServletRequest request, HttpServletResponse response){
-        logger.info("进入状态页面【nodeId】"+nodeId);
-        request.setAttribute("nodeId",nodeId);
-        return "/dtu/dataDisplayPage";
+    @RequestMapping(value = "/goDTUPage")
+    public String goDTUPage(String nodeId,String type,HttpServletRequest request, HttpServletResponse response){
+        logger.info("DTUPage【dtu_sn】:"+nodeId);
+        request.setAttribute("dtu_sn",nodeId);
+        Map<String,String> map = new HashedMap();
+        map.put("dtu_sn",nodeId);
+        logger.info("请求参数："+map.toString());
+        try {
+            String result = HttpClientUtil.doHttpPost(ProperUtils.getVal("reqUrl") + Contants.Query_Dtu_Info_Url, "UTF-8", map, 10000);
+            logger.info("返回结果:" + result);
+            JSONObject jsonObj = JSON.parseObject(result);
+            String state=jsonObj.getString("state");
+            if("200".equals(state)){
+                logger.info("查询成功...");
+                Gson gson = new Gson();
+                QueryDTUInfoParam param = gson.fromJson(result,QueryDTUInfoParam.class);
+                request.setAttribute("dtuInfo",param.getResult());
+            }else{
+                String message=jsonObj.getString("message");
+                logger.info("请求失败【message】:"+message);
+                request.setAttribute("dtuInfo",null);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        if("1".equals(type)){
+            return "/com/dtuPage";
+        }else if("2".equals(type)){//进入传感器节点信息页面
+            return "/dtu/sensorNodePage";
+        }else if("3".equals(type)){//进入控制节点信息页面
+            return "/dtu/controlNodePage";
+        }else if("4".equals(type)){//进入报警信息页面
+            return "/dtu/warningPage";
+        }else if("5".equals(type)){//进入分组信息页面
+            return "/dtu/groupingPage";
+        }else if("6".equals(type)){//去数据显示页面
+            return "/dtu/dataDisplayPage";
+        }
+        return "/com/dtuPage";
     }
 
 }

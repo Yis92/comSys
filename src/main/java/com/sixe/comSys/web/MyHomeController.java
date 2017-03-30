@@ -61,41 +61,6 @@ public class MyHomeController {
     }
 
     /**
-     * DTU页面
-     * @param nodeId
-     * @param request
-     * @param response
-     * @return
-     */
-    @RequestMapping(value = "/goDTUPage")
-    public String goDTUPage(String nodeId,HttpServletRequest request, HttpServletResponse response){
-        logger.info("DTUPage【dtu_sn】:"+nodeId);
-        request.setAttribute("dtu_sn",nodeId);
-        Map<String,String> map = new HashedMap();
-        map.put("dtu_sn",nodeId);
-        logger.info("请求参数："+map.toString());
-        try {
-            String result = HttpClientUtil.doHttpPost(ProperUtils.getVal("reqUrl") + Contants.Query_Dtu_Info_Url, "UTF-8", map, 10000);
-            logger.info("返回结果:" + result);
-            JSONObject jsonObj = JSON.parseObject(result);
-            String state=jsonObj.getString("state");
-            if("200".equals(state)){
-                logger.info("查询成功...");
-                Gson gson = new Gson();
-                QueryDTUInfoParam param = gson.fromJson(result,QueryDTUInfoParam.class);
-                request.setAttribute("dtuInfo",param.getResult());
-            }else{
-                String message=jsonObj.getString("message");
-                logger.info("请求失败【message】:"+message);
-                request.setAttribute("dtuInfo",null);
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return "/com/dtuPage";
-    }
-
-    /**
      * 进入单位信息管理
      * @return
      */

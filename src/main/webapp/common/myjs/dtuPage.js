@@ -32,10 +32,10 @@ function updDTUInfo(){
         $("#upd_msg").html("请输入DTU安装纬度");
         return false;
     }
-    if(dtu_upfreq == '' || dtu_upfreq.length == 0){
+  /*  if(dtu_upfreq == '' || dtu_upfreq.length == 0){
         $("#upd_msg").html("请输入DTU上传频率");
         return false;
-    }
+    }*/
     if(dtu_sim_no == '' || dtu_sim_no.length == 0){
         $("#upd_msg").html("请输入sim卡卡号");
         return false;
