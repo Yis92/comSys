@@ -7,7 +7,7 @@
 </head>
 <body style="font-family: '微软雅黑';">
 <input id="basePath" value="${basePath }" type="hidden">
-<h3 style="margin-left: 30px;margin-top: 30px;">数据显示（（${dtuInfo.dtu_name}））</h3>
+<h3 style="margin-left: 30px;margin-top: 30px;">数据显示（${dtuInfo.dtu_name}）</h3>
 <hr/>
 <div style="width: 98%;float: left;margin-left: 20px;margin-right:10px;background-color:  #c2e8ef;">
     <%--<ul class="nav nav-tabs nav-justified">--%>
