@@ -62,7 +62,7 @@ function updDTUInfo(){
 
             if(result == 'SUC'){//修改成功跳转到显示页面
                 console.log(result == 'SUC');
-                window.location.href = $("#basePath").val()+'myHome/goDTUPage?nodeId='+$("#dtu_sn").val();
+                window.location.href = $("#basePath").val()+'dtuHome/goDTUPage?type=1&nodeId='+$("#dtu_sn").val();
                 return false ;
             }else{
                 $("#upd_msg").html(result);

@@ -3,11 +3,13 @@ package com.sixe.comSys.web;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.sixe.comSys.base.Contants;
+import com.sixe.comSys.service.DtuUpdateService;
 import com.sixe.comSys.utils.HttpClientUtil;
 import com.sixe.comSys.utils.ProperUtils;
 import com.sixe.comSys.utils.Tools;
 import com.sun.istack.internal.logging.Logger;
 import org.apache.commons.collections.map.HashedMap;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,6 +26,8 @@ public class DtuOperateController {
 
     private static final Logger logger = Logger.getLogger(DtuOperateController.class);
 
+    @Autowired
+    private DtuUpdateService dtuUpdateService;
     /**
      * 修改DTUinfo
      * @param dtu_sn
@@ -56,25 +60,9 @@ public class DtuOperateController {
         map.put("dtu_warning_type",dtu_warning_type);
         map.put("dtu_sim_no",dtu_sim_no);
         map.put("dtu_type",dtu_type);
-        logger.info("请求参数："+map.toString());
-        String result="";
-        try{//修改dtu信息
-            result = HttpClientUtil.doHttpPost(ProperUtils.getVal("reqUrl") + Contants.Update_Dtu_Info_Url, "UTF-8", map, 10000);
-            logger.info("返回结果:" + result);
-            JSONObject jsonObj = JSON.parseObject(result);
-            String state=jsonObj.getString("state");
-            if("200".equals(state)) {
-                logger.info("请求成功");
-                return Tools.sendJson("SUC");
-            }else{
-                String message=jsonObj.getString("message");
-                logger.info("请求失败【message】:"+message);
-                return Tools.sendJson(message);
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-            return Tools.sendJson("接口服务异常");
-        }
+        String result= dtuUpdateService.updDtuInfo(map);
+        logger.info("修改dtuInfo【result】"+result);
+        return Tools.sendJson(result);
     }
 
 }
