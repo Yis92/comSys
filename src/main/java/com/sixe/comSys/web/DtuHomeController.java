@@ -5,11 +5,16 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
 import com.sixe.comSys.base.Contants;
+import com.sixe.comSys.dto.QueryDtuCtrlNodeInfo.QueryDtuCtrlNodeInfoParam;
 import com.sixe.comSys.dto.QueryDtuInfo.QueryDTUInfoParam;
+import com.sixe.comSys.dto.QuerySensorNodeInfo.QuerySensorNodeInfoParam;
+import com.sixe.comSys.service.DtuQueryService;
+import com.sixe.comSys.service.DtuUpdateService;
 import com.sixe.comSys.utils.HttpClientUtil;
 import com.sixe.comSys.utils.ProperUtils;
 import com.sun.istack.internal.logging.Logger;
 import org.apache.commons.collections.map.HashedMap;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -26,6 +31,8 @@ public class DtuHomeController {
 
     private static final Logger logger = Logger.getLogger(DtuHomeController.class);
 
+    @Autowired
+    private DtuQueryService dtuQueryService;
     /**
      * DTU页面
      * @param nodeId
@@ -56,13 +63,19 @@ public class DtuHomeController {
                 request.setAttribute("dtuInfo",null);
             }
         }catch (Exception e){
+            logger.info("http调用异常");
             e.printStackTrace();
+            request.setAttribute("dtuInfo",null);
         }
         if("1".equals(type)){
             return "/com/dtuPage";
         }else if("2".equals(type)){//进入传感器节点信息页面
+            QuerySensorNodeInfoParam parm = dtuQueryService.querryDtuSensorNodeInfo(map);
+            request.setAttribute("sensorNodeInfo",parm);
             return "/dtu/sensorNodePage";
         }else if("3".equals(type)){//进入控制节点信息页面
+            QueryDtuCtrlNodeInfoParam parm = dtuQueryService.queryDtuCtrlNodeInfo(map);
+            request.setAttribute("ctrlNodeInfo",parm);
             return "/dtu/controlNodePage";
         }else if("4".equals(type)){//进入报警信息页面
             return "/dtu/warningPage";

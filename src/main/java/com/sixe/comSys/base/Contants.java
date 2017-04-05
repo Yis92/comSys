@@ -38,5 +38,13 @@ public class Contants {
     public static final String UPDATE_USER_PWD_BY_HOST_URL = "update_user_pwd_by_host.php";
     /*查询dtu分组数据*/
     public static final String QUERRY_DTU_GROUP_DATA_URL = "querry_dtu_group_data.php";
+    /*查询dtu传感器节点信息*/
+    public static final String QUERRY_DTU_SENSOR_NODE_INFO ="querry_dtu_sensor_node_info.php";
+    /*修改dtu传感器节点信息*/
+    public static final String UPDATE_DTU_SENSOR_NODE_INFO = "update_dtu_sensor_node_info.php";
+    /*查询dtu控制节点信息*/
+    public static final String QUERRY_DTU_CTRL_NODE_TASK = "querry_dtu_ctrl_node_info.php";
+    /*修改dtu控制节点信息*/
+    public static final String UPDATE_DTU_CTRLNODE_TASK = "update_dtu_ctrlnode_task.php";
 
 }

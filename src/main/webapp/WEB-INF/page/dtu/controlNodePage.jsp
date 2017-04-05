@@ -7,7 +7,7 @@
 </head>
 <body style="font-family: '微软雅黑';">
 <input id="basePath" value="${basePath }" type="hidden">
-<h3 style="margin-left: 30px;margin-top: 30px;">控制节点信息（（${dtuInfo.dtu_name}））</h3>
+<h3 style="margin-left: 30px;margin-top: 30px;">控制节点信息（${dtuInfo.dtu_name}）</h3>
 <hr/>
 <div style="width: 98%;float: left;margin-left: 20px;margin-right:10px;background-color:  #c2e8ef;">
     <%--<ul class="nav nav-tabs nav-justified">--%>
@@ -29,47 +29,54 @@
     <table class="table table-striped table-bordered table-hover" style="width: 100%;">
         <thead class="text-center">
         <tr class="" style="background-color: #3278f7;color: white;">
-            <td>项目</td>
-            <td>数值</td>
+            <td>序号</td>
+            <td>传感器名称</td>
+            <td>传感器类型码</td>
+            <td>传感器地址</td>
+            <td>控制器站内坐标X</td>
+            <td>控制器站内坐标Y</td>
+            <td>控制器任务数</td>
+            <td>传感器描述</td>
         </tr>
         </thead>
         <tbody class="text-center">
-        <tr class="info">
-            <td style="width: 35%;">DTU名称：</td>
-            <td style="width: 65%;"></td>
-        </tr>
-        <tr class="active">
-            <td>设备描述：</td>
-            <td></td>
-        </tr>
-        <tr class="info">
-            <td>安装位置：</td>
-            <td></td>
-        </tr>
-        <tr class="active">
-            <td>安装经度：</td>
-            <td></td>
-        </tr>
-        <tr class="info">
-            <td>安装纬度：</td>
-            <td></td>
-        </tr>
-        <tr class="active">
-            <td>报警类型：</td>
-            <td></td>
-        </tr>
-        <tr class="info">
-            <td>上传频率：</td>
-            <td></td>
-        </tr>
-        <tr class="active">
-            <td>通信类型：</td>
-            <td></td>
-        </tr>
-        <tr class="info">
-            <td>sim卡号：</td>
-            <td></td>
-        </tr>
+        <c:forEach var="controlNode" items="${ctrlNodeInfo.result}" varStatus="status">
+            <c:if test="${(status.index+1)%2 == 1}">
+            <tr class="info">
+                <td>${ststus.index+1}</td>
+                <td>${controlNode.name}</td>
+                <td>${controlNode.cfg}</td>
+                <td>${controlNode.addr}</td>
+                <td>${controlNode.x}</td>
+                <td>${controlNode.y}</td>
+                <td>${controlNode.tsknum}</td>
+                <td>
+                    <table>
+                        <c:forEach var="desc" items="${controlNode.tskdescrib}" >
+                            <tr class="info"><td>${desc.tsk_describ}</td></tr>
+                        </c:forEach>
+                    </table>
+                </td>
+            </tr>
+            </c:if>
+            <c:if test="${(status.index+1)%2 == 0}">
+                <tr class="active">
+                <td>${ststus.index+1}</td>
+                <td>${controlNode.name}</td>
+                <td>${controlNode.cfg}</td>
+                <td>${controlNode.addr}</td>
+                <td>${controlNode.x}</td>
+                <td>${controlNode.y}</td>
+                <td>${controlNode.tsknum}</td>
+                    <td>
+                        <table>
+                            <c:forEach var="desc" items="${controlNode.tskdescrib}" >
+                                <tr class="active"><td>${desc.tsk_describ}</td></tr>
+                            </c:forEach>
+                        </table>
+                    </td>
+            </c:if>
+        </c:forEach>
         </tbody>
     </table>
 </div>

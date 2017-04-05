@@ -24,6 +24,11 @@ public class DtuDataController {
 
     private static final Logger logger = Logger.getLogger(DtuDataController.class);
 
+    /**
+     * 获取分组信息
+     * @param nodeId
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "/groupingData",method = RequestMethod.POST)
     public String groupingData(String nodeId){

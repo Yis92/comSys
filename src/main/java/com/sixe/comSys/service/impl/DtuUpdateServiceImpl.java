@@ -46,4 +46,50 @@ public class DtuUpdateServiceImpl implements DtuUpdateService {
             return "接口服务异常";
         }
     }
+
+    /**
+     * 修改DTU传感器节点信息
+     * @param map
+     * @return
+     */
+    public String updDtuSensorNodeInfo(Map<String, String> map) {
+        return null;
+    }
+
+    /**
+     * 修改DTU控制节点信息
+     * @param map
+     * @return
+     */
+    public String updDtuCtrlNodeInfo(Map<String, String> map) {
+        return null;
+    }
+
+    /**
+     * 按照url修改对应信息
+     * @param map
+     * @param url
+     * @return
+     */
+    public String update(Map<String, String> map, String url) {
+        String result;
+        try{//修改dtu信息
+            logger.info("请求参数："+map.toString());
+            result = HttpClientUtil.doHttpPost(ProperUtils.getVal("reqUrl") + url, "UTF-8", map, 10000);
+            logger.info("返回结果:" + result);
+            JSONObject jsonObj = JSON.parseObject(result);
+            String state=jsonObj.getString("state");
+            if("200".equals(state)) {
+                logger.info("请求成功");
+                return "SUC";
+            }else{
+                String message=jsonObj.getString("message");
+                logger.info("请求失败【message】:"+message);
+                return message;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return "接口服务异常";
+        }
+    }
 }

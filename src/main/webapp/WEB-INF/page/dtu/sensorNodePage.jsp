@@ -22,54 +22,57 @@
     </ul>
     <!--导航菜单...-->
 </div>
-<div class="container con_title" style="margin-top: 100px;" >
-    <div style="margin-left: 30px;margin-top: 10px;margin-bottom: 10px; ">
+<div class="container con_title" style="margin-top: 70px;" >
+   <%-- <div style="margin-left: 30px;margin-top: 10px;margin-bottom: 10px; ">
         <button type="button" style="" class="btn btn-primary" onclick="add();" data-toggle="modal" data-target="#myModal_upd" ><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;修改</button>&nbsp;
-    </div>
+    </div>--%>
     <table class="table table-striped table-bordered table-hover" style="width: 100%;">
         <thead class="text-center">
-        <tr class="" style="background-color: #3278f7;color: white;">
-            <td>项目</td>
-            <td>数值</td>
-        </tr>
+            <tr class="" style="background-color: #3278f7;color: white;">
+                <td>序号</td>
+                <td>传感器名称</td>
+                <td>传感器类型码</td>
+                <td>传感器地址</td>
+                <td>X</td>
+                <td>Y</td>
+                <td>传感器描述</td>
+            </tr>
         </thead>
         <tbody class="text-center">
-        <tr class="info">
-            <td style="width: 35%;">DTU名称：</td>
-            <td style="width: 65%;"></td>
-        </tr>
-        <tr class="active">
-            <td>设备描述：</td>
-            <td></td>
-        </tr>
-        <tr class="info">
-            <td>安装位置：</td>
-            <td></td>
-        </tr>
-        <tr class="active">
-            <td>安装经度：</td>
-            <td></td>
-        </tr>
-        <tr class="info">
-            <td>安装纬度：</td>
-            <td></td>
-        </tr>
-        <tr class="active">
-            <td>报警类型：</td>
-            <td></td>
-        </tr>
-        <tr class="info">
-            <td>上传频率：</td>
-            <td></td>
-        </tr>
-        <tr class="active">
-            <td>通信类型：</td>
-            <td></td>
-        </tr>
-        <tr class="info">
-            <td>sim卡号：</td>
-            <td></td>
-        </tr>
+        <c:forEach var="sensorNode" items="${sensorNodeInfo.result}" varStatus="status">
+            <c:if test="${(status.index+1)%2 == 1}">
+                <tr class="info" >
+                    <td>${ststus.index+1}</td>
+                    <td>${sensorNode.name}</td>
+                    <td>${sensorNode.cfg}</td>
+                    <td>${sensorNode.addr}</td>
+                    <td>${sensorNode.x}</td>
+                    <td>${sensorNode.y}</td>
+                    <td>${sensorNode.describ}</td>
+                </tr>
+            </c:if>
+            <c:if test="${(status.index+1)%2 == 0}">
+                <tr class="active" >
+                    <td>${ststus.index+1}</td>
+                    <td>${sensorNode.name}</td>
+                    <td>${sensorNode.cfg}</td>
+                    <td>${sensorNode.addr}</td>
+                    <td>${sensorNode.x}</td>
+                    <td>${sensorNode.y}</td>
+                    <td>${sensorNode.describ}</td>
+                </tr>
+            </c:if>
+        </c:forEach>
+
+        <%--<tr class="active">
+            <td>序号</td>
+            <td>传感器名称</td>
+            <td>传感器类型码</td>
+            <td>传感器地址</td>
+            <td>X</td>
+            <td>Y</td>
+            <td>传感器描述</td>
+        </tr>--%>
         </tbody>
     </table>
 </div>
