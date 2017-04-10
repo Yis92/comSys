@@ -32,7 +32,7 @@ public class DtuDataController {
     @ResponseBody
     @RequestMapping(value = "/groupingData",method = RequestMethod.POST)
     public String groupingData(String nodeId){
-        logger.info("获取分组信息：【nodeId】:"+nodeId);
+        /*logger.info("获取分组信息：【nodeId】:"+nodeId);
         Map<String,String> map = new HashedMap();
         map.put("dtu_sn",nodeId);
         logger.info("请求参数："+map.toString());
@@ -50,8 +50,8 @@ public class DtuDataController {
             }
         }catch (Exception e){
             e.printStackTrace();
-        }
-        return Tools.sendJson(result);
+        }*/
+        return Tools.sendJson("");
     }
 
 

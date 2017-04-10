@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import com.sixe.comSys.base.Contants;
 import com.sixe.comSys.dto.QueryDtuCtrlNodeInfo.QueryDtuCtrlNodeInfoParam;
 import com.sixe.comSys.dto.QueryDtuInfo.QueryDTUInfoParam;
+import com.sixe.comSys.dto.QueryDtuWarningMsg.QueryDtuWarningMsgParam;
 import com.sixe.comSys.dto.QuerySensorNodeInfo.QuerySensorNodeInfoParam;
 import com.sixe.comSys.service.DtuQueryService;
 import com.sixe.comSys.service.DtuUpdateService;
@@ -78,8 +79,14 @@ public class DtuHomeController {
             request.setAttribute("ctrlNodeInfo",parm);
             return "/dtu/controlNodePage";
         }else if("4".equals(type)){//进入报警信息页面
+            QueryDtuWarningMsgParam parm = dtuQueryService.QueryDtuWarningMsg(map);
+            request.setAttribute("warningMsg",parm);
             return "/dtu/warningPage";
         }else if("5".equals(type)){//进入分组信息页面
+            Object o = dtuQueryService.QueryDtuGroupingInfo(map);
+            Object o2 = dtuQueryService.QueryDtuDataDisplay(map);
+
+            Object o3 = dtuQueryService.QueryDtuStatusDataDisplay(map);
             return "/dtu/groupingPage";
         }else if("6".equals(type)){//去数据显示页面
             return "/dtu/dataDisplayPage";

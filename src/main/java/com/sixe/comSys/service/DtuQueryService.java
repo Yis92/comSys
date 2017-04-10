@@ -1,6 +1,8 @@
 package com.sixe.comSys.service;
 
 import com.sixe.comSys.dto.QueryDtuCtrlNodeInfo.QueryDtuCtrlNodeInfoParam;
+import com.sixe.comSys.dto.QueryDtuWarningInfo.QueryDtuWarningInfoParm;
+import com.sixe.comSys.dto.QueryDtuWarningMsg.QueryDtuWarningMsgParam;
 import com.sixe.comSys.dto.QuerySensorNodeInfo.QuerySensorNodeInfoParam;
 
 import java.util.Map;
@@ -24,12 +26,50 @@ public interface DtuQueryService {
     public QueryDtuCtrlNodeInfoParam queryDtuCtrlNodeInfo(Map<String,String> map);
 
     /**
-     * 查询控
+     * 查询报警信息
      * @param map
-     * @param url
-     * @param o
      * @return
      */
+    public QueryDtuWarningInfoParm QueryDtuWarningInfo(Map<String,String> map);
 
-    public Object query(Map<String,String> map,String url,Object o);
+    /**
+     * 查询报警消息
+     * @param map
+     */
+    public QueryDtuWarningMsgParam QueryDtuWarningMsg(Map<String,String> map);
+
+    /**
+     * 查询分组显示信息
+     * @param map
+     * @return
+     */
+    public Object QueryDtuGroupingInfo(Map<String,String> map);
+
+    /**
+     * 查询DTU实时数据
+     * @param map
+     * @return
+     */
+    public Object QueryDtuDataDisplay(Map<String,String> map);
+
+    /**
+     * 查询DTU实时分组数据
+     * @param map
+     * @return
+     */
+    public Object QueryDtuGroupingDataDisplay(Map<String,String> map);
+
+    /**
+     * 查询DTU实时状态数据
+     * @param map
+     * @return
+     */
+    public Object QueryDtuStatusDataDisplay(Map<String,String> map);
+
+    /**
+     * 查询DTU历史数据
+     * @param map
+     * @return
+     */
+    public Object QueryDtuHisDataDisplay(Map<String,String> map);
 }

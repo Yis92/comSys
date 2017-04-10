@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Title</title>
-    <script type="text/javascript" src="${basePath }common/myjs/dtuPage.js?ran=<%=Math.random()%>"></script>
+    <script type="text/javascript" src="${basePath }common/myjs/warningMsg.js?ran=<%=Math.random()%>"></script>
 </head>
 <body style="font-family: '微软雅黑';">
 <input id="basePath" value="${basePath }" type="hidden">
@@ -23,56 +23,56 @@
     <!--导航菜单...-->
 </div>
 <div class="container con_title" style="margin-top: 100px;" >
-    <div style="margin-left: 30px;margin-top: 10px;margin-bottom: 10px; ">
-        <button type="button" style="" class="btn btn-primary" onclick="add();" data-toggle="modal" data-target="#myModal_upd" ><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;修改</button>&nbsp;
-    </div>
-    <table class="table table-striped table-bordered table-hover" style="width: 100%;">
-        <thead class="text-center">
-        <tr class="" style="background-color: #3278f7;color: white;">
-            <td>项目</td>
-            <td>数值</td>
-        </tr>
-        </thead>
-        <tbody class="text-center">
-        <tr class="info">
-            <td style="width: 35%;">DTU名称：</td>
-            <td style="width: 65%;"></td>
-        </tr>
-        <tr class="active">
-            <td>设备描述：</td>
-            <td></td>
-        </tr>
-        <tr class="info">
-            <td>安装位置：</td>
-            <td></td>
-        </tr>
-        <tr class="active">
-            <td>安装经度：</td>
-            <td></td>
-        </tr>
-        <tr class="info">
-            <td>安装纬度：</td>
-            <td></td>
-        </tr>
-        <tr class="active">
-            <td>报警类型：</td>
-            <td></td>
-        </tr>
-        <tr class="info">
-            <td>上传频率：</td>
-            <td></td>
-        </tr>
-        <tr class="active">
-            <td>通信类型：</td>
-            <td></td>
-        </tr>
-        <tr class="info">
-            <td>sim卡号：</td>
-            <td></td>
-        </tr>
-        </tbody>
-    </table>
+    <input type="hidden" value="${dtu_sn}" id="dtu_sn">
+    <c:forEach items="${warningMsg.result}" var="warningMsg" varStatus="status">
+        <table class="table table-striped table-bordered table-hover" style="width: 100%;">
+            <tbody class="text-center">
+            <tr class="info">
+                <td style="width: 35%;">报警说明：</td>
+                <td style="width: 65%;">${warningMsg.msg}</td>
+            </tr>
+            <tr class="active">
+                <td>报警时间：</td>
+                <td>${warningMsg.tm}</td>
+            </tr>
+            <tr class="info">
+                <td>处理报警信息：</td>
+                <td>
+                    <c:if test="${warningMsg.dispose == '0'}">
+                        <button type="button" style="" class="btn btn-primary" onclick="setStatus('${warningMsg.msgid}');" data-toggle="modal" data-target="#myModal_upd" ><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;未处理</button>&nbsp;
+                    </c:if>
+                    <c:if test="${warningMsg.dispose == '1'}">
+                       已处理
+                    </c:if>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </c:forEach>
+
 </div>
+
+<!--修改信息 DIV-->
+<div class="modal fade" id="myModal_upd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel2">修改公司信息</h4>
+            </div>
+            <div class="modal-body" align="center">
+                <input type="hidden" value="" id="msgId">
+               标记为已处理状态？
+                <span id="upd_msg" style="color: red;"></span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" onclick="updStatus();">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--修改信息 DIV-->
 
 </body>
 </html>

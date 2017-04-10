@@ -5,6 +5,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
 import com.sixe.comSys.base.Contants;
 import com.sixe.comSys.dto.QueryDtuCtrlNodeInfo.QueryDtuCtrlNodeInfoParam;
+import com.sixe.comSys.dto.QueryDtuWarningInfo.QueryDtuWarningInfoParm;
+import com.sixe.comSys.dto.QueryDtuWarningMsg.QueryDtuWarningMsgParam;
 import com.sixe.comSys.dto.QuerySensorNodeInfo.QuerySensorNodeInfoParam;
 import com.sixe.comSys.service.DtuQueryService;
 import com.sixe.comSys.utils.HttpClientUtil;
@@ -24,19 +26,76 @@ public class DtuQueryServiceImpl implements DtuQueryService {
     public QuerySensorNodeInfoParam querryDtuSensorNodeInfo(Map<String, String> map) {
         String result;
         try{
-            logger.info("请求参数："+map.toString());
+            logger.info("【查询传感器节点信息】请求参数："+map.toString());
             result = HttpClientUtil.doHttpPost(ProperUtils.getVal("reqUrl") + Contants.QUERRY_DTU_SENSOR_NODE_INFO, "UTF-8", map, 10000);
-            logger.info("返回结果:" + result);
+            logger.info("【查询传感器节点信息】返回结果:" + result);
             JSONObject jsonObj = JSON.parseObject(result);
             String state=jsonObj.getString("state");
             if("200".equals(state)) {
-                logger.info("请求成功");
+                logger.info("【查询传感器节点信息】请求成功");
                 Gson gson = new Gson();
                 QuerySensorNodeInfoParam param = gson.fromJson(result,QuerySensorNodeInfoParam.class);
                 return param;
             }else{
                 String message=jsonObj.getString("message");
-                logger.info("请求失败【message】:"+message);
+                logger.info("【查询传感器节点信息】请求失败【message】:"+message);
+                return null;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * 查询报警信息
+     * @param map
+     * @return
+     */
+    public QueryDtuWarningInfoParm QueryDtuWarningInfo(Map<String, String> map) {
+        String result;
+        try{
+            logger.info("【查询报警信息】请求参数："+map.toString());
+            result = HttpClientUtil.doHttpPost(ProperUtils.getVal("reqUrl") + Contants.QUERRY_DTU_SENSOR_WARNING_INFO, "UTF-8", map, 10000);
+            logger.info("【查询报警信息】返回结果:" + result);
+            JSONObject jsonObj = JSON.parseObject(result);
+            String state=jsonObj.getString("state");
+            if("200".equals(state)) {
+                logger.info("【查询报警信息】请求成功");
+                Gson gson = new Gson();
+                QueryDtuWarningInfoParm param = gson.fromJson(result,QueryDtuWarningInfoParm.class);
+                return param;
+            }else{
+                String message=jsonObj.getString("message");
+                logger.info("【查询报警信息】请求失败【message】:"+message);
+                return null;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * 查询报警消息
+     * @param map
+     */
+    public QueryDtuWarningMsgParam QueryDtuWarningMsg(Map<String, String> map) {
+        String result;
+        try{
+            logger.info("【查询报警消息】请求参数："+map.toString());
+            result = HttpClientUtil.doHttpPost(ProperUtils.getVal("reqUrl") + Contants.QUERRY_DTU_SENSOR_WARNING_MSG, "UTF-8", map, 10000);
+            logger.info("【查询报警消息】返回结果:" + result);
+            JSONObject jsonObj = JSON.parseObject(result);
+            String state=jsonObj.getString("state");
+            if("200".equals(state)) {
+                logger.info("【查询报警消息】请求成功");
+                Gson gson = new Gson();
+                QueryDtuWarningMsgParam param = gson.fromJson(result,QueryDtuWarningMsgParam.class);
+                return param;
+            }else{
+                String message=jsonObj.getString("message");
+                logger.info("【查询报警消息】请求失败【message】:"+message);
                 return null;
             }
         }catch (Exception e){
@@ -53,19 +112,19 @@ public class DtuQueryServiceImpl implements DtuQueryService {
     public QueryDtuCtrlNodeInfoParam queryDtuCtrlNodeInfo(Map<String, String> map) {
         String result;
         try{
-            logger.info("请求参数："+map.toString());
+            logger.info("【查询控制传感器节点信息】请求参数："+map.toString());
             result = HttpClientUtil.doHttpPost(ProperUtils.getVal("reqUrl") + Contants.QUERRY_DTU_CTRL_NODE_TASK, "UTF-8", map, 10000);
-            logger.info("返回结果:" + result);
+            logger.info("【查询控制传感器节点信息】返回结果:" + result);
             JSONObject jsonObj = JSON.parseObject(result);
             String state=jsonObj.getString("state");
             if("200".equals(state)) {
-                logger.info("请求成功");
+                logger.info("【查询控制传感器节点信息】请求成功");
                 Gson gson = new Gson();
                 QueryDtuCtrlNodeInfoParam param = gson.fromJson(result,QueryDtuCtrlNodeInfoParam.class);
                 return param;
             }else{
                 String message=jsonObj.getString("message");
-                logger.info("请求失败【message】:"+message);
+                logger.info("【查询控制传感器节点信息】请求失败【message】:"+message);
                 return null;
             }
         }catch (Exception e){
@@ -74,22 +133,143 @@ public class DtuQueryServiceImpl implements DtuQueryService {
         }
     }
 
-    public Object query(Map<String, String> map,String url, Object o) {
+    /**
+     * 查询分组显示信息
+     * @param map
+     * @return
+     */
+    public Object QueryDtuGroupingInfo(Map<String, String> map) {
         String result;
-        try{//修改dtu信息
-            logger.info("请求参数："+map.toString());
-            result = HttpClientUtil.doHttpPost(ProperUtils.getVal("reqUrl") + url, "UTF-8", map, 10000);
-            logger.info("返回结果:" + result);
+        try{
+            logger.info("【查询分组显示信息】请求参数："+map.toString());
+            result = HttpClientUtil.doHttpPost(ProperUtils.getVal("reqUrl") + Contants.QUERRY_DTU_GROUP_INFO, "UTF-8", map, 10000);
+            logger.info("【查询分组显示信息】返回结果:" + result);
             JSONObject jsonObj = JSON.parseObject(result);
             String state=jsonObj.getString("state");
             if("200".equals(state)) {
-                logger.info("请求成功");
+                logger.info("【查询分组显示信息】请求成功");
                 Gson gson = new Gson();
-                Object param = gson.fromJson(result,Object.class);
-                return param;
+                //QueryDtuCtrlNodeInfoParam param = gson.fromJson(result,QueryDtuCtrlNodeInfoParam.class);
+                return null;
             }else{
                 String message=jsonObj.getString("message");
-                logger.info("请求失败【message】:"+message);
+                logger.info("【查询分组显示信息】请求失败【message】:"+message);
+                return null;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * 查询DTU实时数据
+     * @param map
+     * @return
+     */
+    public Object QueryDtuDataDisplay(Map<String, String> map) {
+        String result;
+        try{
+            logger.info("【查询DTU实时数据】请求参数："+map.toString());
+            result = HttpClientUtil.doHttpPost(ProperUtils.getVal("reqUrl") + Contants.QUERRY_DTU_REAL_DATA, "UTF-8", map, 10000);
+            logger.info("【查询DTU实时数据】返回结果:" + result);
+            JSONObject jsonObj = JSON.parseObject(result);
+            String state=jsonObj.getString("state");
+            if("200".equals(state)) {
+                logger.info("【查询DTU实时数据】请求成功");
+                Gson gson = new Gson();
+                //QueryDtuCtrlNodeInfoParam param = gson.fromJson(result,QueryDtuCtrlNodeInfoParam.class);
+                return null;
+            }else{
+                String message=jsonObj.getString("message");
+                logger.info("【查询DTU实时数据】请求失败【message】:"+message);
+                return null;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * 查询DTU实时分组数据
+     * @param map
+     * @return
+     */
+    public Object QueryDtuGroupingDataDisplay(Map<String, String> map) {
+        String result;
+        try{
+            logger.info("【查询DTU实时分组数据】请求参数："+map.toString());
+            result = HttpClientUtil.doHttpPost(ProperUtils.getVal("reqUrl") + Contants.QUERRY_DTU_GROUP_DATA, "UTF-8", map, 10000);
+            logger.info("【查询DTU实时分组数据】返回结果:" + result);
+            JSONObject jsonObj = JSON.parseObject(result);
+            String state=jsonObj.getString("state");
+            if("200".equals(state)) {
+                logger.info("【查询DTU实时分组数据】请求成功");
+                Gson gson = new Gson();
+                //QueryDtuCtrlNodeInfoParam param = gson.fromJson(result,QueryDtuCtrlNodeInfoParam.class);
+                return null;
+            }else{
+                String message=jsonObj.getString("message");
+                logger.info("【查询DTU实时分组数据】请求失败【message】:"+message);
+                return null;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * 查询DTU实时状态数据
+     * @param map
+     * @return
+     */
+    public Object QueryDtuStatusDataDisplay(Map<String, String> map) {
+        String result;
+        try{
+            logger.info("【查询DTU实时状态数据】请求参数："+map.toString());
+            result = HttpClientUtil.doHttpPost(ProperUtils.getVal("reqUrl") + Contants.QUERRY_DTU_STATE, "UTF-8", map, 10000);
+            logger.info("【查询DTU实时状态数据】返回结果:" + result);
+            JSONObject jsonObj = JSON.parseObject(result);
+            String state=jsonObj.getString("state");
+            if("200".equals(state)) {
+                logger.info("【查询DTU实时状态数据】请求成功");
+                Gson gson = new Gson();
+                //QueryDtuCtrlNodeInfoParam param = gson.fromJson(result,QueryDtuCtrlNodeInfoParam.class);
+                return null;
+            }else{
+                String message=jsonObj.getString("message");
+                logger.info("【查询DTU实时状态数据】请求失败【message】:"+message);
+                return null;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * 查询DTU历史数据
+     * @param map
+     * @return
+     */
+    public Object QueryDtuHisDataDisplay(Map<String, String> map) {
+        String result;
+        try{
+            logger.info("【查询DTU历史数据】请求参数："+map.toString());
+            result = HttpClientUtil.doHttpPost(ProperUtils.getVal("reqUrl") + Contants.QUERRY_DTU_HISTORY_DATA, "UTF-8", map, 10000);
+            logger.info("【查询DTU历史数据】返回结果:" + result);
+            JSONObject jsonObj = JSON.parseObject(result);
+            String state=jsonObj.getString("state");
+            if("200".equals(state)) {
+                logger.info("【查询DTU历史数据】请求成功");
+                Gson gson = new Gson();
+                //QueryDtuCtrlNodeInfoParam param = gson.fromJson(result,QueryDtuCtrlNodeInfoParam.class);
+                return null;
+            }else{
+                String message=jsonObj.getString("message");
+                logger.info("【查询DTU历史数据】请求失败【message】:"+message);
                 return null;
             }
         }catch (Exception e){

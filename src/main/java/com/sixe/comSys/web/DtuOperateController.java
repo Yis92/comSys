@@ -65,4 +65,21 @@ public class DtuOperateController {
         return Tools.sendJson(result);
     }
 
+    /**
+     * 标记报警信息为已处理
+     * @param dtu_sn
+     * @param msgid
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/updWarningMsg")
+    public String updWarningMsg(String dtu_sn,String msgid){
+        logger.info("标记报警信息为已处理：【dtu_sn】"+dtu_sn);
+        Map<String,String> map = new HashedMap();
+        map.put("dtu_sn",dtu_sn);
+        map.put("msgid",msgid);
+        String result = dtuUpdateService.update(map,Contants.DEAL_DTU_SENSOR_WARNING_MSG);
+        return Tools.sendJson(result);
+    }
+
 }

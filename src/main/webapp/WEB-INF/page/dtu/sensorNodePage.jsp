@@ -63,16 +63,6 @@
                 </tr>
             </c:if>
         </c:forEach>
-
-        <%--<tr class="active">
-            <td>序号</td>
-            <td>传感器名称</td>
-            <td>传感器类型码</td>
-            <td>传感器地址</td>
-            <td>X</td>
-            <td>Y</td>
-            <td>传感器描述</td>
-        </tr>--%>
         </tbody>
     </table>
 </div>

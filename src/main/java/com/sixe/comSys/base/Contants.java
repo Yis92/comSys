@@ -46,5 +46,24 @@ public class Contants {
     public static final String QUERRY_DTU_CTRL_NODE_TASK = "querry_dtu_ctrl_node_info.php";
     /*修改dtu控制节点信息*/
     public static final String UPDATE_DTU_CTRLNODE_TASK = "update_dtu_ctrlnode_task.php";
-
+    /*查询报警信息*/
+    public static final String QUERRY_DTU_SENSOR_WARNING_INFO = "querry_dtu_sensor_warning_info.php";
+    /*查询报警消息*/
+    public static final String QUERRY_DTU_SENSOR_WARNING_MSG = "querry_dtu_sensor_warning_msg.php";
+    /*标记报警信息为已处理*/
+    public static final String DEAL_DTU_SENSOR_WARNING_MSG = "deal_dtu_sensor_warning_msg.php";
+    /*查询分组显示信息*/
+    public static final String QUERRY_DTU_GROUP_INFO = "querry_dtu_group_info.php";
+    /*设置分组显示信息*/
+    public static final String UPDATE_DTU_GROUP_INFO = "update_dtu_group_info.php";
+    /*删除分组显示信息*/
+    public static final String DEL_DTU_GROUP_INFO = "del_dtu_group_info.php";
+    /*查询DTU实时数据*/
+    public static final String QUERRY_DTU_REAL_DATA = "querry_dtu_real_data.php";
+    /*查询DTU分组数据*/
+    public static final String QUERRY_DTU_GROUP_DATA = "querry_dtu_group_data.php";
+    /*查询DTU状态数据*/
+    public static final String QUERRY_DTU_STATE = "querry_dtu_state.php";
+    /*查询dtu历史数据*/
+    public static final String QUERRY_DTU_HISTORY_DATA = "querry_dtu_history_data.php";
 }
