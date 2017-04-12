@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
 import com.sixe.comSys.base.Contants;
+import com.sixe.comSys.dto.DataParm.QueryRealTimeData.QueryRealTimeDataParm;
 import com.sixe.comSys.dto.QueryDtuCtrlNodeInfo.QueryDtuCtrlNodeInfoParam;
 import com.sixe.comSys.dto.QueryDtuInfo.QueryDTUInfoParam;
 import com.sixe.comSys.dto.QueryDtuWarningMsg.QueryDtuWarningMsgParam;
@@ -92,6 +93,37 @@ public class DtuHomeController {
             return "/dtu/dataDisplayPage";
         }
         return "/com/dtuPage";
+    }
+
+    /**
+     * type:1.实时数据2.分组数据3.DTU状态
+     * @param nodeId
+     * @param type
+     * @return
+     */
+    @RequestMapping(value = "/goDataPage")
+    public String goDataPage(String nodeId,String type,HttpServletRequest request, HttpServletResponse response){
+        logger.info("DataPage【dtu_sn】:"+nodeId);
+        request.setAttribute("dtu_sn",nodeId);
+        Map<String,String> map = new HashedMap();
+        map.put("dtu_sn",nodeId);
+        logger.info("请求参数："+map.toString());
+        if("1".equals(type)){//实时数据页面
+            logger.info("进入实时数据页面");
+            //获取实时数据
+            QueryRealTimeDataParm parm = dtuQueryService.QueryDtuDataDisplay(map);
+            request.setAttribute("rtData",parm);
+            return "/dtu/data/realTimeData";
+        }else if("2".equals(type)){//分组数据页面
+            logger.info("进入分组数据页面");
+            Object o = dtuQueryService.QueryDtuGroupingDataDisplay(map);
+            return "/dtu/data/groupData";
+        }else{//DTU状态页面
+            logger.info("进入DTU状态数据页面");
+            QueryRealTimeDataParm parm = dtuQueryService.QueryDtuStatusDataDisplay(map);
+            request.setAttribute("dsData",parm);
+            return "/dtu/data/dtuState";
+        }
     }
 
 }

@@ -3,8 +3,32 @@
 <html>
 <head>
     <title>Title</title>
-    <script type="text/javascript" src="${basePath }common/myjs/dtuPage.js?ran=<%=Math.random()%>"></script>
+    <script type="text/javascript">
+        function iset(id){
+            $("#btn_1").removeClass("active");
+            $("#btn_2").removeClass("active");
+            $("#btn_3").removeClass("active");
+            $("#btn_1").bind("click");
+            $("#btn_2").bind("click");
+            $("#btn_3").bind("click");
+            if(id == '1'){
+                $("#ifr_d").attr("src","${basePath }dtuHome/goDataPage?nodeId=${dtu_sn}&type=1");
+                $("#btn_1").addClass("active");
+                $("#btn_1").unbind("click");
+            }else if(id == '2'){
+                $("#ifr_d").attr("src","${basePath }dtuHome/goDataPage?nodeId=${dtu_sn}&type=2");
+                $("#btn_2").addClass("active");
+                $("#btn_2").unbind("click");
+            }else if(id == '3'){
+                $("#ifr_d").attr("src","${basePath }dtuHome/goDataPage?nodeId=${dtu_sn}&type=3");
+                $("#btn_3").addClass("active");
+                $("#btn_3").unbind("click");
+            }
+        }
+    </script>
+
 </head>
+
 <body style="font-family: '微软雅黑';">
 <input id="basePath" value="${basePath }" type="hidden">
 <h3 style="margin-left: 30px;margin-top: 30px;">数据显示（${dtuInfo.dtu_name}）</h3>
@@ -22,57 +46,17 @@
     </ul>
     <!--导航菜单...-->
 </div>
-<div class="container con_title" style="margin-top: 100px;" >
-    <div style="margin-left: 30px;margin-top: 10px;margin-bottom: 10px; ">
-        <button type="button" style="" class="btn btn-primary" onclick="add();" data-toggle="modal" data-target="#myModal_upd" ><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;修改</button>&nbsp;
+<div class="container con_title" style="margin-top: 100px; height: 100%;" >
+    <ul class="nav nav-tabs">
+        <li role="presentation" class="active" onclick="iset('1');" id="btn_1"><a href="javascript:void(0);">实时数据</a></li>
+        <li role="presentation" onclick="iset('2');" id="btn_2"><a href="javascript:void(0);">分组数据</a></li>
+        <li role="presentation" onclick="iset('3');" id="btn_3"><a href="javascript:void(0);">DTU状态</a></li>
+    </ul>
+    <div class="panel panel-default" style="height: 100%;">
+        <div class="panel-body">
+           <iframe id="ifr_d" src="${basePath }dtuHome/goDataPage?nodeId=${dtu_sn}&type=1"  scrolling="yes" frameborder="0"  height="95%" width="100%;"></iframe>
+        </div>
     </div>
-    <table class="table table-striped table-bordered table-hover" style="width: 100%;">
-        <thead class="text-center">
-        <tr class="" style="background-color: #3278f7;color: white;">
-            <td>项目</td>
-            <td>数值</td>
-        </tr>
-        </thead>
-        <tbody class="text-center">
-        <tr class="info">
-            <td style="width: 35%;">DTU名称：</td>
-            <td style="width: 65%;"></td>
-        </tr>
-        <tr class="active">
-            <td>设备描述：</td>
-            <td></td>
-        </tr>
-        <tr class="info">
-            <td>安装位置：</td>
-            <td></td>
-        </tr>
-        <tr class="active">
-            <td>安装经度：</td>
-            <td></td>
-        </tr>
-        <tr class="info">
-            <td>安装纬度：</td>
-            <td></td>
-        </tr>
-        <tr class="active">
-            <td>报警类型：</td>
-            <td></td>
-        </tr>
-        <tr class="info">
-            <td>上传频率：</td>
-            <td></td>
-        </tr>
-        <tr class="active">
-            <td>通信类型：</td>
-            <td></td>
-        </tr>
-        <tr class="info">
-            <td>sim卡号：</td>
-            <td></td>
-        </tr>
-        </tbody>
-    </table>
 </div>
-
 </body>
 </html>
