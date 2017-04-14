@@ -162,7 +162,7 @@ function show(group_id) {
             console.log(result);
             $.each(result.groupdata,function (index, obj) {
                 //console.log(obj.name+"---"+obj.value);
-                if(index % 2 != 0){
+                if(obj.id == 1){
                     d = {
                         name: obj.name+'('+obj.unit+')',
                         type: 'gauge',
@@ -209,7 +209,7 @@ function show(group_id) {
                     };
                     seriesData.push(d);
                     //  console.log(seriesData);
-                }else {
+                }else if(obj.id == 2){
                     var d =
                         {
                             name: obj.name+'('+obj.unit+')',
@@ -255,6 +255,62 @@ function show(group_id) {
                      console.log("main" + (index + 1));
                      var myChart = echarts.init(document.getElementById('main' + (index + 1)));
                      showChart(myChart, seriesData);*/
+                }else{
+                    var b = {
+                                name:  obj.name+'('+obj.unit+')',
+                                type: 'gauge',
+                                center: ['85%', '55%'],    // 默认全局居中
+                                radius: '40%',
+                                min: obj.mini,
+                                max: obj.max,
+                                //startAngle: 180,
+                                //endAngle: 10,
+                                splitNumber: 10,
+                                axisLine: {            // 坐标轴线
+                                    lineStyle: {       // 属性lineStyle控制线条样式
+                                        width: 8
+                                    }
+                                },
+                                axisTick: {            // 坐标轴小标记
+                                    splitNumber: 5,
+                                    length: 10,        // 属性length控制线长
+                                    lineStyle: {       // 属性lineStyle控制线条样式
+                                        color: 'auto'
+                                    }
+                                },
+                           /* /!*axisLabel: {
+                            formatter:function(v){
+                                switch (v + '') {
+                                    case '0' : return 'E';
+                                    case '1' : return 'Gas';
+                                    case '2' : return 'F';
+                                }
+                            }
+                        },*!/*/
+                        splitLine: {
+                            // 分隔线
+                            length: 15,         // 属性length控制线长
+                                lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+                                color: 'auto'
+                            }
+                        },
+                        pointer: {
+                            width:2
+                        },
+                        title : {
+                            show: true,
+                                textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                                fontWeight: 'bolder',
+                                    fontSize: 16,
+                                    fontStyle: 'italic'
+                            }
+                        },
+                        detail : {
+                            show: true
+                        },
+                        data:[{value: obj.value, name:  obj.name+'('+obj.unit+')',}]
+                    };
+                    seriesData.push(b);
                 }
             });
             //console.log("main" + (index + 1));

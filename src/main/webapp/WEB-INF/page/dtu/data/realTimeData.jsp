@@ -16,16 +16,16 @@
     <div style="margin-left: 30px;margin-top: 10px;margin-bottom: 10px; ">
         <button type="button" style="" class="btn btn-primary" onclick="refresh();"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>&nbsp;刷新</button>&nbsp;
     </div>
-    <span style="color:red;">观测时间：${rtData.dt}</span>
+    <span style="color:red;padding-left: 38%">观测时间：${rtData.dt}</span>
     <table class="table table-striped table-bordered table-hover" style="width: 100%;">
-        <thead class="text-center">
-        <tr class="" style="background-color: #3278f7;color: white;">
-            <td>观测要素</td>
-            <td>数值</td>
-            <td>状态</td>
-        </tr>
-        </thead>
-        <tbody class="text-center">
+            <thead class="text-center">
+            <tr class="" style="background-color: #3278f7;color: white;">
+                <td>观测要素</td>
+                <td>数值</td>
+                <td>状态</td>
+            </tr>
+            </thead>
+            <tbody class="text-center">
         <c:forEach var="sensorNode" items="${rtData.result}" varStatus="status">
                 <tr class="active" >
                         <td>${sensorNode[0]}</td>
