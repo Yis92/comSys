@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="comSys:war exploded">
-    <output-path>$PROJECT_DIR$/target/comSys</output-path>
+    <output-path>$PROJECT_DIR$/target/classes</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">

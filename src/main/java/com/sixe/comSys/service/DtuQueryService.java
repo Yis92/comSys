@@ -2,6 +2,7 @@ package com.sixe.comSys.service;
 
 import com.sixe.comSys.dto.DataParm.QueryRealTimeData.QueryRealTimeDataParm;
 import com.sixe.comSys.dto.QueryDtuCtrlNodeInfo.QueryDtuCtrlNodeInfoParam;
+import com.sixe.comSys.dto.QueryDtuGroupingInfo.QueryDtuGroupingInfoParam;
 import com.sixe.comSys.dto.QueryDtuWarningInfo.QueryDtuWarningInfoParm;
 import com.sixe.comSys.dto.QueryDtuWarningMsg.QueryDtuWarningMsgParam;
 import com.sixe.comSys.dto.QuerySensorNodeInfo.QuerySensorNodeInfoParam;
@@ -44,7 +45,7 @@ public interface DtuQueryService {
      * @param map
      * @return
      */
-    public Object QueryDtuGroupingInfo(Map<String,String> map);
+    public QueryDtuGroupingInfoParam QueryDtuGroupingInfo(Map<String,String> map);
 
     /**
      * 查询DTU实时数据
@@ -58,7 +59,7 @@ public interface DtuQueryService {
      * @param map
      * @return
      */
-    public Object QueryDtuGroupingDataDisplay(Map<String,String> map);
+    public QueryDtuGroupingInfoParam QueryDtuGroupingDataDisplay(Map<String,String> map);
 
     /**
      * 查询DTU实时状态数据

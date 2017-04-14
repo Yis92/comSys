@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.sixe.comSys.base.Contants;
 import com.sixe.comSys.dto.DataParm.QueryRealTimeData.QueryRealTimeDataParm;
 import com.sixe.comSys.dto.QueryDtuCtrlNodeInfo.QueryDtuCtrlNodeInfoParam;
+import com.sixe.comSys.dto.QueryDtuGroupingInfo.QueryDtuGroupingInfoParam;
 import com.sixe.comSys.dto.QueryDtuWarningInfo.QueryDtuWarningInfoParm;
 import com.sixe.comSys.dto.QueryDtuWarningMsg.QueryDtuWarningMsgParam;
 import com.sixe.comSys.dto.QuerySensorNodeInfo.QuerySensorNodeInfoParam;
@@ -139,7 +140,7 @@ public class DtuQueryServiceImpl implements DtuQueryService {
      * @param map
      * @return
      */
-    public Object QueryDtuGroupingInfo(Map<String, String> map) {
+    public QueryDtuGroupingInfoParam QueryDtuGroupingInfo(Map<String, String> map) {
         String result;
         try{
             logger.info("【查询分组显示信息】请求参数："+map.toString());
@@ -150,8 +151,8 @@ public class DtuQueryServiceImpl implements DtuQueryService {
             if("200".equals(state)) {
                 logger.info("【查询分组显示信息】请求成功");
                 Gson gson = new Gson();
-                //QueryDtuCtrlNodeInfoParam param = gson.fromJson(result,QueryDtuCtrlNodeInfoParam.class);
-                return null;
+                QueryDtuGroupingInfoParam param = gson.fromJson(result,QueryDtuGroupingInfoParam.class);
+                return param;
             }else{
                 String message=jsonObj.getString("message");
                 logger.info("【查询分组显示信息】请求失败【message】:"+message);
@@ -197,7 +198,7 @@ public class DtuQueryServiceImpl implements DtuQueryService {
      * @param map
      * @return
      */
-    public Object QueryDtuGroupingDataDisplay(Map<String, String> map) {
+    public QueryDtuGroupingInfoParam QueryDtuGroupingDataDisplay(Map<String, String> map) {
         String result;
         try{
             logger.info("【查询DTU实时分组数据】请求参数："+map.toString());
@@ -208,8 +209,8 @@ public class DtuQueryServiceImpl implements DtuQueryService {
             if("200".equals(state)) {
                 logger.info("【查询DTU实时分组数据】请求成功");
                 Gson gson = new Gson();
-                //QueryDtuCtrlNodeInfoParam param = gson.fromJson(result,QueryDtuCtrlNodeInfoParam.class);
-                return null;
+                QueryDtuGroupingInfoParam param = gson.fromJson(result,QueryDtuGroupingInfoParam.class);
+                return param;
             }else{
                 String message=jsonObj.getString("message");
                 logger.info("【查询DTU实时分组数据】请求失败【message】:"+message);

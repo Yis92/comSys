@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import com.sixe.comSys.base.Contants;
 import com.sixe.comSys.dto.DataParm.QueryRealTimeData.QueryRealTimeDataParm;
 import com.sixe.comSys.dto.QueryDtuCtrlNodeInfo.QueryDtuCtrlNodeInfoParam;
+import com.sixe.comSys.dto.QueryDtuGroupingInfo.QueryDtuGroupingInfoParam;
 import com.sixe.comSys.dto.QueryDtuInfo.QueryDTUInfoParam;
 import com.sixe.comSys.dto.QueryDtuWarningMsg.QueryDtuWarningMsgParam;
 import com.sixe.comSys.dto.QuerySensorNodeInfo.QuerySensorNodeInfoParam;
@@ -116,7 +117,9 @@ public class DtuHomeController {
             return "/dtu/data/realTimeData";
         }else if("2".equals(type)){//分组数据页面
             logger.info("进入分组数据页面");
-            Object o = dtuQueryService.QueryDtuGroupingDataDisplay(map);
+           // Object o = dtuQueryService.QueryDtuGroupingDataDisplay(map);
+            QueryDtuGroupingInfoParam groupInfo = dtuQueryService.QueryDtuGroupingInfo(map);
+            request.setAttribute("groupInfo",groupInfo);
             return "/dtu/data/groupData";
         }else{//DTU状态页面
             logger.info("进入DTU状态数据页面");
