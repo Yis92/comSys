@@ -167,7 +167,7 @@ function show(group_id) {
                         name: obj.name+'('+obj.unit+')',
                         type: 'gauge',
                         center: ['15%', '55%'],    // 默认全局居中
-                        radius: '40%',
+                        radius: '70%',
                         min: obj.mini,
                         max: obj.max,
                         //endAngle:45,
@@ -205,7 +205,7 @@ function show(group_id) {
                                 fontWeight: 'bolder'
                             }
                         },
-                        data: [{value: obj.value, name: obj.name+'('+obj.unit+')'}]
+                        data: [{value: obj.value, name: obj.name+"("+obj.unit+")",id:obj.id,}]
                     };
                     seriesData.push(d);
                     //  console.log(seriesData);
@@ -218,7 +218,7 @@ function show(group_id) {
                             min: obj.mini,
                             max: obj.max,
                             splitNumber: 8,
-                            radius: '40%',
+                            radius: '70%',
                             axisLine: {            // 坐标轴线
                                 lineStyle: {       // 属性lineStyle控制线条样式
                                     width: 10
@@ -248,7 +248,7 @@ function show(group_id) {
                                     fontWeight: 'bolder'
                                 }
                             },
-                            data: [{value: obj.value, name: obj.name+'('+obj.unit+')'}]
+                            data: [{value: obj.value, name: obj.name+"("+obj.unit+")",id:obj.id,}]
                         };
                     seriesData.push(d);
                     /* console.log(seriesData);
@@ -260,7 +260,7 @@ function show(group_id) {
                                 name:  obj.name+'('+obj.unit+')',
                                 type: 'gauge',
                                 center: ['85%', '55%'],    // 默认全局居中
-                                radius: '40%',
+                                radius: '70%',
                                 min: obj.mini,
                                 max: obj.max,
                                 //startAngle: 180,
@@ -308,7 +308,7 @@ function show(group_id) {
                         detail : {
                             show: true
                         },
-                        data:[{value: obj.value, name:  obj.name+'('+obj.unit+')',}]
+                        data:[{value: obj.value, name:  obj.name+"("+obj.unit+")",id:obj.id, }]
                     };
                     seriesData.push(b);
                 }
@@ -351,7 +351,19 @@ function showChart(myChart,seriesData){
         },
         series: seriesData
     };
-    myChart.setOption(option);
+
+    function eConsole(param) {
+        //var str = param.id + "======" + param.value;
+       // console.log(param);
+        var nodeId = $("#nodeId").val();
+        window.location.href = $("#basePath").val() +"dtuHome/goHisPage?nodeId="+nodeId+"&pId="+param.data.id;
+        //alert(param.data.id);
+        //$("#main1").css({ "display": "block" });
+        //test1(3);
+    }
+
+    myChart.on("CLICK", eConsole);
+    myChart.setOption(option,true);
 }
 
 function showD(groupId,id) {

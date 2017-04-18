@@ -23,6 +23,10 @@
                 $("#ifr_d").attr("src","${basePath }dtuHome/goDataPage?nodeId=${dtu_sn}&type=3");
                 $("#btn_3").addClass("active");
                 $("#btn_3").unbind("click");
+            }else if(id == '4'){
+                $("#ifr_d").attr("src","${basePath }dtuHome/goDataPage?nodeId=${dtu_sn}&type=3");
+                $("#btn_3").addClass("active");
+                $("#btn_3").unbind("click");
             }
         }
     </script>
@@ -52,6 +56,7 @@
         <li role="presentation" class="active" onclick="iset('1');" id="btn_1"><a href="javascript:void(0);">实时数据</a></li>
         <li role="presentation" onclick="iset('2');" id="btn_2"><a href="javascript:void(0);">分组数据</a></li>
         <li role="presentation" onclick="iset('3');" id="btn_3"><a href="javascript:void(0);">DTU状态</a></li>
+        <li role="presentation" onclick="iset('4');" id="btn_4"><a href="javascript:void(0);">历史数据</a></li>
     </ul>
     <div class="panel panel-default" style="height: 100%;">
         <div class="panel-body">

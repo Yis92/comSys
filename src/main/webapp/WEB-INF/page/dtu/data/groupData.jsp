@@ -29,7 +29,7 @@
 </div>
     <div class="panel-body" id="show_div">
         <div style="width: 100%;    float: right;   padding-right: 40%;    padding-bottom: 20px;   padding-top: 10px;"><span id="dt" style="color:red;float: right;">观测时间:${groupInfo.dt}</span></div>
-        <div id="main" style="width: 100%;height:640px;">
+        <div id="main" style="width: 100%;height:380px;">
         </div>
     </div>
 

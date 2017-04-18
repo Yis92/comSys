@@ -16,6 +16,7 @@ import com.sixe.comSys.service.DtuUpdateService;
 import com.sixe.comSys.utils.HttpClientUtil;
 import com.sixe.comSys.utils.ProperUtils;
 import com.sun.istack.internal.logging.Logger;
+import com.sun.org.apache.bcel.internal.generic.RETURN;
 import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -128,5 +129,24 @@ public class DtuHomeController {
             return "/dtu/data/dtuState";
         }
     }
+
+    @RequestMapping(value = "/goHisPage")
+    public String goHisPage(String nodeId,String pId,HttpServletRequest request, HttpServletResponse response){
+        logger.info("goHisPage【nodeId】:"+nodeId);
+        logger.info("goHisPage【pId】:"+pId);
+        request.setAttribute("dtu_sn",nodeId);
+        request.setAttribute("pId",pId);
+
+        Map<String,String> map = new HashedMap();
+        map.put("dtu_sn",nodeId);
+        map.put("data_no",pId);
+
+
+        //QueryRealTimeDataParm parm = dtuQueryService.QueryDtuStatusDataDisplay(map);
+        //request.setAttribute("dsData",parm);
+
+        return "/dtu/data/hisData";
+    }
+
 
 }

@@ -31,13 +31,14 @@
         <thead class="text-center">
         <tr class="" style="background-color: #3278f7;color: white;">
             <td>序号</td>
-            <td>传感器名称</td>
-            <td>传感器类型码</td>
-            <td>传感器地址</td>
+            <td>控制器名称</td>
+            <td>控制器类型码</td>
+            <td>控制器地址</td>
+            <td>控制器描述</td>
             <td>控制器站内坐标X</td>
             <td>控制器站内坐标Y</td>
             <td>控制器任务数</td>
-            <td>传感器描述</td>
+            <td>通道描述</td>
         </tr>
         </thead>
         <tbody class="text-center">
@@ -48,6 +49,7 @@
                 <td>${controlNode.name}</td>
                 <td>${controlNode.cfg}</td>
                 <td>${controlNode.addr}</td>
+                <td>${controlNode.describ}</td>
                 <td>${controlNode.x}</td>
                 <td>${controlNode.y}</td>
                 <td>${controlNode.tsknum}</td>
@@ -66,6 +68,7 @@
                 <td>${controlNode.name}</td>
                 <td>${controlNode.cfg}</td>
                 <td>${controlNode.addr}</td>
+                <td>${controlNode.describ}</td>
                 <td>${controlNode.x}</td>
                 <td>${controlNode.y}</td>
                 <td>${controlNode.tsknum}</td>
