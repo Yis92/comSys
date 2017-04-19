@@ -141,6 +141,18 @@ function showLine() {
     var startDate = $("#startDate").val();
     var endDate = $("#endDate").val();
     var dataType = $("#dataType").val();
+    $.ajax({
+        type:"POST",
+        url:"",
+        data:{
+            dtu_sn:dtu_sn,
+            pId:pId,
+            startDate:startDate,
+            endDate:endDate,
+            dataType:dataType
+        },
+        success:function(data){
 
-
+        }
+    });
 }

@@ -46,7 +46,27 @@ public class DtuDataController {
         return Tools.sendJson(groupInfo.getResult());
     }
 
-
-
+    /**
+     * 历史数据查询
+     * @param dtu_sn
+     * @param pId
+     * @param startDate
+     * @param endDate
+     * @param dataType
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/getHisData",method = RequestMethod.POST)
+    public String getHisData(String dtu_sn,String pId,String startDate,String endDate,String dataType){
+        Map<String,String> map = new HashedMap();
+        map.put("dtu_sn",dtu_sn);
+        map.put("data_no",pId);
+        map.put("start_dt",startDate);
+        map.put("end_dt",endDate);
+        map.put("data_type",dataType);
+        logger.info("请求参数："+map.toString());
+        Object o = dtuQueryService.QueryDtuHisDataDisplay(map);
+        return Tools.sendJson("");
+    }
 
 }
