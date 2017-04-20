@@ -1,12 +1,8 @@
 package com.sixe.comSys.web;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.sixe.comSys.base.Contants;
+
 import com.sixe.comSys.dto.QueryDtuGroupingInfo.QueryDtuGroupingInfoParam;
 import com.sixe.comSys.service.DtuQueryService;
-import com.sixe.comSys.utils.HttpClientUtil;
-import com.sixe.comSys.utils.ProperUtils;
 import com.sixe.comSys.utils.Tools;
 import com.sun.istack.internal.logging.Logger;
 import org.apache.commons.collections.map.HashedMap;
@@ -58,6 +54,7 @@ public class DtuDataController {
     @ResponseBody
     @RequestMapping(value = "/getHisData",method = RequestMethod.POST)
     public String getHisData(String dtu_sn,String pId,String startDate,String endDate,String dataType){
+        Map<String,Object> rtMap = new HashedMap();
         Map<String,String> map = new HashedMap();
         map.put("dtu_sn",dtu_sn);
         map.put("data_no",pId);
@@ -66,7 +63,26 @@ public class DtuDataController {
         map.put("data_type",dataType);
         logger.info("请求参数："+map.toString());
         Object o = dtuQueryService.QueryDtuHisDataDisplay(map);
-        return Tools.sendJson("");
+
+        String [] timeData = {"2009/6/12 2:00", "2009/6/12 3:00", "2009/6/12 4:00", "2009/6/12 5:00", "2009/6/12 6:00", "2009/6/12 7:00", "2009/6/12 8:00", "2009/6/12 9:00", "2009/6/12 10:00", "2009/6/12 11:00"};
+        String [] data = {"81", "16", "56", "-5", "-50", "-18", "2", "15", "59", "305"};
+        String [] legendData = {"XXX（1）温度"};
+        String yAxisName = "温度（°C）";
+        String seriesName = "温度（°C）";
+        String yMax = "400";
+        String yMin = "-200";
+
+        rtMap.put("timeData",timeData);
+        rtMap.put("data",data);
+
+        rtMap.put("legendData",legendData);
+        rtMap.put("yAxisName",yAxisName);
+
+        rtMap.put("seriesName",seriesName);
+        rtMap.put("yMax",yMax);
+        rtMap.put("yMin",yMin);
+        rtMap.put("suc","SUC");
+        return Tools.sendJson(rtMap);
     }
 
 }

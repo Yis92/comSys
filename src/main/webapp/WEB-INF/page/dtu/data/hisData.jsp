@@ -28,7 +28,7 @@
                     <option value="2">小时数据</option>
         </select>
     </div>&nbsp;&nbsp;&nbsp;&nbsp;
-    <button type="submit" class="btn btn-primary" onclick="showLine();"><span class="glyphicon glyphicon-search"></span>查询</button>
+    <button type="button" class="btn btn-primary" id="searchBtn" ><span class="glyphicon glyphicon-search"></span>查询</button>
 </form>
 <div class="panel-body" id="show_div">
    <%-- <div style="width: 100%;    float: right;   padding-right: 40%;    padding-bottom: 20px;   padding-top: 10px; display: none;"><span id="dt" style="color:red;float: right;">观测时间:</span></div>--%>
