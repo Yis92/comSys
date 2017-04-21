@@ -137,10 +137,10 @@ public class DtuHomeController {
         request.setAttribute("dtu_sn",nodeId);
         request.setAttribute("pId",pId);
 
+        /*
         Map<String,String> map = new HashedMap();
         map.put("dtu_sn",nodeId);
-        map.put("data_no",pId);
-
+        map.put("data_no",pId);*/
 
         //QueryRealTimeDataParm parm = dtuQueryService.QueryDtuStatusDataDisplay(map);
         //request.setAttribute("dsData",parm);

@@ -7,6 +7,7 @@ import com.sixe.comSys.base.Contants;
 import com.sixe.comSys.dto.DataParm.QueryRealTimeData.QueryRealTimeDataParm;
 import com.sixe.comSys.dto.QueryDtuCtrlNodeInfo.QueryDtuCtrlNodeInfoParam;
 import com.sixe.comSys.dto.QueryDtuGroupingInfo.QueryDtuGroupingInfoParam;
+import com.sixe.comSys.dto.QueryDtuHisData.QueryDtuHisDataParm;
 import com.sixe.comSys.dto.QueryDtuWarningInfo.QueryDtuWarningInfoParm;
 import com.sixe.comSys.dto.QueryDtuWarningMsg.QueryDtuWarningMsgParam;
 import com.sixe.comSys.dto.QuerySensorNodeInfo.QuerySensorNodeInfoParam;
@@ -256,7 +257,7 @@ public class DtuQueryServiceImpl implements DtuQueryService {
      * @param map
      * @return
      */
-    public Object QueryDtuHisDataDisplay(Map<String, String> map) {
+    public QueryDtuHisDataParm QueryDtuHisDataDisplay(Map<String, String> map) {
         String result;
         try{
             logger.info("【查询DTU历史数据】请求参数："+map.toString());
@@ -267,8 +268,9 @@ public class DtuQueryServiceImpl implements DtuQueryService {
             if("200".equals(state)) {
                 logger.info("【查询DTU历史数据】请求成功");
                 Gson gson = new Gson();
-                //QueryDtuCtrlNodeInfoParam param = gson.fromJson(result,QueryDtuCtrlNodeInfoParam.class);
-                return null;
+
+                QueryDtuHisDataParm param = gson.fromJson(result,QueryDtuHisDataParm.class);
+                return param;
             }else{
                 String message=jsonObj.getString("message");
                 logger.info("【查询DTU历史数据】请求失败【message】:"+message);

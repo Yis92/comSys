@@ -2,6 +2,8 @@ package com.sixe.comSys.web;
 
 
 import com.sixe.comSys.dto.QueryDtuGroupingInfo.QueryDtuGroupingInfoParam;
+import com.sixe.comSys.dto.QueryDtuHisData.HisDataParm;
+import com.sixe.comSys.dto.QueryDtuHisData.QueryDtuHisDataParm;
 import com.sixe.comSys.service.DtuQueryService;
 import com.sixe.comSys.utils.Tools;
 import com.sun.istack.internal.logging.Logger;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -54,6 +58,17 @@ public class DtuDataController {
     @ResponseBody
     @RequestMapping(value = "/getHisData",method = RequestMethod.POST)
     public String getHisData(String dtu_sn,String pId,String startDate,String endDate,String dataType){
+        //String [] timeData = {};
+        List<String> timeData = new ArrayList<String>();
+
+        List<String> data = new ArrayList<String>();
+        //String [] data = {};
+        String [] legendData = {};
+        String yAxisName = "";
+        String seriesName = "";
+        String yMax = "";
+        String yMin = "";
+
         Map<String,Object> rtMap = new HashedMap();
         Map<String,String> map = new HashedMap();
         map.put("dtu_sn",dtu_sn);
@@ -62,15 +77,18 @@ public class DtuDataController {
         map.put("end_dt",endDate);
         map.put("data_type",dataType);
         logger.info("请求参数："+map.toString());
-        Object o = dtuQueryService.QueryDtuHisDataDisplay(map);
-
-        String [] timeData = {"2009/6/12 2:00", "2009/6/12 3:00", "2009/6/12 4:00", "2009/6/12 5:00", "2009/6/12 6:00", "2009/6/12 7:00", "2009/6/12 8:00", "2009/6/12 9:00", "2009/6/12 10:00", "2009/6/12 11:00"};
-        String [] data = {"81", "16", "56", "-5", "-50", "-18", "2", "15", "59", "305"};
-        String [] legendData = {"XXX（1）温度"};
-        String yAxisName = "温度（°C）";
-        String seriesName = "温度（°C）";
-        String yMax = "400";
-        String yMin = "-200";
+        QueryDtuHisDataParm parm = dtuQueryService.QueryDtuHisDataDisplay(map);
+        if("200".equals(parm.getState())){
+            yAxisName = parm.getResult().getyAxisName();
+            seriesName = yAxisName +"("+parm.getResult().getUnitName()+")";
+            legendData[0] = parm.getResult().getTitle();
+            yMax = parm.getResult().getMax();
+            yMin = parm.getResult().getMin();
+            for(int i = 0;i<parm.getResult().getResult().size();i++){
+                timeData.add(parm.getResult().getResult().get(i).getDate());
+                data.add(parm.getResult().getResult().get(i).getValue());
+            }
+        }
 
         rtMap.put("timeData",timeData);
         rtMap.put("data",data);
@@ -82,6 +100,8 @@ public class DtuDataController {
         rtMap.put("yMax",yMax);
         rtMap.put("yMin",yMin);
         rtMap.put("suc","SUC");
+
+        System.out.println(rtMap.toString());
         return Tools.sendJson(rtMap);
     }
 
