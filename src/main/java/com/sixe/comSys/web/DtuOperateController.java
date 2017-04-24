@@ -79,4 +79,19 @@ public class DtuOperateController {
         return Tools.sendJson(result);
     }
 
+    /**
+     * 删除分组信息
+     * @param nodeId
+     * @param groupId
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/delGroup.adv")
+    public String delGroup(String nodeId,String groupId){
+
+        return "";
+    }
+
+
+
 }

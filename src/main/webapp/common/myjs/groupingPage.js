@@ -366,16 +366,69 @@ function showChart(myChart,seriesData){
     myChart.setOption(option,true);
 }
 
-function showD(groupId,id) {
+function showD(groupId,name,id) {
+    $("#del_id").val(groupId);
+    $("#del_show").empty();
+    $("#del_show").html("你确定要删除【"+name+"】分组吗？");
+    console.log($("#groupId").val());
     $("#btn_1").removeClass("active");
     $("#btn_2").removeClass("active");
     $("#btn_3").removeClass("active");
+    $("#btn_4").removeClass("active");
+    $("#btn_5").removeClass("active");
+    $("#btn_6").removeClass("active");
+    $("#btn_7").removeClass("active");
+    $("#btn_8").removeClass("active");
+    $("#btn_9").removeClass("active");
+    $("#btn_10").removeClass("active");
+
     if(id == '1'){
         $("#btn_1").addClass("active");
     }else if(id == '2'){
         $("#btn_2").addClass("active");
     }else if(id == '3'){
         $("#btn_3").addClass("active");
+    }else if(id == '4'){
+        $("#btn_4").addClass("active");
+    }else if(id == '5'){
+        $("#btn_5").addClass("active");
+    }else if(id == '6'){
+        $("#btn_6").addClass("active");
+    }else if(id == '7'){
+        $("#btn_7").addClass("active");
+    }else if(id == '8'){
+        $("#btn_8").addClass("active");
+    }else if(id == '9'){
+        $("#btn_9").addClass("active");
+    }else if(id == '10'){
+        $("#btn_10").addClass("active");
     }
     show(groupId);
+}
+
+/*修改弹窗*/
+function upd() {
+
+}
+
+/*删除弹窗*/
+function doDel() {
+    var nodeId = $("#nodeId").val();
+    var groupId = $("#del_id").val();
+
+    $.ajax({
+        type:"POST",
+        url:$("#basePath").val() + "dtuData/delGroup.adv",
+        data:{
+            nodeId:nodeId,
+            groupId:groupId
+        },
+        success:function (data) {
+            var result = eval("("+data+")");
+            if(result == "SUC"){
+
+            }
+        }
+
+    });
 }

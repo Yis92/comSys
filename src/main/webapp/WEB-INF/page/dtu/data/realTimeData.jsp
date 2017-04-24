@@ -27,11 +27,20 @@
             </thead>
             <tbody class="text-center">
         <c:forEach var="sensorNode" items="${rtData.result}" varStatus="status">
+            <c:if test="${sensorNode[4] == '0'}">
                 <tr class="active" >
                         <td>${sensorNode[0]}</td>
                         <td>${sensorNode[1]}</td>
                         <td>${sensorNode[2]}</td>
                 </tr>
+            </c:if>
+            <c:if test="${sensorNode[4] == '1'}">
+                <tr class="success" >
+                    <td>${sensorNode[0]}</td>
+                    <td>${sensorNode[1]}</td>
+                    <td>${sensorNode[2]}</td>
+                </tr>
+            </c:if>
         </c:forEach>
         </tbody>
     </table>
