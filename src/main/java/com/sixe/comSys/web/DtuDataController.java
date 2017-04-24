@@ -63,7 +63,7 @@ public class DtuDataController {
 
         List<String> data = new ArrayList<String>();
         //String [] data = {};
-        String [] legendData = {};
+        String [] legendData = new String[1];
         String yAxisName = "";
         String seriesName = "";
         String yMax = "";
@@ -76,6 +76,7 @@ public class DtuDataController {
         map.put("start_dt",startDate);
         map.put("end_dt",endDate);
         map.put("data_type",dataType);
+        map.put("disp_type","1");
         logger.info("请求参数："+map.toString());
         QueryDtuHisDataParm parm = dtuQueryService.QueryDtuHisDataDisplay(map);
         if("200".equals(parm.getState())){

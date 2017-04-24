@@ -1,11 +1,8 @@
 package com.sixe.comSys.web;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
+
 import com.sixe.comSys.base.Contants;
 import com.sixe.comSys.service.DtuUpdateService;
-import com.sixe.comSys.utils.HttpClientUtil;
-import com.sixe.comSys.utils.ProperUtils;
 import com.sixe.comSys.utils.Tools;
 import com.sun.istack.internal.logging.Logger;
 import org.apache.commons.collections.map.HashedMap;

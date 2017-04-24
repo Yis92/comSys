@@ -130,6 +130,14 @@ public class DtuHomeController {
         }
     }
 
+    /**
+     * 进入历史数据页面
+     * @param nodeId
+     * @param pId
+     * @param request
+     * @param response
+     * @return
+     */
     @RequestMapping(value = "/goHisPage")
     public String goHisPage(String nodeId,String pId,HttpServletRequest request, HttpServletResponse response){
         logger.info("goHisPage【nodeId】:"+nodeId);
