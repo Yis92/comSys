@@ -139,20 +139,14 @@ public class DtuHomeController {
      * @return
      */
     @RequestMapping(value = "/goHisPage")
-    public String goHisPage(String nodeId,String pId,HttpServletRequest request, HttpServletResponse response){
+    public String goHisPage(String nodeId,String pId,String mType,HttpServletRequest request, HttpServletResponse response){
         logger.info("goHisPage【nodeId】:"+nodeId);
         logger.info("goHisPage【pId】:"+pId);
         request.setAttribute("dtu_sn",nodeId);
         request.setAttribute("pId",pId);
-
-        /*
-        Map<String,String> map = new HashedMap();
-        map.put("dtu_sn",nodeId);
-        map.put("data_no",pId);*/
-
-        //QueryRealTimeDataParm parm = dtuQueryService.QueryDtuStatusDataDisplay(map);
-        //request.setAttribute("dsData",parm);
-
+        if("APP".equals(mType)){
+            return "/dtu/data/mhisData";
+        }
         return "/dtu/data/hisData";
     }
 
