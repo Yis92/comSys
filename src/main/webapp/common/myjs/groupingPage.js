@@ -179,7 +179,7 @@ function show(group_id,til) {
             console.log(result);
             $.each(result.groupdata,function (index, obj) {
                 //console.log(obj.name+"---"+obj.value);
-                if(index%3 == 1){
+                if(index%3 == 0){
                     d = {
                         name: obj.name+'('+obj.unit+')',
                         type: 'gauge',
@@ -234,7 +234,7 @@ function show(group_id,til) {
                         seriesData3.push(d)
                     }
                     //  console.log(seriesData);
-                }else if(index%3 == 2){
+                }else if(index%3 == 1){
                     var d =
                         {
                             name: obj.name+'('+obj.unit+')',
