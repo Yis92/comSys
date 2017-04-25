@@ -83,7 +83,7 @@ $(function(){
         var dataType = $("#dataType").val();
         $.ajax({
             type:"POST",
-            url:$("#basePath").val()+"dtuData/getHisData",
+            url:$("#basePath").val()+"home/getHisData",
             data:{
                 dtu_sn:dtu_sn,
                 pId:pId,
