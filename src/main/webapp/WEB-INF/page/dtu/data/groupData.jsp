@@ -13,7 +13,9 @@
 <input id="firstId" type="hidden" value="${groupInfo.result.group[0].group_id}">
 
 <div class="container con_title" style="margin-top: 50px;" >
+<c:if test="${sessionScope.loginInfoSession.result.user_level == '10'|| sessionScope.loginInfoSession.result.user_level == '11'}">
     <div style="margin-right: 60px;margin-top: 10px;margin-bottom: 10px;"><button type="button" style="" class="btn btn-primary" onclick="upd();" data-toggle="modal" data-target="#myModal_add" ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;新增</button>&nbsp;</div>
+</c:if>
     <ul class="nav nav-tabs nav-justified">
         <c:forEach items="${groupInfo.result.group}" var="group" varStatus="status">
             <c:if test="${status.index == 0}">
@@ -26,10 +28,13 @@
     </ul>
 </div>
     <div class="panel-body" id="show_div">
+<c:if test="${sessionScope.loginInfoSession.result.user_level == '10'|| sessionScope.loginInfoSession.result.user_level == '11'}">
         <div style="margin-left: 60px;margin-top: 10px;margin-bottom: 10px; ">
             <button type="button" style="" class="btn btn-primary" data-toggle="modal" data-target="#myModal_upd" ><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;修改</button>&nbsp;
             <button type="button" style="" class="btn btn-danger" data-toggle="modal" data-target="#myModal_del" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;删除</button>&nbsp;
-         </div>
+        </div>
+</c:if>
+
         <div style="width: 100%;    float: right;   padding-right: 40%;    padding-bottom: 20px;   padding-top: 10px;"><span id="dt" style="color:red;float: right;">观测时间:${groupInfo.dt}</span></div>
         <div id="main" style="width: 100%;height:380px;"></div>
         <div id="main1" style="width: 100%;height:380px; display: none;"></div>

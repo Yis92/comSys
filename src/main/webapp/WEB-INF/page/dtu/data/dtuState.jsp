@@ -26,11 +26,20 @@
         </thead>
         <tbody class="text-center">
             <c:forEach var="sensorNode" items="${dsData.result}" varStatus="status">
-                <tr class="active" >
-                    <td>${sensorNode[0]}</td>
-                    <td>${sensorNode[1]}</td>
-                    <td>${sensorNode[2]}</td>
-                </tr>
+                <c:if test="${status.index%2 != '0'}">
+                    <tr class="active" >
+                        <td>${sensorNode[0]}</td>
+                        <td>${sensorNode[1]}</td>
+                        <td>${sensorNode[2]}</td>
+                    </tr>
+                </c:if>
+                <c:if test="${status.index%2 == '0'}">
+                    <tr class="success" >
+                        <td>${sensorNode[0]}</td>
+                        <td>${sensorNode[1]}</td>
+                        <td>${sensorNode[2]}</td>
+                    </tr>
+                </c:if>
             </c:forEach>
         </tbody>
     </table>

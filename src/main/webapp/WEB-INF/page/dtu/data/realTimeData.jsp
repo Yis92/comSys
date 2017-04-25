@@ -25,7 +25,9 @@
                 <td>观测要素</td>
                 <td>数值</td>
                 <td>状态</td>
+            <c:if test="${sessionScope.loginInfoSession.result.user_level == '10'|| sessionScope.loginInfoSession.result.user_level == '11'}">
                 <td>操作</td>
+            </c:if>
             </tr>
             </thead>
             <tbody class="text-center">
@@ -35,7 +37,9 @@
                         <td>${sensorNode[0]}</td>
                         <td>${sensorNode[1]}</td>
                         <td>${sensorNode[2]}</td>
+            <c:if test="${sessionScope.loginInfoSession.result.user_level == '10'|| sessionScope.loginInfoSession.result.user_level == '11'}">
                         <td><button type="button" style="" class="btn btn-primary" data-toggle="modal" onclick="upd('${sensorNode[3]}');" data-target="#myModal_upd" ><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;修改</button>&nbsp;</td>
+            </c:if>
                 </tr>
             </c:if>
             <c:if test="${sensorNode[4] == '1'}">
@@ -43,7 +47,9 @@
                     <td>${sensorNode[0]}</td>
                     <td>${sensorNode[1]}</td>
                     <td>${sensorNode[2]}</td>
+            <c:if test="${sessionScope.loginInfoSession.result.user_level == '10'|| sessionScope.loginInfoSession.result.user_level == '11'}">
                     <td><button type="button" style="" class="btn btn-primary" data-toggle="modal" onclick="upd('${sensorNode[3]}');" data-target="#myModal_upd" ><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;修改</button>&nbsp;</td>
+            </c:if>
                 </tr>
             </c:if>
         </c:forEach>

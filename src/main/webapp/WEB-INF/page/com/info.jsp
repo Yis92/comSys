@@ -11,7 +11,9 @@
     <h3 style="margin-left: 30px;margin-top: 30px;">公司信息</h3>
     <hr/>
     <div style="margin-left: 10px;margin-bottom: 10px; ">
+    <c:if test="${sessionScope.loginInfoSession.result.user_level == '10'|| sessionScope.loginInfoSession.result.user_level == '11'}">
         <button type="button" style="" class="btn btn-primary" onclick="edit();" data-toggle="modal" data-target="#myModal_upd" ><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;修改信息</button>&nbsp;
+    </c:if>
         <span id="msg" class = ""></span>
     </div>
     <table class="table table-striped table-bordered table-hover" style="width: 100%;">

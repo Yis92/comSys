@@ -24,9 +24,11 @@
     <!--导航菜单...-->
 </div>
 <div class="container con_title" style="margin-top: 100px;" >
+<c:if test="${sessionScope.loginInfoSession.result.user_level == '10'|| sessionScope.loginInfoSession.result.user_level == '11'}">
     <div style="margin-left: 30px;margin-top: 10px;margin-bottom: 10px; ">
         <button type="button" style="" class="btn btn-primary" onclick="add();" data-toggle="modal" data-target="#myModal_upd" ><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;修改</button>&nbsp;
     </div>
+</c:if>
     <table class="table table-striped table-bordered table-hover" style="width: 100%;">
         <thead class="text-center">
         <tr class="" style="background-color: #3278f7;color: white;">
