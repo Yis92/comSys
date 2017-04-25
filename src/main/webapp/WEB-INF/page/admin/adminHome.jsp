@@ -70,7 +70,7 @@
                     <ul>
                         <li><a _href="${basePath }myHome/goComInfo?id=${com.unit_no}" data-title="本单位信息维护" href="javascript:void(0)">本单位信息维护</a></li>
                         <li><a _href="${basePath }myHome/goComUser.admin?id=${com.unit_no}" data-title="本单位信息维护" href="javascript:void(0)">本单位用户维护</a></li>
-                        <li><a _href="${basePath }myHome/goDTUConfig?id=${com.unit_no}" data-title="DTU维护" href="javascript:void(0)">DTU维护</a></li>
+                        <%--<li><a _href="${basePath }myHome/goDTUConfig?id=${com.unit_no}" data-title="DTU维护" href="javascript:void(0)">DTU维护</a></li>--%>
                            <c:forEach items="${com.dtu}" var = "dtu" varStatus="sta">
                                <li><a _href="${basePath }dtuHome/goDTUPage?nodeId=${dtu.dtu_sn}&type=6" data-title="${dtu.dtu_name}" href="javascript:void(0)">${dtu.dtu_name}</a></li>
                            </c:forEach>
