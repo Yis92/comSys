@@ -2,6 +2,7 @@ package com.sixe.comSys.service;
 
 import com.sixe.comSys.dto.DataParm.QueryRealTimeData.QueryRealTimeDataParm;
 import com.sixe.comSys.dto.QueryDtuCtrlNodeInfo.QueryDtuCtrlNodeInfoParam;
+import com.sixe.comSys.dto.QueryDtuGroupDataInfo.QueryDtuGroupDataParm;
 import com.sixe.comSys.dto.QueryDtuGroupingInfo.QueryDtuGroupingInfoParam;
 import com.sixe.comSys.dto.QueryDtuHisData.QueryDtuHisDataParm;
 import com.sixe.comSys.dto.QueryDtuWarningInfo.QueryDtuWarningInfoParm;
@@ -75,4 +76,11 @@ public interface DtuQueryService {
      * @return
      */
     public QueryDtuHisDataParm QueryDtuHisDataDisplay(Map<String,String> map);
+
+    /**
+     *
+     * @param map
+     * @return
+     */
+    public QueryDtuGroupDataParm QueryDtuGroupDataInfo(Map<String,String> map);
 }

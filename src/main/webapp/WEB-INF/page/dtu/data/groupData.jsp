@@ -27,12 +27,14 @@
 </div>
     <div class="panel-body" id="show_div">
         <div style="margin-left: 60px;margin-top: 10px;margin-bottom: 10px; ">
-            <button type="button" style="" class="btn btn-primary" onclick="upd();" data-toggle="modal" data-target="#myModal_upd" ><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;修改</button>&nbsp;
+            <button type="button" style="" class="btn btn-primary" data-toggle="modal" data-target="#myModal_upd" ><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;修改</button>&nbsp;
             <button type="button" style="" class="btn btn-danger" data-toggle="modal" data-target="#myModal_del" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;删除</button>&nbsp;
          </div>
         <div style="width: 100%;    float: right;   padding-right: 40%;    padding-bottom: 20px;   padding-top: 10px;"><span id="dt" style="color:red;float: right;">观测时间:${groupInfo.dt}</span></div>
-        <div id="main" style="width: 100%;height:380px;">
-        </div>
+        <div id="main" style="width: 100%;height:380px;"></div>
+        <div id="main1" style="width: 100%;height:380px; display: none;"></div>
+        <div id="main2" style="width: 100%;height:380px; display: none;"></div>
+        <div id="main3" style="width: 100%;height:380px; display: none;"></div>
     </div>
 
 <!--新增信息 DIV-->
@@ -48,7 +50,7 @@
                     <tr class="info">
                         <td style="width: 35%;">分组名称：</td>
                         <td style="width: 65%;" >
-                            <input type="text" class="form-control"  id="aname1">
+                            <input type="text" class="form-control" placeholder="请输入分组名称" id="aname1">
                         </td>
                     </tr>
                     <tr class="active">
@@ -56,6 +58,9 @@
                         <td>
                             <select class="form-control" id="asj1">
                                 <option value="0" selected = 'selected'>无</option>
+                                <c:forEach var="data" items="${groupDataList}">
+                                    <option value="${data.id}">${data.name}</option>
+                                </c:forEach>
                             </select>
                         </td>
                     </tr>
@@ -64,6 +69,9 @@
                         <td>
                             <select class="form-control" id="asj2">
                                 <option value="0" selected = 'selected'>无</option>
+                                <c:forEach var="data" items="${groupDataList}">
+                                    <option value="${data.id}">${data.name}</option>
+                                </c:forEach>
                             </select>
                         </td>
                     </tr>
@@ -72,6 +80,9 @@
                         <td>
                             <select class="form-control" id="asj3">
                                 <option value="0" selected = 'selected'>无</option>
+                                <c:forEach var="data" items="${groupDataList}">
+                                    <option value="${data.id}">${data.name}</option>
+                                </c:forEach>
                             </select>
                         </td>
                     </tr>
@@ -80,6 +91,9 @@
                         <td>
                             <select class="form-control" id="asj4">
                                 <option value="0" selected = 'selected'>无</option>
+                                <c:forEach var="data" items="${groupDataList}">
+                                    <option value="${data.id}">${data.name}</option>
+                                </c:forEach>
                             </select>
                         </td>
                     </tr>
@@ -88,6 +102,9 @@
                         <td>
                             <select class="form-control" id="asj5">
                                 <option value="0" selected = 'selected'>无</option>
+                                <c:forEach var="data" items="${groupDataList}">
+                                    <option value="${data.id}">${data.name}</option>
+                                </c:forEach>
                             </select>
                         </td>
                     </tr>
@@ -96,6 +113,9 @@
                         <td>
                             <select class="form-control" id="asj6">
                                 <option value="0" selected = 'selected'>无</option>
+                                <c:forEach var="data" items="${groupDataList}">
+                                    <option value="${data.id}">${data.name}</option>
+                                </c:forEach>
                             </select>
                         </td>
                     </tr>
@@ -104,6 +124,9 @@
                         <td>
                             <select class="form-control" id="asj7">
                                 <option value="0" selected = 'selected'>无</option>
+                                <c:forEach var="data" items="${groupDataList}">
+                                    <option value="${data.id}">${data.name}</option>
+                                </c:forEach>
                             </select>
                         </td>
                     </tr>
@@ -112,6 +135,9 @@
                         <td>
                             <select class="form-control" id="asj8">
                                 <option value="0" selected = 'selected'>无</option>
+                                <c:forEach var="data" items="${groupDataList}">
+                                    <option value="${data.id}">${data.name}</option>
+                                </c:forEach>
                             </select>
                         </td>
                     </tr>
@@ -120,6 +146,9 @@
                         <td>
                             <select class="form-control" id="asj9">
                                 <option value="0" selected = 'selected'>无</option>
+                                <c:forEach var="data" items="${groupDataList}">
+                                    <option value="${data.id}">${data.name}</option>
+                                </c:forEach>
                             </select>
                         </td>
                     </tr>
@@ -128,6 +157,9 @@
                         <td>
                             <select class="form-control" id="asj10">
                                 <option value="0" selected = 'selected'>无</option>
+                                <c:forEach var="data" items="${groupDataList}">
+                                    <option value="${data.id}">${data.name}</option>
+                                </c:forEach>
                             </select>
                         </td>
                     </tr>
@@ -156,7 +188,7 @@
                     <tr class="info">
                         <td style="width: 35%;">分组名称：</td>
                         <td style="width: 65%;" >
-                            <input type="text" class="form-control"  id="name1">
+                            <input type="text" class="form-control" placeholder="请输入分组名称" id="uname1">
                         </td>
                     </tr>
                     <tr class="active">
@@ -164,6 +196,9 @@
                         <td>
                             <select class="form-control" id="sj1">
                                 <option value="0" selected = 'selected'>无</option>
+                                <c:forEach var="data" items="${groupDataList}">
+                                    <option value="${data.id}">${data.name}</option>
+                                </c:forEach>
                             </select>
                         </td>
                     </tr>
@@ -172,6 +207,9 @@
                         <td>
                             <select class="form-control" id="sj2">
                                 <option value="0" selected = 'selected'>无</option>
+                                <c:forEach var="data" items="${groupDataList}">
+                                    <option value="${data.id}">${data.name}</option>
+                                </c:forEach>
                             </select>
                         </td>
                     </tr>
@@ -180,6 +218,9 @@
                         <td>
                             <select class="form-control" id="sj3">
                                 <option value="0" selected = 'selected'>无</option>
+                                <c:forEach var="data" items="${groupDataList}">
+                                    <option value="${data.id}">${data.name}</option>
+                                </c:forEach>
                             </select>
                         </td>
                     </tr>
@@ -188,6 +229,9 @@
                         <td>
                             <select class="form-control" id="sj4">
                                 <option value="0" selected = 'selected'>无</option>
+                                <c:forEach var="data" items="${groupDataList}">
+                                    <option value="${data.id}">${data.name}</option>
+                                </c:forEach>
                             </select>
                         </td>
                     </tr>
@@ -196,6 +240,9 @@
                         <td>
                             <select class="form-control" id="sj5">
                                 <option value="0" selected = 'selected'>无</option>
+                                <c:forEach var="data" items="${groupDataList}">
+                                    <option value="${data.id}">${data.name}</option>
+                                </c:forEach>
                             </select>
                         </td>
                     </tr>
@@ -204,6 +251,9 @@
                         <td>
                             <select class="form-control" id="sj6">
                                 <option value="0" selected = 'selected'>无</option>
+                                <c:forEach var="data" items="${groupDataList}">
+                                    <option value="${data.id}">${data.name}</option>
+                                </c:forEach>
                             </select>
                         </td>
                     </tr>
@@ -212,6 +262,9 @@
                         <td>
                             <select class="form-control" id="sj7">
                                 <option value="0" selected = 'selected'>无</option>
+                                <c:forEach var="data" items="${groupDataList}">
+                                    <option value="${data.id}">${data.name}</option>
+                                </c:forEach>
                             </select>
                         </td>
                     </tr>
@@ -220,6 +273,9 @@
                         <td>
                             <select class="form-control" id="sj8">
                                 <option value="0" selected = 'selected'>无</option>
+                                <c:forEach var="data" items="${groupDataList}">
+                                    <option value="${data.id}">${data.name}</option>
+                                </c:forEach>
                             </select>
                         </td>
                     </tr>
@@ -228,6 +284,9 @@
                         <td>
                             <select class="form-control" id="sj9">
                                 <option value="0" selected = 'selected'>无</option>
+                                <c:forEach var="data" items="${groupDataList}">
+                                    <option value="${data.id}">${data.name}</option>
+                                </c:forEach>
                             </select>
                         </td>
                     </tr>
@@ -236,10 +295,14 @@
                         <td>
                             <select class="form-control" id="sj10">
                                 <option value="0" selected = 'selected'>无</option>
+                                <c:forEach var="data" items="${groupDataList}">
+                                    <option value="${data.id}">${data.name}</option>
+                                </c:forEach>
                             </select>
                         </td>
                     </tr>
                 </table>
+                <input type="hidden" value="${groupInfo.result.group[0].group_id}" id="upd_id" />
                 <span id="upd_msg" style="color: red;"></span>
             </div>
             <div class="modal-footer">

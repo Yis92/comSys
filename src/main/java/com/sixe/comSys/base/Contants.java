@@ -54,6 +54,10 @@ public class Contants {
     public static final String DEAL_DTU_SENSOR_WARNING_MSG = "deal_dtu_sensor_warning_msg.php";
     /*查询分组显示信息*/
     public static final String QUERRY_DTU_GROUP_INFO = "querry_dtu_group_info.php";
+    /*查询分组下拉框接口*/
+    public static final String QUERRY_DTU_GROUP_DATA_INFO = "querry_dtu_group_data_info.php";
+    /*新增分组信息*/
+    public static final String ADD_DTU_GROUP_INFO = "add_dtu_group_info.php";
     /*设置分组显示信息*/
     public static final String UPDATE_DTU_GROUP_INFO = "update_dtu_group_info.php";
     /*删除分组显示信息*/

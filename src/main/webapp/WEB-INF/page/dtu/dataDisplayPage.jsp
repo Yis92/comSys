@@ -59,7 +59,7 @@
     </ul>
     <div class="panel panel-default" style="height: 100%;">
         <div class="panel-body">
-           <iframe id="ifr_d" src="${basePath }dtuHome/goDataPage?nodeId=${dtu_sn}&type=1"  scrolling="yes" frameborder="0"  height="95%" width="100%;"></iframe>
+           <iframe id="ifr_d" src="${basePath }dtuHome/goDataPage?nodeId=${dtu_sn}&type=1"  scrolling="yes" frameborder="0"  height="100%" width="100%;"></iframe>
         </div>
     </div>
 </div>

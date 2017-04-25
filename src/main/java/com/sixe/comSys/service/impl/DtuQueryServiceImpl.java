@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.sixe.comSys.base.Contants;
 import com.sixe.comSys.dto.DataParm.QueryRealTimeData.QueryRealTimeDataParm;
 import com.sixe.comSys.dto.QueryDtuCtrlNodeInfo.QueryDtuCtrlNodeInfoParam;
+import com.sixe.comSys.dto.QueryDtuGroupDataInfo.QueryDtuGroupDataParm;
 import com.sixe.comSys.dto.QueryDtuGroupingInfo.QueryDtuGroupingInfoParam;
 import com.sixe.comSys.dto.QueryDtuHisData.QueryDtuHisDataParm;
 import com.sixe.comSys.dto.QueryDtuWarningInfo.QueryDtuWarningInfoParm;
@@ -274,6 +275,35 @@ public class DtuQueryServiceImpl implements DtuQueryService {
             }else{
                 String message=jsonObj.getString("message");
                 logger.info("【查询DTU历史数据】请求失败【message】:"+message);
+                return null;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * 查询分组设置数据下拉框
+     * @param map
+     * @return
+     */
+    public QueryDtuGroupDataParm QueryDtuGroupDataInfo(Map<String, String> map) {
+        String result;
+        try{
+            logger.info("【 查询分组设置数据下拉框】请求参数："+map.toString());
+            result = HttpClientUtil.doHttpPost(ProperUtils.getVal("reqUrl") + Contants.QUERRY_DTU_GROUP_DATA_INFO, "UTF-8", map, 10000);
+            logger.info("【 查询分组设置数据下拉框】返回结果:" + result);
+            JSONObject jsonObj = JSON.parseObject(result);
+            String state=jsonObj.getString("state");
+            if("200".equals(state)) {
+                logger.info("【 查询分组设置数据下拉框】请求成功");
+                Gson gson = new Gson();
+                QueryDtuGroupDataParm param = gson.fromJson(result,QueryDtuGroupDataParm.class);
+                return param;
+            }else{
+                String message=jsonObj.getString("message");
+                logger.info("【 查询分组设置数据下拉框】请求失败【message】:"+message);
                 return null;
             }
         }catch (Exception e){

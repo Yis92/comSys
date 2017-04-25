@@ -88,10 +88,106 @@ public class DtuOperateController {
     @ResponseBody
     @RequestMapping(value = "/delGroup.adv")
     public String delGroup(String nodeId,String groupId){
-
-        return "";
+        logger.info("删除【nodeId】:"+nodeId+",【groupId】:"+groupId);
+        Map<String,String> map = new HashedMap();
+        map.put("dtu_sn",nodeId);
+        map.put("group_id",groupId);
+        String result = dtuUpdateService.update(map,Contants.DEL_DTU_GROUP_INFO);
+        return Tools.sendJson(result);
     }
 
+    /**
+     * 新增分组数据
+     * @param nodeId
+     * @param aname1
+     * @param asj1
+     * @param asj2
+     * @param asj3
+     * @param asj4
+     * @param asj5
+     * @param asj6
+     * @param asj7
+     * @param asj8
+     * @param asj9
+     * @param asj10
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/addGroup.adv")
+    public String addGroup(String nodeId,String aname1,String asj1,String asj2,String asj3,String asj4,String asj5,String asj6,String asj7,String asj8,String asj9,String asj10){
+        String [] arr = { asj1, asj2, asj3, asj4, asj5, asj6, asj7, asj8, asj9, asj10};
+        System.out.println("asj:"+arr.toString());
+        int i = 10 ;
+        for (String s:arr){
+            if("0".equals(s)){
+                i--;
+            }
+        }
+        logger.info("【新增】：");
+        Map<String,String> map = new HashedMap();
+        map.put("dtu_sn",nodeId);
+        map.put("group_describ",aname1);
+        map.put("group_datanum",String.valueOf(i));
+        map.put("group_datano1",asj1);
+        map.put("group_datano2",asj2);
+        map.put("group_datano3",asj3);
+        map.put("group_datano4",asj4);
+        map.put("group_datano5",asj5);
+        map.put("group_datano6",asj6);
+        map.put("group_datano7",asj7);
+        map.put("group_datano8",asj8);
+        map.put("group_datano9",asj9);
+        map.put("group_datano10",asj10);
+        String result = dtuUpdateService.update(map,Contants.ADD_DTU_GROUP_INFO);
+        return Tools.sendJson(result);
+    }
 
+    /**
+     * 修改dtu分组信息
+     * @param nodeId
+     * @param groupId
+     * @param aname1
+     * @param asj1
+     * @param asj2
+     * @param asj3
+     * @param asj4
+     * @param asj5
+     * @param asj6
+     * @param asj7
+     * @param asj8
+     * @param asj9
+     * @param asj10
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/updGroup.adv")
+    public String updGroup(String nodeId,String groupId,String aname1,String asj1,String asj2,String asj3,String asj4,String asj5,String asj6,String asj7,String asj8,String asj9,String asj10){
+        String [] arr = { asj1, asj2, asj3, asj4, asj5, asj6, asj7, asj8, asj9, asj10};
+        System.out.println("asj:"+arr.toString());
+        int i = 10 ;
+        for (String s:arr){
+            if("0".equals(s)){
+                i--;
+            }
+        }
+        logger.info("【新增】：");
+        Map<String,String> map = new HashedMap();
+        map.put("dtu_sn",nodeId);
+        map.put("group_describ",aname1);
+        map.put("group_id",groupId);
+        map.put("group_datanum",String.valueOf(i));
+        map.put("group_datano1",asj1);
+        map.put("group_datano2",asj2);
+        map.put("group_datano3",asj3);
+        map.put("group_datano4",asj4);
+        map.put("group_datano5",asj5);
+        map.put("group_datano6",asj6);
+        map.put("group_datano7",asj7);
+        map.put("group_datano8",asj8);
+        map.put("group_datano9",asj9);
+        map.put("group_datano10",asj10);
+        String result = dtuUpdateService.update(map,Contants.UPDATE_DTU_GROUP_INFO);
+        return Tools.sendJson(result);
+    }
 
 }
