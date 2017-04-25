@@ -72,5 +72,7 @@ public class Contants {
     public static final String QUERRY_DTU_HISTORY_DATA = "querry_dtu_history_data.php";
     /*查询DTU控制器任务分组信息*/
     public static final String QUERRY_DTU_CTRL_TASK_GROUP_INFO = "querry_dtu_ctrl_task_group_info.php";
-
+    /*查询单个要素报警信息*/
+    public static final String QUERRY_DTU_SENSOR_WARNING_INFO2 = "querry_dtu_sensor_warning_info2.php";
+    public static final String UPDATE_DTU_SENSOR_WARNING_INFO = "update_dtu_sensor_warning_info.php";
 }

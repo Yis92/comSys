@@ -8,6 +8,7 @@ import com.sixe.comSys.dto.QueryDtuHisData.QueryDtuHisDataParm;
 import com.sixe.comSys.dto.QueryDtuWarningInfo.QueryDtuWarningInfoParm;
 import com.sixe.comSys.dto.QueryDtuWarningMsg.QueryDtuWarningMsgParam;
 import com.sixe.comSys.dto.QuerySensorNodeInfo.QuerySensorNodeInfoParam;
+import com.sixe.comSys.dto.QuerySensorWarningInfo.QuerySensorWarningInfo;
 
 import java.util.Map;
 
@@ -78,9 +79,17 @@ public interface DtuQueryService {
     public QueryDtuHisDataParm QueryDtuHisDataDisplay(Map<String,String> map);
 
     /**
-     *
+     * 查询分组下拉选项
      * @param map
      * @return
      */
     public QueryDtuGroupDataParm QueryDtuGroupDataInfo(Map<String,String> map);
+
+    /**
+     * 查询单个要素报警信息
+     * @param map
+     * @return
+     */
+    public QuerySensorWarningInfo querryDtuSensorWarningInfo2(Map<String,String> map);
+
 }

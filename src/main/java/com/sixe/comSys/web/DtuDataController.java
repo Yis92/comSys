@@ -4,6 +4,7 @@ package com.sixe.comSys.web;
 import com.sixe.comSys.dto.QueryDtuGroupingInfo.QueryDtuGroupingInfoParam;
 import com.sixe.comSys.dto.QueryDtuHisData.HisDataParm;
 import com.sixe.comSys.dto.QueryDtuHisData.QueryDtuHisDataParm;
+import com.sixe.comSys.dto.QuerySensorWarningInfo.QuerySensorWarningInfo;
 import com.sixe.comSys.service.DtuQueryService;
 import com.sixe.comSys.utils.Tools;
 import com.sun.istack.internal.logging.Logger;
@@ -104,6 +105,18 @@ public class DtuDataController {
 
         System.out.println(rtMap.toString());
         return Tools.sendJson(rtMap);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/getSensorWarningInfo",method = RequestMethod.POST)
+    public String getSensorWarningInfo(String nodeId,String dataNo){
+        logger.info("获取单个要素报警信息：【nodeId】:"+nodeId+",【dataNo】:"+dataNo);
+        Map<String,String> map = new HashedMap();
+        map.put("dtu_sn",nodeId);
+        map.put("data_no",dataNo);
+        logger.info("请求参数："+map.toString());
+        QuerySensorWarningInfo parm = dtuQueryService.querryDtuSensorWarningInfo2(map);
+        return Tools.sendJson(parm.getResult());
     }
 
 }

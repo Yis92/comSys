@@ -170,7 +170,7 @@ public class DtuOperateController {
                 i--;
             }
         }
-        logger.info("【新增】：");
+        logger.info("【修改】：");
         Map<String,String> map = new HashedMap();
         map.put("dtu_sn",nodeId);
         map.put("group_describ",aname1);
@@ -187,6 +187,35 @@ public class DtuOperateController {
         map.put("group_datano9",asj9);
         map.put("group_datano10",asj10);
         String result = dtuUpdateService.update(map,Contants.UPDATE_DTU_GROUP_INFO);
+        return Tools.sendJson(result);
+    }
+
+    /**
+     * 修改报警信息
+     * @param nodeId
+     * @param uname
+     * @param udescrib
+     * @param udata_no
+     * @param uup
+     * @param ulow
+     * @param ulasting
+     * @param uinterval
+     * @param uenable
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/updSensorWarningInfo.adv")
+    public String updSensorWarningInfo(String nodeId,String uname,String udescrib,String udata_no,String uup,
+                                       String ulow,String ulasting,String uinterval,String uenable){
+        Map<String,String> map = new HashedMap();
+        map.put("dtu_sn",nodeId);
+        map.put("data_no",udata_no);
+        map.put("warn_up",uup);
+        map.put("warn_low",ulow);
+        map.put("warn_lasting",ulasting);
+        map.put("warn_interval",uinterval);
+        map.put("warn_enable",uenable);
+        String result = dtuUpdateService.update(map,Contants.UPDATE_DTU_SENSOR_WARNING_INFO);
         return Tools.sendJson(result);
     }
 

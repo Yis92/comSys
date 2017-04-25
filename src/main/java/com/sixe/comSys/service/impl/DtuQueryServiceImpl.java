@@ -12,6 +12,7 @@ import com.sixe.comSys.dto.QueryDtuHisData.QueryDtuHisDataParm;
 import com.sixe.comSys.dto.QueryDtuWarningInfo.QueryDtuWarningInfoParm;
 import com.sixe.comSys.dto.QueryDtuWarningMsg.QueryDtuWarningMsgParam;
 import com.sixe.comSys.dto.QuerySensorNodeInfo.QuerySensorNodeInfoParam;
+import com.sixe.comSys.dto.QuerySensorWarningInfo.QuerySensorWarningInfo;
 import com.sixe.comSys.service.DtuQueryService;
 import com.sixe.comSys.utils.HttpClientUtil;
 import com.sixe.comSys.utils.ProperUtils;
@@ -304,6 +305,35 @@ public class DtuQueryServiceImpl implements DtuQueryService {
             }else{
                 String message=jsonObj.getString("message");
                 logger.info("【 查询分组设置数据下拉框】请求失败【message】:"+message);
+                return null;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * 查询单个要素报警信息
+     * @param map
+     * @return
+     */
+    public QuerySensorWarningInfo querryDtuSensorWarningInfo2(Map<String, String> map) {
+        String result;
+        try{
+            logger.info("【查询单个要素报警信息】请求参数："+map.toString());
+            result = HttpClientUtil.doHttpPost(ProperUtils.getVal("reqUrl") + Contants.QUERRY_DTU_SENSOR_WARNING_INFO2, "UTF-8", map, 10000);
+            logger.info("【查询单个要素报警信息】返回结果:" + result);
+            JSONObject jsonObj = JSON.parseObject(result);
+            String state=jsonObj.getString("state");
+            if("200".equals(state)) {
+                logger.info("【查询单个要素报警信息】请求成功");
+                Gson gson = new Gson();
+                QuerySensorWarningInfo param = gson.fromJson(result,QuerySensorWarningInfo.class);
+                return param;
+            }else{
+                String message=jsonObj.getString("message");
+                logger.info("【查询单个要素报警信息】请求失败【message】:"+message);
                 return null;
             }
         }catch (Exception e){
