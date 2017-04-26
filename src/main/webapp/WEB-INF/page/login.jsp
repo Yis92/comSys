@@ -51,7 +51,7 @@
                         <div class="yzm_ok" id="isOk"><img src="${basePath}common/images/yzm_ok.png" width="21" height="21" alt=""></div></li>
                     <li><span class="msg" id="errMsg"></span></li>
                     <li class="mar_tb"><input type="button" id="loginBtn" value="登录" onclick="login();" class="ipt1 ipt_btn" ></li>
-                    <li><a href="#"  target="_blank"></a><a href="JavaScript:void(0)"  data-dialog="somedialog" class="trigger">忘记密码？</a></li>
+                    <li><a href="#"  target="_blank"></a><a href="JavaScript:void(0)"  data-dialog="somedialog" class="trigger">下载手机版</a></li>
                 </ul>
             </form>
         </div>
@@ -67,7 +67,9 @@
             </svg>
         </div>
         <div class="dialog-inner">
-            <h2> 请联系您的管理员重置密码</h2>
+           <%-- <h2> 请联系您的管理员重置密码</h2>--%>
+            <img src="${basePath}common/images/2code.png" width="140px" height="140px">
+               <h3> 请扫描二维码进行下载手机安卓版</h3>
             <div><button class="action" data-dialog-close>关闭</button></div>
         </div>
     </div>
