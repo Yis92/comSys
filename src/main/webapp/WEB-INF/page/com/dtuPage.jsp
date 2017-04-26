@@ -50,6 +50,10 @@
         </tr>
         </thead>
         <tbody class="text-center">
+        <tr class="active">
+            <td>序号：</td>
+            <td>${dtu_sn}</td>
+        </tr>
         <tr class="info">
             <td style="width: 35%;">DTU名称：</td>
             <td style="width: 65%;">${dtuInfo.dtu_name}</td>

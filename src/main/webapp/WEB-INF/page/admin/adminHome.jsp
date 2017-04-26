@@ -21,6 +21,13 @@
     <link rel="stylesheet" type="text/css" href="${basePath}common/html/icheck/icheck.css" />
     <link rel="stylesheet" type="text/css" href="${basePath}common/html/css/h-ui.admin/skin/default/skin.css" id="skin" />
     <link rel="stylesheet" type="text/css" href="${basePath}common/html/css/h-ui.admin/css/style.css" />
+    <style type="text/css">
+        .dtu_active{
+            background-color: #148cf1;
+        }
+
+    </style>
+
 </head>
 <body style="overflow:hidden;">
 <header class="navbar-wrapper">
@@ -72,7 +79,7 @@
                         <li><a _href="${basePath }myHome/goComUser.admin?id=${com.unit_no}" data-title="本单位信息维护" href="javascript:void(0)">本单位用户维护</a></li>
                         <%--<li><a _href="${basePath }myHome/goDTUConfig?id=${com.unit_no}" data-title="DTU维护" href="javascript:void(0)">DTU维护</a></li>--%>
                            <c:forEach items="${com.dtu}" var = "dtu" varStatus="sta">
-                               <li><a _href="${basePath }dtuHome/goDTUPage?nodeId=${dtu.dtu_sn}&type=6" data-title="${dtu.dtu_name}" href="javascript:void(0)">${dtu.dtu_name}</a></li>
+                               <li class="dtu_active"><a _href="${basePath }dtuHome/goDTUPage?nodeId=${dtu.dtu_sn}&type=6" data-title="${dtu.dtu_name}" href="javascript:void(0)">${dtu.dtu_name}</a></li>
                            </c:forEach>
                             <%-- <li><a _href="${basePath}userHome/myInfo" data-title="我的信息" href="javascript:void(0)">我的信息</a></li>--%>
                         <!--                    <li><a _href="${basePath }userHome/otherReply.do" data-title="非关键字回复" href="javascript:void(0)">非关键字回复</a></li>-->
@@ -80,48 +87,6 @@
                 </dd>
             </dl>
         </c:forEach>
-        <%--<dl id="menu-picture">
-            <dt><i class="Hui-iconfont">&#xe616;</i> 迪辉科技（北京）<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-            <dd>
-                <ul>
-                    <li><a _href="${basePath }myHome/goComInfo" data-title="本单位信息维护" href="javascript:void(0)">本单位信息维护</a></li>
-                    <li><a _href="${basePath }myHome/goComUser" data-title="本单位信息维护" href="javascript:void(0)">本单位用户维护</a></li>
-                    <li><a _href="${basePath }myHome/goDTUConfig" data-title="DTU维护" href="javascript:void(0)">DTU维护</a></li>
-                   &lt;%&ndash; <li><a _href="${basePath}userHome/myInfo" data-title="我的信息" href="javascript:void(0)">我的信息</a></li>&ndash;%&gt;
-                    <!--                    <li><a _href="${basePath }userHome/otherReply.do" data-title="非关键字回复" href="javascript:void(0)">非关键字回复</a></li>-->
-                </ul>
-            </dd>
-        </dl>--%>
-
-        <%--<dl id="menu-product">
-            <dt><i class="Hui-iconfont">&#xe616;</i> 迪辉科技（天津）<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-            <dd>
-                <ul>
-                    <li><a _href="${basePath }myHome/goComInfo" data-title="本单位信息维护" href="javascript:void(0)">本单位信息维护</a></li>
-                    <li><a _href="${basePath }myHome/goComUser" data-title="本单位信息维护" href="javascript:void(0)">本单位用户维护</a></li>
-                    <li><a _href="${basePath }myHome/goDTUConfig" data-title="DTU维护" href="javascript:void(0)">DTU维护</a></li>
-                   &lt;%&ndash; <li><a _href="${basePath}userHome/myInfo" data-title="我的信息" href="javascript:void(0)">我的信息</a></li>&ndash;%&gt;
-                    <!--                    <li><a _href="${basePath }userHome/otherReply.do" data-title="非关键字回复" href="javascript:void(0)">非关键字回复</a></li>-->
-                </ul>
-            </dd>
-        </dl>--%>
-        <!--<dl id="menu-product">
-            <dt><i class="Hui-iconfont">&#xe60d;</i> 关注推送<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-            <dd>
-                <ul>
-                    <li><a _href="${basePath }userHome/attentionReply.do" data-title="关注推送" href="javascript:void(0)">关注推送</a></li>
-                </ul>
-            </dd>
-        </dl>-->
-        <!-- <dl id="menu-system">
-            <dt><i class="Hui-iconfont">&#xe62e;</i> 系统管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-            <dd>
-                <ul>
-                    <li><a _href="system-base.html" data-title="用户管理" href="javascript:void(0)">用户管理</a></li>
-                    <li><a _href="system-category.html" data-title="密码管理" href="javascript:void(0)">密码管理</a></li>
-                </ul>
-            </dd>
-        </dl> -->
     </div>
 </aside>
 <div class="dislpayArrow hidden-xs"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a></div>
