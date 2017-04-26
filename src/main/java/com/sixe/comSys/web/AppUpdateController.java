@@ -5,6 +5,7 @@ import com.sixe.comSys.utils.InterfaceUtil;
 import org.apache.commons.collections.map.HashedMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Map;
 
@@ -20,6 +21,7 @@ public class AppUpdateController {
      * app版本
      * @return
      */
+    @ResponseBody
     @RequestMapping(value="version")
     public String getversion(){
         String appName= InterfaceUtil.getValue("config/common.properties","appName");
