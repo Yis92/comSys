@@ -6,6 +6,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
 import com.sixe.comSys.base.Contants;
 import com.sixe.comSys.dto.DataParm.QueryRealTimeData.QueryRealTimeDataParm;
+import com.sixe.comSys.dto.QuerryDtuCtrlTaskGroupInfo.QuerryDtuCtrlNodeTaskParm;
+import com.sixe.comSys.dto.QuerryDtuCtrlTaskGroupInfo.QuerryDtuCtrlTaskGroupInfoParm;
 import com.sixe.comSys.dto.QueryDtuCtrlNodeInfo.QueryDtuCtrlNodeInfoParam;
 import com.sixe.comSys.dto.QueryDtuGroupDataInfo.QueryDtuGroupDataParm;
 import com.sixe.comSys.dto.QueryDtuGroupingInfo.QueryDtuGroupingInfoParam;
@@ -94,6 +96,10 @@ public class DtuHomeController {
             return "/dtu/groupingPage";
         }else if("6".equals(type)){//去数据显示页面
             return "/dtu/dataDisplayPage";
+        }else if("7".equals(type)){//进入控制节点任务页面
+            QuerryDtuCtrlTaskGroupInfoParm p = dtuQueryService.QuerryDtuCtrlTaskGroup_info(map);
+            request.setAttribute("taskInfo",p);
+            return "/dtu/controlNodeTaskPage";
         }
         return "/com/dtuPage";
     }
@@ -105,9 +111,10 @@ public class DtuHomeController {
      * @return
      */
     @RequestMapping(value = "/goDataPage")
-    public String goDataPage(String nodeId,String type,HttpServletRequest request, HttpServletResponse response){
+    public String goDataPage(String nodeId,String type,String timeR,HttpServletRequest request, HttpServletResponse response){
         logger.info("DataPage【dtu_sn】:"+nodeId);
         request.setAttribute("dtu_sn",nodeId);
+        request.setAttribute("timeR",timeR);
         Map<String,String> map = new HashedMap();
         map.put("dtu_sn",nodeId);
         logger.info("请求参数："+map.toString());
@@ -150,6 +157,26 @@ public class DtuHomeController {
             return "/dtu/data/mhisData";
         }
         return "/dtu/data/hisData";
+    }
+
+    /**
+     * 进入控制节点任务
+     * @param nodeId
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping(value = "/goTaskPage")
+    public String goTaskPage(String nodeId,String nodeAddr,HttpServletRequest request, HttpServletResponse response){
+        logger.info("goHisPage【nodeId】:"+nodeId);
+        request.setAttribute("dtu_sn",nodeId);
+        Map<String,String> map = new HashedMap();
+        map.put("dtu_sn",nodeId);
+        map.put("node_addr",nodeAddr);
+        logger.info("请求参数："+map.toString());
+        QuerryDtuCtrlNodeTaskParm parm = dtuQueryService.QuerryDtuCtrlNodeTask(map);
+        request.setAttribute("tsData",parm);
+        return "/dtu/task/taskPage";
     }
 
 

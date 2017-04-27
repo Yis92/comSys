@@ -74,5 +74,10 @@ public class Contants {
     public static final String QUERRY_DTU_CTRL_TASK_GROUP_INFO = "querry_dtu_ctrl_task_group_info.php";
     /*查询单个要素报警信息*/
     public static final String QUERRY_DTU_SENSOR_WARNING_INFO2 = "querry_dtu_sensor_warning_info2.php";
+    /**/
     public static final String UPDATE_DTU_SENSOR_WARNING_INFO = "update_dtu_sensor_warning_info.php";
+    /*查询控制节点的任务状态*/
+    public static final String QUERRY_DTU_CTRL_NODE_TASK2 = "querry_dtu_ctrl_node_task.php";
+    /*修改控制节点的任务状态*/
+    public static final String UPDATE_DTU_CTRL_NODE_TASK = "update_dtu_ctrl_node_task.php";
 }

@@ -5,6 +5,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
 import com.sixe.comSys.base.Contants;
 import com.sixe.comSys.dto.DataParm.QueryRealTimeData.QueryRealTimeDataParm;
+import com.sixe.comSys.dto.QuerryDtuCtrlTaskGroupInfo.QuerryDtuCtrlNodeTaskParm;
+import com.sixe.comSys.dto.QuerryDtuCtrlTaskGroupInfo.QuerryDtuCtrlTaskGroupInfoParm;
 import com.sixe.comSys.dto.QueryDtuCtrlNodeInfo.QueryDtuCtrlNodeInfoParam;
 import com.sixe.comSys.dto.QueryDtuGroupDataInfo.QueryDtuGroupDataParm;
 import com.sixe.comSys.dto.QueryDtuGroupingInfo.QueryDtuGroupingInfoParam;
@@ -334,6 +336,64 @@ public class DtuQueryServiceImpl implements DtuQueryService {
             }else{
                 String message=jsonObj.getString("message");
                 logger.info("【查询单个要素报警信息】请求失败【message】:"+message);
+                return null;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * 查询控制节点分组任务信息
+     * @param map
+     * @return
+     */
+    public QuerryDtuCtrlTaskGroupInfoParm QuerryDtuCtrlTaskGroup_info(Map<String, String> map) {
+        String result;
+        try{
+            logger.info("【查询控制节点分组任务信息】请求参数："+map.toString());
+            result = HttpClientUtil.doHttpPost(ProperUtils.getVal("reqUrl") + Contants.QUERRY_DTU_CTRL_TASK_GROUP_INFO, "UTF-8", map, 10000);
+            logger.info("【查询控制节点分组任务信息】返回结果:" + result);
+            JSONObject jsonObj = JSON.parseObject(result);
+            String state=jsonObj.getString("state");
+            if("200".equals(state)) {
+                logger.info("【查询控制节点分组任务信息】请求成功");
+                Gson gson = new Gson();
+               QuerryDtuCtrlTaskGroupInfoParm param = gson.fromJson(result,QuerryDtuCtrlTaskGroupInfoParm.class);
+                return param;
+            }else{
+                String message=jsonObj.getString("message");
+                logger.info("【查询控制节点分组任务信息】请求失败【message】:"+message);
+                return null;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * 查询控制节点任务状态
+     * @param map
+     * @return
+     */
+    public QuerryDtuCtrlNodeTaskParm QuerryDtuCtrlNodeTask(Map<String, String> map) {
+        String result;
+        try{
+            logger.info("【查询控制节点任务状态】请求参数："+map.toString());
+            result = HttpClientUtil.doHttpPost(ProperUtils.getVal("reqUrl") + Contants.QUERRY_DTU_CTRL_NODE_TASK2, "UTF-8", map, 10000);
+            logger.info("【查询控制节点任务状态】返回结果:" + result);
+            JSONObject jsonObj = JSON.parseObject(result);
+            String state=jsonObj.getString("state");
+            if("200".equals(state)) {
+                logger.info("【查询控制节点任务状态】请求成功");
+                Gson gson = new Gson();
+                QuerryDtuCtrlNodeTaskParm param = gson.fromJson(result,QuerryDtuCtrlNodeTaskParm.class);
+                return param;
+            }else{
+                String message=jsonObj.getString("message");
+                logger.info("【查询控制节点任务状态】请求失败【message】:"+message);
                 return null;
             }
         }catch (Exception e){

@@ -4,16 +4,63 @@
 <head>
     <title>Title</title>
     <script type="text/javascript">
+        $(function () {
+            var timeR = $("#timeR").val();
+            $("#refreshId").val(timeR);
+            if(timeR == '60000'){
+                setTimeout(function() {
+                    auto(timeR);
+                },60000);
+            }else if(timeR == '300000'){
+                setTimeout(function() {
+                    auto(timeR);
+                },300000);
+            }else if(timeR == '600000'){
+                setTimeout(function() {
+                    auto(timeR);
+                },600000);
+            }else{
+                console.log("不进行自动刷新");
+                return false;
+            }
+        });
+
         function refresh(){
             location.reload();
         }
+
+        function autoRefresh(){
+            var date = $("#refreshId").val();
+            auto(date);
+        }
+
+        function auto(date){
+            window.location.href = " ${basePath }dtuHome/goDataPage?nodeId=${dtu_sn}&type=3&timeR="+date;
+        }
+
+
+
     </script>
 </head>
 <body style="font-family: '微软雅黑';">
     <input id="basePath" value="${basePath }" type="hidden">
+    <input id="timeR" type="hidden" value="${timeR}">
+    <input id="dtu_sn" type="hidden" value="${dtu_sn}">
  <div class="container con_title" style="margin-top: 50px;" >
     <div style="margin-left: 30px;margin-top: 10px;margin-bottom: 10px; ">
-        <button type="button" style="" class="btn btn-primary" onclick="refresh();"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>&nbsp;刷新</button>&nbsp;
+
+        <ul class="nav nav-pills">
+            <li role="presentation" class="dropdown">
+                <select class="form-control" id="refreshId">
+                    <option value="60000">1分钟</option>
+                    <option value="300000">5分钟</option>
+                    <option value="600000">10分钟</option>
+                </select>
+                &nbsp;&nbsp;
+            </li>
+            <li><button type="button" style="" class="btn btn-info" onclick="autoRefresh();" id="autoId"><span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span>&nbsp;自动刷新</button>&nbsp;&nbsp;&nbsp;</li>
+            <li><button type="button" style="" class="btn btn-primary" onclick="refresh();"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>&nbsp;刷新</button>&nbsp;&nbsp;&nbsp;</li>
+        </ul>
     </div>
     <span style="color:red;padding-left: 38%;">观测时间：${dsData.dt}</span>
     <table class="table table-striped table-bordered table-hover" style="width: 100%;">

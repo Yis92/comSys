@@ -222,7 +222,7 @@ function show(group_id,til) {
                                 fontWeight: 'bolder'
                             }
                         },
-                        data: [{value: obj.value, name: obj.name+"("+obj.unit+")",id:obj.id,}]
+                        data: [{value: obj.value, name: obj.unit,id:obj.id,}]
                     };
                     if(index<3){
                         seriesData.push(d);
@@ -273,7 +273,7 @@ function show(group_id,til) {
                                     fontWeight: 'bolder'
                                 }
                             },
-                            data: [{value: obj.value, name: obj.name+"("+obj.unit+")",id:obj.id,}]
+                            data: [{value: obj.value, name: obj.unit,id:obj.id,}]
                         };
                     if(index<3){
                         seriesData.push(d);
@@ -342,7 +342,7 @@ function show(group_id,til) {
                         detail : {
                             show: true
                         },
-                        data:[{value: obj.value, name:  obj.name+"("+obj.unit+")",id:obj.id, }]
+                        data:[{value: obj.value, name: obj.unit,id:obj.id, }]
                     };
                     if(index<3){
                         seriesData.push(b);

@@ -2,6 +2,7 @@ package com.sixe.comSys.web;
 
 
 import com.sixe.comSys.base.Contants;
+import com.sixe.comSys.base.SpringContextHolder;
 import com.sixe.comSys.service.DtuUpdateService;
 import com.sixe.comSys.utils.Tools;
 import com.sun.istack.internal.logging.Logger;
@@ -216,6 +217,25 @@ public class DtuOperateController {
         map.put("warn_interval",uinterval);
         map.put("warn_enable",uenable);
         String result = dtuUpdateService.update(map,Contants.UPDATE_DTU_SENSOR_WARNING_INFO);
+        return Tools.sendJson(result);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/updDtuTaskInfo.adv")
+    public String updDtuTaskInfo(String nodeId ,String uchannel,String utype,String udt,String utm,String uecond
+                                        ,String nodeAddr){
+        Map<String,String> map = new HashedMap();
+        map.put("dtu_sn",nodeId);
+        map.put("node_addr",nodeAddr);
+        map.put("tsk_num","8");
+        map.put("tsk_current_channel",uchannel);
+        map.put("tsk_type",utype);
+        map.put("tsk_dt",udt);
+        map.put("tsk_tm",utm);
+
+        map.put("tsk_second",uecond);
+        map.put("op_user", SpringContextHolder.getCurrentUser().getResult().getUser_id());
+        String result = dtuUpdateService.update(map,Contants.UPDATE_DTU_CTRL_NODE_TASK);
         return Tools.sendJson(result);
     }
 
