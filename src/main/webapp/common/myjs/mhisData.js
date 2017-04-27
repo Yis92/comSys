@@ -71,8 +71,43 @@ $(function(){
         ]
     };
     var myChart = echarts.init(document.getElementById('main'));
-    myChart.setOption(option);
+    var dtu_sn = $("#nodeId").val();
+    var pId = $("#pId").val();
+    var startDate = $("#startDate").val();
+    var endDate = $("#endDate").val();
+    var dataType = $("#dataType").val();
+    $.ajax({
+        type:"POST",
+        url:$("#basePath").val()+"home/getHisData",
+        data:{
+            dtu_sn:dtu_sn,
+            pId:pId,
+            startDate:startDate,
+            endDate:endDate,
+            dataType:dataType
+        },
+        success:function(dt){
+            var result = eval("("+dt+")");
+            if(result.suc = 'SUC'){
+                timeData = result.timeData;
+                data = result.data;
+                var legendData = result.legendData;
+                var yAxisName = result.yAxisName;
+                var seriesName = result.seriesName;
+                var max = result.yMax;
+                var min = result.yMin;
 
+                option.legend.data = legendData;
+                option.yAxis.max = max;
+                option.yAxis.min = min;
+                option.yAxis.name = yAxisName;
+                option.series[0].name = seriesName;
+                option.xAxis.data = timeData;
+                option.series[0].data=data;
+                myChart.setOption(option,true);
+            }
+        }
+    });
 
     /**查询数据显示图形*/
     $("#searchBtn").click(function () {

@@ -6,25 +6,20 @@
     <script type="text/javascript" src="${basePath }common/myjs/mhisData.js?ran=<%=Math.random()%>"></script>
     <script type="text/javascript" src="${basePath }common/my97/WdatePicker.js"></script>
     <script type="text/javascript" src="${basePath }common/echarts/echarts.js"></script>
-    <style >
-        .h4 {
-            font-size: 5rem;
-        }
-    </style>
 </head>
 <body style="font-family: '微软雅黑';">
 <input id="basePath" value="${basePath }" type="hidden">
 <input type="hidden" value="${dtu_sn}" id="nodeId" />
 <input type="hidden" value="${pId}" id="pId">
-<h4>历史数据(手机端)</h4><hr/>
+<h4>历史数据</h4><hr/>
 <form class="form-inline">
     <div class="form-group">
         <label for="startDate">起始时间</label>
-        <div id="startDate" type="text" class="form-control" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'2010-1-01',maxDate:'2050-12-31'})"/>
+        <input id="startDate" type="text" class="form-control" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'2010-1-01',maxDate:'2050-12-31'})"/>
     </div>
     <div class="form-group">
         <label for="endDate">结束时间</label>
-        <div id="endDate" type="text" class="form-control" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'2010-1-01',maxDate:'2050-12-31'})"/>
+        <input id="endDate" type="text" class="form-control" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'2010-1-01',maxDate:'2050-12-31'})"/>
     </div>
     <div class="form-group">
         <label for="dataType">数据类型</label>
