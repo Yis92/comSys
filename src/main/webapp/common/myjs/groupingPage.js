@@ -147,6 +147,12 @@ $(function() {
     // 使用刚指定的配置项和数据显示图表。
 
 });
+/*刷新*/
+function refresh() {
+    var firstId = $("#firstId").val();
+    var til = $("#til").val();
+    show(firstId,til);
+}
 
 function show(group_id,til) {
     var nodeId = $("#nodeId").val();
@@ -179,6 +185,10 @@ function show(group_id,til) {
             console.log(result);
             $.each(result.groupdata,function (index, obj) {
                 //console.log(obj.name+"---"+obj.value);
+
+                $("#t"+index).empty();
+                $("#t"+index).html(obj.name);
+
                 if(index%3 == 0){
                     d = {
                         name: obj.name+'('+obj.unit+')',
@@ -219,7 +229,8 @@ function show(group_id,til) {
                         },
                         detail: {
                             textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
-                                fontWeight: 'bolder'
+                                fontWeight: 'bolder',
+                                fontSize: 16,
                             }
                         },
                         data: [{value: obj.value, name: obj.unit,id:obj.id,}]
@@ -270,7 +281,8 @@ function show(group_id,til) {
                             },
                             detail: {
                                 textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
-                                    fontWeight: 'bolder'
+                                    fontWeight: 'bolder',
+                                    fontSize: 16,
                                 }
                             },
                             data: [{value: obj.value, name: obj.unit,id:obj.id,}]
@@ -340,7 +352,11 @@ function show(group_id,til) {
                             }
                         },
                         detail : {
-                            show: true
+                            show: true,
+                            textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                                fontWeight: 'bolder',
+                                fontSize: 16,
+                            }
                         },
                         data:[{value: obj.value, name: obj.unit,id:obj.id, }]
                     };
@@ -373,18 +389,30 @@ function show(group_id,til) {
                 $("#main1").hide();
                 $("#main2").hide();
                 $("#main3").hide();
+                $("#tbd1").hide();
+                $("#tbd2").hide();
+                $("#tbd3").hide();
             if(result.groupdata.length>3&result.groupdata.length<7){
                 $("#main1").show();
                 $("#main2").hide();
                 $("#main3").hide();
+                $("#tbd1").show();
+                $("#tbd2").hide();
+                $("#tbd3").hide();
             }else if(result.groupdata.length>6&result.groupdata.length<10){
                 $("#main2").show();
                 $("#main1").show();
                 $("#main3").hide();
+                $("#tbd1").show();
+                $("#tbd2").show();
+                $("#tbd3").hide();
             }else if(result.groupdata.length>9){
                 $("#main3").show();
                 $("#main2").show();
                 $("#main1").show();
+                $("#tbd1").show();
+                $("#tbd2").show();
+                $("#tbd3").show();
             }
             var myChart1 = echarts.init(document.getElementById('main1'));
             showChart(myChart1, seriesData1,til);
@@ -415,7 +443,7 @@ function showChart(myChart,seriesData,til){
                 fontWeight: 'bolder',
                 fontStyle: 'italic',
                 fontFamily: 'sans-serif',
-                fontSize: 22,
+                fontSize: 20,
             },
         },
         toolbox: {

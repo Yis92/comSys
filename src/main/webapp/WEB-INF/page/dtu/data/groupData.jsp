@@ -36,10 +36,65 @@
 </c:if>
 
         <div style="width: 100%;    float: right;   padding-right: 40%;    padding-bottom: 20px;   padding-top: 10px;"><span id="dt" style="color:red;float: right;">观测时间:${groupInfo.dt}</span></div>
-        <div id="main" style="width: 100%;height:380px;"></div>
+        <div style="width: 100%;">
+            <table class="table">
+                <tr>
+                    <td colspan="3" width="100%;">
+                        <div id="main" style="width: 100%;height:280px;"></div>
+                    </td>
+                </tr>
+                <tr align="center">
+                    <td  id="t0" width= "33.3%"></td>
+                    <td  id="t1" width= "33.3%"></td>
+                    <td  id="t2" width= "33.3%"></td>
+                </tr>
+            </table>
+
+            <table class="table" style="display: none;" id="tbd1">
+                <tr>
+                    <td colspan="3" width="100%;">
+                        <div id="main1" style="width: 100%;height:280px;"></div>
+                    </td>
+                </tr>
+                <tr align="center">
+                    <td  id="t3" width= "33.3%"></td>
+                    <td  id="t4" width= "33.3%"></td>
+                    <td  id="t5" width= "33.3%"></td>
+                </tr>
+            </table>
+
+            <table class="table" style="display: none;" id="tbd2">
+                <tr align="center">
+                    <td colspan="3" width="100%;">
+                        <div id="main2" style="width: 100%;height:280px;"></div>
+                    </td>
+                </tr>
+                <tr align="center">
+                    <td id="t6"  width= "33.3%"></td>
+                    <td id="t7"  width= "33.3%"></td>
+                    <td id="t8"  width= "33.3%"></td>
+                </tr>
+            </table>
+
+            <table class="table" style="display: none;" id="tbd3">
+                <tr>
+                    <td colspan="3" width="100%;">
+                        <div id="main3" style="width: 100%;height:280px;"></div>
+                    </td>
+                </tr>
+                <tr align="center">
+                    <td  id="t9" width= "33.3%"></td>
+                    <td  id="t10" width= "33.3%"></td>
+                    <td  id="t11" width= "33.3%"></td>
+                </tr>
+            </table>
+        </div>
+
+
+<%--
         <div id="main1" style="width: 100%;height:380px; display: none;"></div>
         <div id="main2" style="width: 100%;height:380px; display: none;"></div>
-        <div id="main3" style="width: 100%;height:380px; display: none;"></div>
+        <div id="main3" style="width: 100%;height:380px; display: none;"></div>--%>
     </div>
 
 <!--新增信息 DIV-->
