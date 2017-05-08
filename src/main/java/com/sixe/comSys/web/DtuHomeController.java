@@ -8,6 +8,7 @@ import com.sixe.comSys.base.Contants;
 import com.sixe.comSys.dto.DataParm.QueryRealTimeData.QueryRealTimeDataParm;
 import com.sixe.comSys.dto.QuerryDtuCtrlTaskGroupInfo.QuerryDtuCtrlNodeTaskParm;
 import com.sixe.comSys.dto.QuerryDtuCtrlTaskGroupInfo.QuerryDtuCtrlTaskGroupInfoParm;
+import com.sixe.comSys.dto.QueryCtrlNodeType.QueryCtrlNodeTypeParm;
 import com.sixe.comSys.dto.QueryDtuCtrlNodeInfo.QueryDtuCtrlNodeInfoParam;
 import com.sixe.comSys.dto.QueryDtuGroupDataInfo.QueryDtuGroupDataParm;
 import com.sixe.comSys.dto.QueryDtuGroupingInfo.QueryDtuGroupingInfoParam;
@@ -81,8 +82,14 @@ public class DtuHomeController {
             request.setAttribute("sensorNodeInfo",parm);
             return "/dtu/sensorNodePage";
         }else if("3".equals(type)){//进入控制节点信息页面
+            //获取控制节点信息
             QueryDtuCtrlNodeInfoParam parm = dtuQueryService.queryDtuCtrlNodeInfo(map);
+            //获取控制节点类型码列表
+            QueryCtrlNodeTypeParm types = dtuQueryService.QueryCtrlNodeType();
+           // System.out.println("列表...."+types.toString());
+            request.setAttribute("types" ,types);
             request.setAttribute("ctrlNodeInfo",parm);
+            request.setAttribute("size",parm.getResult().size());
             return "/dtu/controlNodePage";
         }else if("4".equals(type)){//进入报警信息页面
             QueryDtuWarningMsgParam parm = dtuQueryService.QueryDtuWarningMsg(map);

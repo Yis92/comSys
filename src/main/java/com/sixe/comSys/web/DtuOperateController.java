@@ -10,6 +10,7 @@ import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Map;
@@ -236,6 +237,63 @@ public class DtuOperateController {
         map.put("tsk_second",uecond);
         map.put("op_user", SpringContextHolder.getCurrentUser().getResult().getUser_id());
         String result = dtuUpdateService.update(map,Contants.UPDATE_DTU_CTRL_NODE_TASK);
+        return Tools.sendJson(result);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/udpDtuControlNodeInfo.adv", method = RequestMethod.POST)
+    public String udpDtuControlNodeInfo(String dtu_sn,String uname,String ucfg,String uaddr,String udescrib,String ux,String uy,String utsknum,
+                                        String tsk1,String tsk2,String tsk3,String tsk4,String tsk5,String tsk6,String tsk7,String tsk8){
+
+        Map<String,String> map = new HashedMap();
+        map.put("dtu_sn",dtu_sn);
+
+       /* map.put("node_num","");
+        map.put("node_no","");*/
+
+
+        map.put("node_cfg ",ucfg);
+        map.put("node_addr",uaddr);
+        map.put("node_describ",udescrib);
+        map.put("node_screen_x",ux);
+        map.put("node_screen_y",uy);
+
+        int i = 0;
+        if(tsk1 != null & tsk1 !=""){
+            i++;
+            map.put("ctrl_ch_describ_1",tsk1);
+        }
+        if(tsk2 != null & tsk2 !="") {
+            i++;
+            map.put("ctrl_ch_describ_2",tsk2);
+        }
+        if(tsk3 != null & tsk3 !="") {
+            i++;
+            map.put("ctrl_ch_describ_3",tsk3);
+        }
+        if(tsk4 != null & tsk4 !="") {
+            i++;
+            map.put("ctrl_ch_describ_4",tsk4);
+        }
+        if(tsk5 != null & tsk5 !="") {
+            i++;
+            map.put("ctrl_ch_describ_5", tsk5);
+        }
+        if(tsk6 != null & tsk6 !="") {
+            i++;
+            map.put("ctrl_ch_describ_6",tsk6);
+        }
+        if(tsk7 != null & tsk7 != ""){
+            i++;
+            map.put("ctrl_ch_describ_7",tsk7);
+        }
+        if(tsk8 != null & tsk8 != "'"){
+            i++;
+            map.put("ctrl_ch_describ_8",tsk8);
+        }
+        map.put("ctrl_ch_num",i+"");
+
+        String result = dtuUpdateService.update(map,Contants.UPDATE_DTU_CTRL_NODE_INFO);
         return Tools.sendJson(result);
     }
 

@@ -1,6 +1,7 @@
 package com.sixe.comSys.web;
 
 
+import com.sixe.comSys.dto.QueryDtuCtrlNodeInfo.QueryDtuCtrlNodeInfoParam;
 import com.sixe.comSys.dto.QueryDtuGroupingInfo.QueryDtuGroupingInfoParam;
 import com.sixe.comSys.dto.QueryDtuHisData.HisDataParm;
 import com.sixe.comSys.dto.QueryDtuHisData.QueryDtuHisDataParm;
@@ -117,6 +118,17 @@ public class DtuDataController {
         logger.info("请求参数："+map.toString());
         QuerySensorWarningInfo parm = dtuQueryService.querryDtuSensorWarningInfo2(map);
         return Tools.sendJson(parm.getResult());
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/getControlNodeInfo",method = RequestMethod.POST)
+    public String getControlNodeInfo(String nodeId){
+        logger.info("查询控制节点信息：【nodeId】:"+nodeId);
+        Map<String,String> map = new HashedMap();
+        map.put("dtu_sn",nodeId);
+        logger.info("请求参数："+map.toString());
+        QueryDtuCtrlNodeInfoParam parm = dtuQueryService.queryDtuCtrlNodeInfo(map);
+        return Tools.sendJson(parm);
     }
 
 }

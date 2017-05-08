@@ -80,4 +80,8 @@ public class Contants {
     public static final String QUERRY_DTU_CTRL_NODE_TASK2 = "querry_dtu_ctrl_node_task.php";
     /*修改控制节点的任务状态*/
     public static final String UPDATE_DTU_CTRL_NODE_TASK = "update_dtu_ctrl_node_task.php";
+    /*查询控制节点的配置类型*/
+    public static final String QUERRY_DTU_CTRL_NODE_TYPE = "querry_dtu_ctrl_node_type.php";
+    /*修改控制节点信息*/
+    public static final String UPDATE_DTU_CTRL_NODE_INFO = "update_dtu_ctrl_node_info.php";
 }

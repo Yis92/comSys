@@ -44,8 +44,8 @@
 <input id="basePath" value="${basePath }" type="hidden">
 <input type="hidden" value="${dtu_sn}" id="nodeId" />
 <input id="timeR" type="hidden" value="${timeR}">
-<div class="container con_title" style="margin-top: 50px;" >
-    <div style="margin-left: 30px;margin-top: 10px;margin-bottom: 10px; ">
+<div class="container con_title" style="margin-top: 0px;" >
+    <div style="margin-left: 0px;margin-top: 0px;margin-bottom: 10px; ">
         <ul class="nav nav-pills">
             <li role="presentation" class="dropdown">
                 <select class="form-control" id="refreshId">
