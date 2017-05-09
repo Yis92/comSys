@@ -32,7 +32,7 @@
                 <%-- --%>
             <button type="button" style="" class="btn btn-info" onclick="syn();" data-toggle="modal" data-target="" ><span class="glyphicon glyphicon-random" aria-hidden="true"></span>&nbsp;一键同步</button>&nbsp;
            <%-- <button type="button" style="" class="btn btn-default" onclick="goTask();" data-toggle="modal" data-target="" ><span class="glyphicon glyphicon-send" aria-hidden="true"></span>&nbsp;任务</button>&nbsp;--%>
-            <c:if test="${size < 8}">
+            <c:if test="${size < 64}">
                 <button type="button" style="" class="btn btn-primary" onclick="add();" data-toggle="modal" data-target="#myModal_add" ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;新增</button>&nbsp;
             </c:if>
         </div>
