@@ -79,7 +79,14 @@ public class DtuHomeController {
             return "/com/dtuPage";
         }else if("2".equals(type)){//进入传感器节点信息页面
             QuerySensorNodeInfoParam parm = dtuQueryService.querryDtuSensorNodeInfo(map);
+            QueryCtrlNodeTypeParm o = dtuQueryService.querryDtuSensorNodeType();
+            request.setAttribute("types" ,o);
             request.setAttribute("sensorNodeInfo",parm);
+            if(parm != null && parm.getResult() != null){
+                request.setAttribute("size",parm.getResult().size());
+            }else{
+                request.setAttribute("size",0);
+            }
             return "/dtu/sensorNodePage";
         }else if("3".equals(type)){//进入控制节点信息页面
             //获取控制节点信息
@@ -89,7 +96,11 @@ public class DtuHomeController {
            // System.out.println("列表...."+types.toString());
             request.setAttribute("types" ,types);
             request.setAttribute("ctrlNodeInfo",parm);
-            request.setAttribute("size",parm.getResult().size());
+            if(parm != null && parm.getResult() != null){
+                request.setAttribute("size",parm.getResult().size());
+            }else{
+                request.setAttribute("size",0);
+            }
             return "/dtu/controlNodePage";
         }else if("4".equals(type)){//进入报警信息页面
             QueryDtuWarningMsgParam parm = dtuQueryService.QueryDtuWarningMsg(map);

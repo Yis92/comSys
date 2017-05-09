@@ -87,15 +87,14 @@
                 </ul>
             </dd>
         </dl>-->
-        <!-- <dl id="menu-system">
-            <dt><i class="Hui-iconfont">&#xe62e;</i> 系统管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+         <dl id="menu-system">
+            <dt><i class="Hui-iconfont">&#xe62e;</i> 设备<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a _href="system-base.html" data-title="用户管理" href="javascript:void(0)">用户管理</a></li>
-                    <li><a _href="system-category.html" data-title="密码管理" href="javascript:void(0)">密码管理</a></li>
+                    <li><a _href="${basePath }userHome/welcome" data-title="用户管理" href="javascript:void(0)">设备地图</a></li>
                 </ul>
             </dd>
-        </dl> -->
+        </dl>
     </div>
 </aside>
 <div class="dislpayArrow hidden-xs"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a></div>
@@ -103,7 +102,8 @@
     <div id="Hui-tabNav" class="Hui-tabNav hidden-xs">
         <div class="Hui-tabNav-wp">
             <ul id="min_title_list" class="acrossTab cl">
-                <li class="active"><span title="我的桌面" data-href="${basePath }userHome/welcome">欢迎页</span><em></em></li>
+                <li class="active"><span title="我的桌面" data-href="http://139.129.239.172:7710/pcwebindex/webindex.html">欢迎页</span><em></em></li>
+                <%--<li class="active"><span title="我的桌面" data-href="${basePath }userHome/welcome">欢迎页</span><em></em></li>--%>
             </ul>
         </div>
         <div class="Hui-tabNav-more btn-group"><a id="js-tabNav-prev" class="btn radius btn-default size-S" href="javascript:;"><i class="Hui-iconfont">&#xe6d4;</i></a><a id="js-tabNav-next" class="btn radius btn-default size-S" href="javascript:;"><i class="Hui-iconfont">&#xe6d7;</i></a></div>
@@ -111,7 +111,7 @@
     <div id="iframe_box" class="Hui-article">
         <div class="show_iframe">
             <div style="display:none" class="loading"></div>
-            <iframe scrolling="yes" frameborder="0" id="index_iframe" src="${basePath}userHome/welcome.do"></iframe>
+            <iframe scrolling="yes" frameborder="0" id="index_iframe" src="http://139.129.239.172:7710/pcwebindex/webindex.html"></iframe>
         </div>
     </div>
 </section>

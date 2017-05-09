@@ -10,6 +10,7 @@ import java.util.Map;
 public class CtrlNodeInfoParam implements Serializable{
     private static final long serialVersionUID = 1L;
     private String name;        //传感器名字
+    private String node_no;     //控制节点序号
     private String cfg;         //传感器类型码-可以不显示出来-但在设置的时候需要带入
     private String addr;        //传感器地址
     private String describ;     //传感器描述
@@ -76,6 +77,14 @@ public class CtrlNodeInfoParam implements Serializable{
     public List<Tskdescrib> getTskdescrib() {
 
         return tskdescrib;
+    }
+
+    public String getNode_no() {
+        return node_no;
+    }
+
+    public void setNode_no(String node_no) {
+        this.node_no = node_no;
     }
 
     public void setTskdescrib(List<Tskdescrib> tskdescrib) {

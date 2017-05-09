@@ -57,6 +57,34 @@ public class DtuQueryServiceImpl implements DtuQueryService {
     }
 
     /**
+     * 查询传感器类型
+     * @return
+     */
+    public QueryCtrlNodeTypeParm querryDtuSensorNodeType() {
+        String result;
+        try{
+            logger.info("【查询传感器节点类型】请求参数：无请求参数");
+            result = HttpClientUtil.doHttpPost(ProperUtils.getVal("reqUrl") + Contants.QUERRY_DTU_SENSOR_NODE_TYPE, "UTF-8", new HashMap<String, String>(), 10000);
+            logger.info("【查询传感器节点类型】返回结果:" + result);
+            JSONObject jsonObj = JSON.parseObject(result);
+            String state=jsonObj.getString("state");
+            if("200".equals(state)) {
+                logger.info("【查询传感器节点类型】请求成功");
+                Gson gson = new Gson();
+                QueryCtrlNodeTypeParm param = gson.fromJson(result,QueryCtrlNodeTypeParm.class);
+                return param;
+            }else{
+                String message=jsonObj.getString("message");
+                logger.info("【查询传感器节点类型】请求失败【message】:"+message);
+                return null;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
      * 查询报警信息
      * @param map
      * @return

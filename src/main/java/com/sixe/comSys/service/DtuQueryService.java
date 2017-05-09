@@ -27,6 +27,12 @@ public interface DtuQueryService {
     public QuerySensorNodeInfoParam querryDtuSensorNodeInfo(Map<String,String> map);
 
     /**
+     * 查询传感器类型列表
+     * @return
+     */
+    public QueryCtrlNodeTypeParm querryDtuSensorNodeType();
+
+    /**
      * 查询控制传感器信息
      * @param map
      * @return

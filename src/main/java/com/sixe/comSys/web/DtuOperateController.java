@@ -240,24 +240,41 @@ public class DtuOperateController {
         return Tools.sendJson(result);
     }
 
+    /**
+     * 修改控制节点信息
+     * @param dtu_sn
+     * @param uname
+     * @param ucfg
+     * @param uaddr
+     * @param size
+     * @param node_no
+     * @param udescrib
+     * @param ux
+     * @param uy
+     * @param utsknum
+     * @param tsk1
+     * @param tsk2
+     * @param tsk3
+     * @param tsk4
+     * @param tsk5
+     * @param tsk6
+     * @param tsk7
+     * @param tsk8
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "/udpDtuControlNodeInfo.adv", method = RequestMethod.POST)
-    public String udpDtuControlNodeInfo(String dtu_sn,String uname,String ucfg,String uaddr,String udescrib,String ux,String uy,String utsknum,
+    public String udpDtuControlNodeInfo(String dtu_sn,String uname,String ucfg,String uaddr,String size,String node_no,String udescrib,String ux,String uy,String utsknum,
                                         String tsk1,String tsk2,String tsk3,String tsk4,String tsk5,String tsk6,String tsk7,String tsk8){
-
         Map<String,String> map = new HashedMap();
         map.put("dtu_sn",dtu_sn);
-
-       /* map.put("node_num","");
-        map.put("node_no","");*/
-
-
-        map.put("node_cfg ",ucfg);
+        map.put("node_num",size);
+        map.put("node_no",node_no);
+        map.put("node_cfg",ucfg.replace(".0","").trim());
         map.put("node_addr",uaddr);
         map.put("node_describ",udescrib);
         map.put("node_screen_x",ux);
         map.put("node_screen_y",uy);
-
         int i = 0;
         if(tsk1 != null & tsk1 !=""){
             i++;
@@ -287,13 +304,171 @@ public class DtuOperateController {
             i++;
             map.put("ctrl_ch_describ_7",tsk7);
         }
-        if(tsk8 != null & tsk8 != "'"){
+        if(tsk8 != null & tsk8 != ""){
             i++;
             map.put("ctrl_ch_describ_8",tsk8);
         }
         map.put("ctrl_ch_num",i+"");
-
+        System.out.println("请求参数："+map.toString());
         String result = dtuUpdateService.update(map,Contants.UPDATE_DTU_CTRL_NODE_INFO);
+        return Tools.sendJson(result);
+    }
+
+    /**
+     * 新增控制节点信息
+     * @param dtu_sn
+     * @param uname
+     * @param ucfg
+     * @param aaddr
+     * @param size
+     * @param udescrib
+     * @param ux
+     * @param uy
+     * @param utsknum
+     * @param tsk1
+     * @param tsk2
+     * @param tsk3
+     * @param tsk4
+     * @param tsk5
+     * @param tsk6
+     * @param tsk7
+     * @param tsk8
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/addDtuControlNodeInfo.adv", method = RequestMethod.POST)
+    public String addDtuControlNodeInfo(String dtu_sn,String uname,String ucfg,String aaddr,String size,String udescrib,String ux,String uy,String utsknum,
+                                        String tsk1,String tsk2,String tsk3,String tsk4,String tsk5,String tsk6,String tsk7,String tsk8){
+        Map<String,String> map = new HashedMap();
+        map.put("dtu_sn",dtu_sn);
+        map.put("node_num",(Integer.parseInt(size)+1)+"");
+        map.put("node_no",(Integer.parseInt(size)+1)+"");
+        map.put("node_cfg",ucfg.replace(".0","").trim());
+        map.put("node_addr",aaddr);
+        map.put("node_describ",udescrib);
+        map.put("node_screen_x",ux);
+        map.put("node_screen_y",uy);
+        int i = 0;
+        if(tsk1 != null & tsk1 !=""){
+            i++;
+            map.put("ctrl_ch_describ_1",tsk1);
+        }
+        if(tsk2 != null & tsk2 !="") {
+            i++;
+            map.put("ctrl_ch_describ_2",tsk2);
+        }
+        if(tsk3 != null & tsk3 !="") {
+            i++;
+            map.put("ctrl_ch_describ_3",tsk3);
+        }
+        if(tsk4 != null & tsk4 !="") {
+            i++;
+            map.put("ctrl_ch_describ_4",tsk4);
+        }
+        if(tsk5 != null & tsk5 !="") {
+            i++;
+            map.put("ctrl_ch_describ_5", tsk5);
+        }
+        if(tsk6 != null & tsk6 !="") {
+            i++;
+            map.put("ctrl_ch_describ_6",tsk6);
+        }
+        if(tsk7 != null & tsk7 != ""){
+            i++;
+            map.put("ctrl_ch_describ_7",tsk7);
+        }
+        if(tsk8 != null & tsk8 != ""){
+            i++;
+            map.put("ctrl_ch_describ_8",tsk8);
+        }
+        map.put("ctrl_ch_num",i+"");
+        System.out.println("请求参数："+map.toString());
+        String result = dtuUpdateService.update(map,Contants.UPDATE_DTU_CTRL_NODE_INFO);
+        return Tools.sendJson(result);
+    }
+
+    /**
+     * 同步控制节点信息
+     * @param nodeId
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/synControlNodeInfo.adv", method = RequestMethod.POST)
+    public String synControlNodeInfo(String nodeId){
+        Map<String,String> map = new HashedMap();
+        map.put("dtu_sn",nodeId);
+        String result = dtuUpdateService.update(map,Contants.SYNC_DTU_CTRL_NODE_INFO);
+        return Tools.sendJson(result);
+    }
+
+    /**
+     * 新增传感器节点
+     * @param dtu_sn
+     * @param ucfg
+     * @param aaddr
+     * @param size
+     * @param udescrib
+     * @param ux
+     * @param uy
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/addDtuSensorNodeInfo.adv", method = RequestMethod.POST)
+    public String addDtuSensorNodeInfo(String dtu_sn,String ucfg,String aaddr,String size,String udescrib,String ux,String uy){
+        Map<String,String> map = new HashedMap();
+        map.put("dtu_sn",dtu_sn);
+        map.put("node_num",(Integer.parseInt(size)+1)+"");
+        map.put("node_no",(Integer.parseInt(size)+1)+"");
+        map.put("node_cfg",ucfg.replace(".0","").trim());
+        map.put("node_addr",aaddr);
+        map.put("node_describ",udescrib);
+        map.put("node_screen_x",ux);
+        map.put("node_screen_y",uy);
+        System.out.println("【新增传感器信息】请求参数："+map.toString());
+        String result = dtuUpdateService.update(map,Contants.UPDATE_DTU_SENSOR_NODE_INFO);
+        return Tools.sendJson(result);
+    }
+
+    /**
+     * 修改传感器信息
+     * @param dtu_sn
+     * @param ucfg
+     * @param node_no
+     * @param aaddr
+     * @param size
+     * @param udescrib
+     * @param ux
+     * @param uy
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/updDtuSensorNodeInfo.adv", method = RequestMethod.POST)
+    public String updDtuSensorNodeInfo(String dtu_sn,String ucfg,String node_no,String aaddr,String size,String udescrib,String ux,String uy){
+        Map<String,String> map = new HashedMap();
+        map.put("dtu_sn",dtu_sn);
+        map.put("node_num",size);
+        map.put("node_cfg",ucfg.replace(".0","").trim());
+        map.put("node_addr",aaddr);
+        map.put("node_describ",udescrib);
+        map.put("node_screen_x",ux);
+        map.put("node_screen_y",uy);
+        map.put("node_no",node_no);
+        System.out.println("【修改传感器信息】请求参数："+map.toString());
+        String result = dtuUpdateService.update(map,Contants.UPDATE_DTU_SENSOR_NODE_INFO);
+        return Tools.sendJson(result);
+    }
+
+    /**
+     * 同步传感器节点信息
+     * @param nodeId
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/synSensorNodeInfo.adv", method = RequestMethod.POST)
+    public String synSensorNodeInfo(String nodeId){
+        Map<String,String> map = new HashedMap();
+        map.put("dtu_sn",nodeId);
+        String result = dtuUpdateService.update(map,Contants.SYNC_DTU_SENSOR_NODE_INFO);
         return Tools.sendJson(result);
     }
 

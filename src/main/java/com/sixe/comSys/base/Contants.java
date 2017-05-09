@@ -40,7 +40,7 @@ public class Contants {
     public static final String QUERRY_DTU_GROUP_DATA_URL = "querry_dtu_group_data.php";
     /*查询dtu传感器节点信息*/
     public static final String QUERRY_DTU_SENSOR_NODE_INFO ="querry_dtu_sensor_node_info.php";
-    /*修改dtu传感器节点信息*/
+    /*设置dtu传感器节点信息*/
     public static final String UPDATE_DTU_SENSOR_NODE_INFO = "update_dtu_sensor_node_info.php";
     /*查询dtu控制节点信息*/
     public static final String QUERRY_DTU_CTRL_NODE_TASK = "querry_dtu_ctrl_node_info.php";
@@ -84,4 +84,10 @@ public class Contants {
     public static final String QUERRY_DTU_CTRL_NODE_TYPE = "querry_dtu_ctrl_node_type.php";
     /*修改控制节点信息*/
     public static final String UPDATE_DTU_CTRL_NODE_INFO = "update_dtu_ctrl_node_info.php";
+    /*同步控制节点信息*/
+    public static final String SYNC_DTU_CTRL_NODE_INFO = "sync_dtu_ctrl_node_info.php";
+    /*查询传感器类型列表*/
+    public static final String QUERRY_DTU_SENSOR_NODE_TYPE = "querry_dtu_sensor_node_type.php";
+    /*同步传感器节点*/
+    public static final String SYNC_DTU_SENSOR_NODE_INFO = "sync_dtu_sensor_node_info.php";
 }

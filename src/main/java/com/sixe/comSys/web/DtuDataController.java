@@ -5,6 +5,7 @@ import com.sixe.comSys.dto.QueryDtuCtrlNodeInfo.QueryDtuCtrlNodeInfoParam;
 import com.sixe.comSys.dto.QueryDtuGroupingInfo.QueryDtuGroupingInfoParam;
 import com.sixe.comSys.dto.QueryDtuHisData.HisDataParm;
 import com.sixe.comSys.dto.QueryDtuHisData.QueryDtuHisDataParm;
+import com.sixe.comSys.dto.QuerySensorNodeInfo.QuerySensorNodeInfoParam;
 import com.sixe.comSys.dto.QuerySensorWarningInfo.QuerySensorWarningInfo;
 import com.sixe.comSys.service.DtuQueryService;
 import com.sixe.comSys.utils.Tools;
@@ -128,6 +129,17 @@ public class DtuDataController {
         map.put("dtu_sn",nodeId);
         logger.info("请求参数："+map.toString());
         QueryDtuCtrlNodeInfoParam parm = dtuQueryService.queryDtuCtrlNodeInfo(map);
+        return Tools.sendJson(parm);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/getSensorNodeInfo",method = RequestMethod.POST)
+    public String getSensorNodeInfo(String nodeId){
+        logger.info("查询控制节点信息：【nodeId】:"+nodeId);
+        Map<String,String> map = new HashedMap();
+        map.put("dtu_sn",nodeId);
+        logger.info("请求参数："+map.toString());
+        QuerySensorNodeInfoParam parm = dtuQueryService.querryDtuSensorNodeInfo(map);
         return Tools.sendJson(parm);
     }
 
