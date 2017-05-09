@@ -55,7 +55,7 @@
         <c:forEach var="sensorNode" items="${sensorNodeInfo.result}" varStatus="status">
             <c:if test="${(status.index+1)%2 == 1}">
                 <tr class="info" >
-                    <td>${ststus.index+1}</td>
+                    <td>${status.index+1}</td>
                     <td>${sensorNode.name}</td>
                     <td>
                         <c:forEach var="type" items="${types.result}" >
@@ -76,7 +76,7 @@
             </c:if>
             <c:if test="${(status.index+1)%2 == 0}">
                 <tr class="active" >
-                    <td>${ststus.index+1}</td>
+                    <td>${status.index+1}</td>
                     <td>${sensorNode.name}</td>
                     <td>
                         <c:forEach var="type" items="${types.result}" >
