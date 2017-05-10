@@ -90,4 +90,9 @@ public class Contants {
     public static final String QUERRY_DTU_SENSOR_NODE_TYPE = "querry_dtu_sensor_node_type.php";
     /*同步传感器节点*/
     public static final String SYNC_DTU_SENSOR_NODE_INFO = "sync_dtu_sensor_node_info.php";
+    /*删除控制节点信息*/
+    public static final String DEL_DTU_CTRL_NODE_INFO = "del_dtu_ctrl_node_info.php";
+    /*删除传感器节点信息*/
+    public static final String DEL_DTU_SENSOR_NODE_INFO = "del_dtu_sensor_node_info.php";
+
 }

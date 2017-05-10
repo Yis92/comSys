@@ -131,3 +131,32 @@ function updDTUInfo() {
     });
 
 }
+
+/*删除传感器节点*/
+function del(addr) {
+    var dtu_sn = $("#dtu_sn").val();
+    $.ajax({
+        url: $("#basePath").val() + "dtuOperate/delSensorNodeInfo.adv",
+        type: "POST",
+        data: {
+            "nodeId": dtu_sn,
+            "nodeAddr":addr
+        },
+        success: function (data) {
+            var result = eval("("+data+")");
+            if(result == "SUC"){
+                window.location.href = $("#basePath").val() + "dtuHome/goDTUPage?nodeId=" + dtu_sn + "&type=2";
+               /* $("#pMsg").empty();
+                $("#pMsg").html("删除成功");
+                $("#synV").modal("show");*/
+                return false;
+            }else{
+                //alert(result);
+                $("#pMsg").empty();
+                $("#pMsg").html(result);
+                $("#synV").modal("show");
+                return false;
+            }
+        }
+    });
+}

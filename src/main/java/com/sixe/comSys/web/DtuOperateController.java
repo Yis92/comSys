@@ -459,6 +459,38 @@ public class DtuOperateController {
     }
 
     /**
+     * 删除控制节点
+     * @param nodeId
+     * @param nodeAddr
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/delCtrlNodeInfo.adv", method = RequestMethod.POST)
+    public String delCtrlNodeInfo(String nodeId,String nodeAddr){
+        Map<String,String> map = new HashedMap();
+        map.put("dtu_sn",nodeId);
+        map.put("node_addr",nodeAddr);
+        String result = dtuUpdateService.update(map,Contants.DEL_DTU_CTRL_NODE_INFO);
+        return Tools.sendJson(result);
+    }
+
+    /**
+     * 删除传感器节点
+     * @param nodeId
+     * @param nodeAddr
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/delSensorNodeInfo.adv", method = RequestMethod.POST)
+    public String delSensorNodeInfo(String nodeId,String nodeAddr){
+            Map<String,String> map = new HashedMap();
+            map.put("dtu_sn",nodeId);
+            map.put("node_addr",nodeAddr);
+            String result = dtuUpdateService.update(map,Contants.DEL_DTU_SENSOR_NODE_INFO);
+            return Tools.sendJson(result);
+    }
+
+    /**
      * 同步传感器节点信息
      * @param nodeId
      * @return

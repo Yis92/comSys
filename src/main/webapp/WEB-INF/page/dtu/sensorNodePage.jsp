@@ -71,6 +71,7 @@
                     <td>${sensorNode.describ}</td>
                     <c:if test="${sessionScope.loginInfoSession.result.user_level == '10'|| sessionScope.loginInfoSession.result.user_level == '11'}"> <td>
                         <button type="button" style="" class="btn btn-primary" onclick="upd(${status.index});" data-toggle="modal" data-target="#myModal_upd" ><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;修改</button>&nbsp;
+                        <button type="button" style="" class="btn btn-danger" onclick="del(${sensorNode.addr});"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;删除</button>&nbsp;
                     </td></c:if>
                 </tr>
             </c:if>
@@ -92,6 +93,7 @@
                     <td>${sensorNode.describ}</td>
                     <c:if test="${sessionScope.loginInfoSession.result.user_level == '10'|| sessionScope.loginInfoSession.result.user_level == '11'}"> <td>
                         <button type="button" style="" class="btn btn-primary" onclick="upd(${status.index});" data-toggle="modal" data-target="#myModal_upd" ><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;修改</button>&nbsp;
+                        <button type="button" style="" class="btn btn-danger" onclick="del(${sensorNode.addr});"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;删除</button>&nbsp;
                     </td></c:if>
                 </tr>
             </c:if>

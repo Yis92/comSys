@@ -5,6 +5,44 @@
     <title>Title</title>
     <script type="text/javascript" src="${basePath }common/myjs/groupingPage.js?ran=<%=Math.random()%>"></script>
     <script type="text/javascript" src="${basePath }common/echarts/echarts.js"></script>
+    <script type="text/javascript" >
+
+        $(function () {
+            var timeR = $("#timeR").val();
+            $("#refreshId").val(timeR);
+            if(timeR == '60000'){
+                setTimeout(function() {
+                    auto(timeR);
+                },60000);
+            }else if(timeR == '300000'){
+                setTimeout(function() {
+                    auto(timeR);
+                },300000);
+            }else if(timeR == '600000'){
+                setTimeout(function() {
+                    auto(timeR);
+                },600000);
+            }else{
+                console.log("不进行自动刷新");
+                return false;
+            }
+        });
+
+        function refresh(){
+            location.reload();
+        }
+
+        function autoRefresh(){
+            var date = $("#refreshId").val();
+            auto(date);
+        }
+
+        function auto(date){
+            window.location.href = " ${basePath }dtuHome/goDataPage?nodeId=${dtu_sn}&type=2&timeR="+date;
+        }
+
+    </script>
+
     <style type="text/css">
 
         .table-a tr td {
@@ -31,9 +69,28 @@
 <input id="basePath" value="${basePath }" type="hidden">
 <input id="til" type="hidden" value="${groupInfo.result.group[0].name}">
 <input type="hidden" value="${dtu_sn}" id="nodeId" />
+<input id="timeR" type="hidden" value="${timeR}">
 <input id="firstId" type="hidden" value="${groupInfo.result.group[0].group_id}">
 
 <div class="container con_title" style="margin-top: 0px;" >
+    <div style="margin-left: 0px;margin-top: 0px;margin-bottom: 10px; ">
+        <ul class="nav nav-pills">
+            <li role="presentation" class="dropdown">
+                <select class="form-control" id="refreshId">
+                    <option value="60000">1分钟</option>
+                    <option value="300000">5分钟</option>
+                    <option value="600000">10分钟</option>
+                </select>
+                &nbsp;&nbsp;
+            </li>
+            <li><button type="button" style="" class="btn btn-info" onclick="autoRefresh();" id="autoId"><span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span>&nbsp;自动刷新</button>&nbsp;&nbsp;&nbsp;</li>
+            <li><button type="button" style="" class="btn btn-primary" onclick="refresh();"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>&nbsp;刷新</button>&nbsp;&nbsp;&nbsp;</li>
+        </ul>
+        <%--<button type="button" style="" class="btn btn-primary" onclick="refresh();"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>&nbsp;刷新</button>&nbsp;--%>
+    </div>
+
+
+
 <c:if test="${sessionScope.loginInfoSession.result.user_level == '10'|| sessionScope.loginInfoSession.result.user_level == '11'}">
     <div style="margin-right: 60px;margin-top: 0px;margin-bottom: 10px;"><button type="button" style="" class="btn btn-primary" onclick="upd();" data-toggle="modal" data-target="#myModal_add" ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;新增</button>&nbsp;</div>
 </c:if>
