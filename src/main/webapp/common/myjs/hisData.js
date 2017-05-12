@@ -1,10 +1,12 @@
+
+var option;
 $(function(){
     var timeData = [];
     var data = [];
 /*    timeData = timeData.map(function (str) {
      return str;//0.replace('2009/', '');
      });*/
-    var option = {
+    option = {
         title: {
             text: '历史数据',
             //subtext: '数据来自西安兰特水电测控技术有限公司',
@@ -76,6 +78,12 @@ $(function(){
     var startDate = $("#startDate").val();
     var endDate = $("#endDate").val();
     var dataType = $("#dataType").val();
+    if( $("#pId").val() == ""){
+        pId = $("#dataNo").val();
+    }else{
+        $("#dataNo").val(pId);
+    }
+
     $.ajax({
         type:"POST",
         url:$("#basePath").val()+"dtuData/getHisData",
@@ -115,10 +123,13 @@ $(function(){
     /**查询数据显示图形*/
     $("#searchBtn").click(function () {
         var dtu_sn = $("#nodeId").val();
-        var pId = $("#pId").val();
+        var pId = $("#dataNo").val();
         var startDate = $("#startDate").val();
         var endDate = $("#endDate").val();
         var dataType = $("#dataType").val();
+       /* if( $("#pId").val() == ""){
+            pId = $("#dataNo").val();
+        }*/
         $.ajax({
             type:"POST",
             url:$("#basePath").val()+"dtuData/getHisData",

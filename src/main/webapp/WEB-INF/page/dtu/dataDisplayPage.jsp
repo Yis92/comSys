@@ -8,9 +8,11 @@
             $("#btn_1").removeClass("active");
             $("#btn_2").removeClass("active");
             $("#btn_3").removeClass("active");
+            $("#btn_4").removeClass("active");
             $("#btn_1").bind("click");
             $("#btn_2").bind("click");
             $("#btn_3").bind("click");
+            $("#btn_4").bind("click");
             if(id == '1'){
                 $("#ifr_d").attr("src","${basePath }dtuHome/goDataPage?nodeId=${dtu_sn}&type=1");
                 $("#btn_1").addClass("active");
@@ -24,9 +26,10 @@
                 $("#btn_3").addClass("active");
                 $("#btn_3").unbind("click");
             }else if(id == '4'){
-                $("#ifr_d").attr("src","${basePath }dtuHome/goDataPage?nodeId=${dtu_sn}&type=3");
-                $("#btn_3").addClass("active");
-                $("#btn_3").unbind("click");
+                //$("#ifr_d").attr("src","${basePath }dtuHome/goDataPage?nodeId=${dtu_sn}&type=3");
+                $("#ifr_d").attr("src",$("#basePath").val() +"dtuHome/goHisPage?nodeId=${dtu_sn}&pId=");
+                $("#btn_4").addClass("active");
+                $("#btn_4").unbind("click");
             }
         }
     </script>
@@ -55,6 +58,7 @@
     <ul class="nav nav-tabs">
         <li role="presentation" class="active" onclick="iset('1');" id="btn_1"><a href="javascript:void(0);">实时数据</a></li>
         <li role="presentation" onclick="iset('2');" id="btn_2"><a href="javascript:void(0);">分组数据</a></li>
+        <li role="presentation" onclick="iset('4');" id="btn_4"><a href="javascript:void(0);">历史数据</a></li>
         <li role="presentation" onclick="iset('3');" id="btn_3"><a href="javascript:void(0);">DTU状态</a></li>
     </ul>
     <div class="panel panel-default" style="height: 100%;">

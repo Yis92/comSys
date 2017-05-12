@@ -22,6 +22,15 @@
         <input id="endDate" type="text" class="form-control" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'2010-1-01',maxDate:'2050-12-31'})"/>
     </div>
     <div class="form-group">
+        <label for="dataNo">分组类型</label>
+        <select class="form-control" id="dataNo">
+                <option value=""></option>
+            <c:forEach items="${groupDataList}" var="data">
+                <option value="${data.id}">${data.name}</option>
+            </c:forEach>
+        </select>
+    </div>&nbsp;&nbsp;
+    <div class="form-group">
         <label for="dataType">数据类型</label>
         <select class="form-control" id="dataType">
                     <option value="1" checked = "checked">分钟数据</option>

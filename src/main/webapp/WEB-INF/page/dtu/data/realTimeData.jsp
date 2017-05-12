@@ -45,7 +45,7 @@
 <input type="hidden" value="${dtu_sn}" id="nodeId" />
 <input id="timeR" type="hidden" value="${timeR}">
 <div class="container con_title" style="margin-top: 0px;" >
-    <div style="margin-left: 0px;margin-top: 0px;margin-bottom: 10px; ">
+    <div style="margin-left: 0px;margin-top: 0px;margin-bottom: 0px; ">
         <ul class="nav nav-pills">
             <li role="presentation" class="dropdown">
                 <select class="form-control" id="refreshId">
@@ -60,7 +60,7 @@
         </ul>
         <%--<button type="button" style="" class="btn btn-primary" onclick="refresh();"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>&nbsp;刷新</button>&nbsp;--%>
     </div>
-    <span style="color:red;padding-left: 38%">观测时间：${rtData.dt}</span>
+    <span style="color:red;padding-left: 38%;font-size: 18px;">观测时间：${rtData.dt}</span>
     <table class="table table-striped table-bordered table-hover" style="width: 100%;">
             <thead class="text-center">
             <tr class="" style="background-color: #3278f7;color: white;">

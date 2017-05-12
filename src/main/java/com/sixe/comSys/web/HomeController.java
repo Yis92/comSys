@@ -7,6 +7,7 @@ import com.sixe.comSys.base.Contants;
 import com.sixe.comSys.base.SpringContextHolder;
 import com.sixe.comSys.base.imgCode.ValidateCode;
 import com.sixe.comSys.dto.DoLogin.DoLoginParam;
+import com.sixe.comSys.dto.QueryDtuGroupDataInfo.QueryDtuGroupDataParm;
 import com.sixe.comSys.dto.QueryDtuHisData.QueryDtuHisDataParm;
 import com.sixe.comSys.service.DtuQueryService;
 import com.sixe.comSys.utils.HttpTools;
@@ -159,6 +160,11 @@ public class HomeController {
     public String goHisPage(String nodeId,String pId,HttpServletRequest request, HttpServletResponse response){
         logger.info("goHisPage【nodeId】:"+nodeId);
         logger.info("goHisPage【pId】:"+pId);
+        Map<String,String> map = new HashedMap();
+        map.put("dtu_sn",nodeId);
+        logger.info("请求参数："+map.toString());
+        QueryDtuGroupDataParm odata = dtuQueryService.QueryDtuGroupDataInfo(map);
+        request.setAttribute("groupDataList",odata.getResult());
         request.setAttribute("dtu_sn",nodeId);
         request.setAttribute("pId",pId);
         return "/dtu/data/mhisData";

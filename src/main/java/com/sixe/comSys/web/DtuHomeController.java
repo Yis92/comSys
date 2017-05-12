@@ -171,6 +171,13 @@ public class DtuHomeController {
         logger.info("goHisPage【pId】:"+pId);
         request.setAttribute("dtu_sn",nodeId);
         request.setAttribute("pId",pId);
+
+        //获取数据列表
+        Map<String,String> map = new HashedMap();
+        map.put("dtu_sn",nodeId);
+        logger.info("请求参数："+map.toString());
+        QueryDtuGroupDataParm odata = dtuQueryService.QueryDtuGroupDataInfo(map);
+        request.setAttribute("groupDataList",odata.getResult());
         if("APP".equals(mType)){
             return "/dtu/data/mhisData";
         }

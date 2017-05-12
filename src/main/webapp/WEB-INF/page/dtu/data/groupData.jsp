@@ -85,15 +85,13 @@
             </li>
             <li><button type="button" style="" class="btn btn-info" onclick="autoRefresh();" id="autoId"><span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span>&nbsp;自动刷新</button>&nbsp;&nbsp;&nbsp;</li>
             <li><button type="button" style="" class="btn btn-primary" onclick="refresh();"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>&nbsp;刷新</button>&nbsp;&nbsp;&nbsp;</li>
+            <c:if test="${sessionScope.loginInfoSession.result.user_level == '10'|| sessionScope.loginInfoSession.result.user_level == '11'}">
+                <li><button type="button" style="" class="btn btn-primary" onclick="upd();" data-toggle="modal" data-target="#myModal_add" ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;新增</button>&nbsp;</li>
+            </c:if>
         </ul>
         <%--<button type="button" style="" class="btn btn-primary" onclick="refresh();"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>&nbsp;刷新</button>&nbsp;--%>
     </div>
 
-
-
-<c:if test="${sessionScope.loginInfoSession.result.user_level == '10'|| sessionScope.loginInfoSession.result.user_level == '11'}">
-    <div style="margin-right: 60px;margin-top: 0px;margin-bottom: 10px;"><button type="button" style="" class="btn btn-primary" onclick="upd();" data-toggle="modal" data-target="#myModal_add" ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;新增</button>&nbsp;</div>
-</c:if>
     <ul class="nav nav-tabs nav-justified">
         <c:forEach items="${groupInfo.result.group}" var="group" varStatus="status">
             <c:if test="${status.index == 0}">
@@ -113,7 +111,7 @@
         </div>
 </c:if>
 
-        <div style="width: 100%;    float: right;   padding-right: 40%;    padding-bottom: 0px;   padding-top: 10px;"><span id="dt" style="color:red;float: right;">观测时间:${groupInfo.dt}</span></div>
+        <div style="width: 100%;    float: right;   padding-right: 40%;    padding-bottom: 0px;   padding-top: 0px;"><span id="dt" style="color:red;float: right;font-size: 18px;">观测时间:${groupInfo.dt}</span></div>
         <div style="width: 100%;">
             <table class="table table-a" style="border:0;">
                 <tr>

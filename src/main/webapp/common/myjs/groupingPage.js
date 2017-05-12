@@ -433,7 +433,7 @@ function showChart(myChart,seriesData,til){
         tooltip: {
             formatter: "{a} <br/>{c} {b}"
         },
-        title: {
+       /* title: {
             show: true,
             textAlign: 'center',
             text: til,//title
@@ -445,7 +445,7 @@ function showChart(myChart,seriesData,til){
                 fontFamily: 'sans-serif',
                 fontSize: 20,
             },
-        },
+        },*/
         toolbox: {
             show: true,
             feature: {
@@ -459,8 +459,21 @@ function showChart(myChart,seriesData,til){
     function eConsole(param) {
         //var str = param.id + "======" + param.value;
        // console.log(param);
+        $("#btn_1", parent.document).removeClass("active");
+        $("#btn_2", parent.document).removeClass("active");
+        $("#btn_3", parent.document).removeClass("active");
+        $("#btn_4", parent.document).removeClass("active");
+        $("#btn_1", parent.document).bind("click");
+        $("#btn_2", parent.document).bind("click");
+        $("#btn_3", parent.document).bind("click");
+        $("#btn_4", parent.document).bind("click");
+
+        $("#btn_4", parent.document).addClass("active");
+        $("#btn_4", parent.document).unbind("click");
         var nodeId = $("#nodeId").val();
         window.location.href = $("#basePath").val() +"dtuHome/goHisPage?nodeId="+nodeId+"&pId="+param.data.id;
+       // $('#btnOk', parent.document)
+
         //alert(param.data.id);
         //$("#main1").css({ "display": "block" });
         //test1(3);

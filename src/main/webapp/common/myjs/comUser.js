@@ -39,7 +39,7 @@ function doAdd(){
         return false;
     }
     $.ajax({
-        url:$("#basePath").val()+"myHome/doAdd",
+        url:$("#basePath").val()+"myHome/doAdd.admin",
         type:"POST",
         data:{
             user_id:user_id,

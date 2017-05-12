@@ -19,7 +19,7 @@
     <div style="margin-left: 30px;margin-top: 10px;margin-bottom: 10px; ">
         <button type="button" style="" class="btn btn-primary" onclick="refresh();"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>&nbsp;刷新</button>&nbsp;
     </div>
-    <span style="color:red;padding-left: 38%;">观测时间：${tsData.dt}</span>
+    <span style="color:red;padding-left: 38%;font-size: 18px;">观测时间：${tsData.dt}</span>
     <table class="table table-striped table-bordered table-hover" style="width: 100%;">
         <thead class="text-center">
         <tr class="" style="background-color: #3278f7;color: white;">

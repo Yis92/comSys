@@ -14,13 +14,14 @@
 <h4>历史数据</h4><hr/>
 <form class="form-inline">
     <div class="form-group">
-        <label for="startDate">起始时间</label>
-        <input id="startDate" type="text" class="form-control" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'2010-1-01',maxDate:'2050-12-31'})"/>
-    </div>
-    <div class="form-group">
-        <label for="endDate">结束时间</label>
-        <input id="endDate" type="text" class="form-control" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'2010-1-01',maxDate:'2050-12-31'})"/>
-    </div>
+            <label for="dataNo">分组类型</label>
+            <select class="form-control" id="dataNo">
+                <option value=""></option>
+                <c:forEach items="${groupDataList}" var="data">
+                    <option value="${data.id}">${data.name}</option>
+                </c:forEach>
+            </select>
+    </div>&nbsp;&nbsp;
     <div class="form-group">
         <label for="dataType">数据类型</label>
         <select class="form-control" id="dataType">
@@ -32,8 +33,14 @@
 </form>
 <div class="panel-body" id="show_div">
     <%-- <div style="width: 100%;    float: right;   padding-right: 40%;    padding-bottom: 20px;   padding-top: 10px; display: none;"><span id="dt" style="color:red;float: right;">观测时间:</span></div>--%>
-    <div id="main" style="width: 100%;height:380px;">
+    <div id="main" style="width: 100%;height:480px;">
     </div>
+        <div style="margin-left: 38%;margin-top: 0px;margin-bottom: 0px; ">
+            <ul class="nav nav-pills">
+                <li><button type="button" style="" class="btn btn-info" onclick="up();" id="autoId"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>&nbsp;前一天</button>&nbsp;&nbsp;&nbsp;</li>
+                <li><button type="button" style="" class="btn btn-primary" onclick="down();">后一天&nbsp;<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>&nbsp;&nbsp;&nbsp;</li>
+            </ul>
+        </div>
 </div>
 
 </body>
