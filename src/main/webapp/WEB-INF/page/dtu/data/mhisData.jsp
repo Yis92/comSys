@@ -2,7 +2,7 @@
 <%@ include file="/common/public.jsp" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>历史数据</title>
     <script type="text/javascript" src="${basePath }common/myjs/mhisData.js?ran=<%=Math.random()%>"></script>
     <script type="text/javascript" src="${basePath }common/my97/WdatePicker.js"></script>
     <script type="text/javascript" src="${basePath }common/echarts/echarts.js"></script>
