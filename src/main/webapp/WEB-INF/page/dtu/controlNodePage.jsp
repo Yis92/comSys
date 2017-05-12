@@ -34,16 +34,19 @@
     <!--导航菜单...-->
 </div>
 <div class="container con_title" style="margin-top: 70px;" >
-<c:if test="${sessionScope.loginInfoSession.result.user_level == '10'|| sessionScope.loginInfoSession.result.user_level == '11'}">
     <div style="float: right; margin-right: 30px;margin-top: 10px;margin-bottom: 10px; ">
        <%-- --%>
+    <c:if test="${sessionScope.loginInfoSession.result.user_level == '10'|| sessionScope.loginInfoSession.result.user_level == '11'}">
         <button type="button" style="" class="btn btn-info" onclick="syn();" data-toggle="modal" data-target="" ><span class="glyphicon glyphicon-random" aria-hidden="true"></span>&nbsp;一键同步</button>&nbsp;
-        <button type="button" style="" class="btn btn-default" onclick="goTask();" data-toggle="modal" data-target="" ><span class="glyphicon glyphicon-send" aria-hidden="true"></span>&nbsp;任务</button>&nbsp;
+    </c:if>
+    <button type="button" style="" class="btn btn-default" onclick="goTask();" data-toggle="modal" data-target="" ><span class="glyphicon glyphicon-send" aria-hidden="true"></span>&nbsp;任务</button>&nbsp;
+    <c:if test="${sessionScope.loginInfoSession.result.user_level == '10'|| sessionScope.loginInfoSession.result.user_level == '11'}">
         <c:if test="${size < 8}">
             <button type="button" style="" class="btn btn-primary" onclick="add();" data-toggle="modal" data-target="#myModal_add" ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;新增</button>&nbsp;
         </c:if>
+    </c:if>
     </div>
-</c:if>
+
     <table class="table table-striped table-bordered table-hover" style="width: 100%;">
         <thead class="text-center">
         <tr class="" style="background-color: #3278f7;color: white;">

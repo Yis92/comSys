@@ -91,7 +91,7 @@
             <dt><i class="Hui-iconfont">&#xe62e;</i> 设备<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a _href="${basePath }userHome/welcome" data-title="用户管理" href="javascript:void(0)">设备地图</a></li>
+                    <li><a _href="${basePath }userHome/welcome" data-title="设备地图" href="javascript:void(0)">设备地图</a></li>
                 </ul>
             </dd>
         </dl>
