@@ -11,8 +11,6 @@
     request.setAttribute("basePath",  path+"/");
 %>
 
-<style>
-</style>
 <!-- JS START -->
 <!-- dataTable -->
 <script type="text/javascript" src="${basePath }common/jquery/jquery-1.10.0.min.js"></script>
