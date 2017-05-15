@@ -4,6 +4,7 @@
 <head>
     <title>实时数据</title>
    <%-- <script type="text/javascript" src="${basePath }common/myjs/realTimeData.js?ran=<%=Math.random()%>"></script>--%>
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
     <script type="text/javascript">
         $(function () {
             var timeR = $("#timeR").val();
@@ -63,7 +64,7 @@
         </ul>
         <%--<button type="button" style="" class="btn btn-primary" onclick="refresh();"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>&nbsp;刷新</button>&nbsp;--%>
     </div>
-    <span style="color:red;padding-left: 38%;font-size: 18px;">观测时间：${rtData.dt}</span>
+    <span style="color:red;font-size: 18px;">观测时间：${rtData.dt}</span>
     <table class="table table-striped table-bordered table-hover" style="width: 100%;">
             <thead class="text-center">
             <tr class="" style="background-color: #3278f7;color: white;">
