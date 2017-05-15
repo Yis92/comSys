@@ -21,6 +21,13 @@
     <link rel="stylesheet" type="text/css" href="${basePath}common/html/icheck/icheck.css" />
     <link rel="stylesheet" type="text/css" href="${basePath}common/html/css/h-ui.admin/skin/default/skin.css" id="skin" />
     <link rel="stylesheet" type="text/css" href="${basePath}common/html/css/h-ui.admin/css/style.css" />
+
+    <style type="text/css">
+        .dtu_active {
+            background-color: #7fb1dc;
+        }
+
+    </style>
 </head>
 <body style="overflow:hidden;">
 <header class="navbar-wrapper">
@@ -68,10 +75,10 @@
                 <dt><i class="Hui-iconfont">&#xe616;</i> ${com.unit_name}<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
                 <dd>
                     <ul>
-                        <li><a _href="${basePath }myHome/goComInfo?id=${com.unit_no}" dat0a0-title="本单位信息维护" href="javascript:void(0)">本单位信息维护</a></li>
+                        <li><a _href="${basePath }myHome/goComInfo?id=${com.unit_no}" data-title="本单位信息维护" href="javascript:void(0)">本单位信息维护</a></li>
                         <%--<li><a _href="${basePath }myHome/goDTUConfig?id=${com.unit_no}" data-title="DTU维护" href="javascript:void(0)">DTU维护</a></li>--%>
                         <c:forEach items="${com.dtu}" var = "dtu" varStatus="sta">
-                            <li><a _href="${basePath }dtuHome/goDTUPage?nodeId=${dtu.dtu_sn}&type=6" data-title="${dtu.dtu_name}" href="javascript:void(0)">${dtu.dtu_name}</a></li>
+                            <li  class="dtu_active"><a _href="${basePath }dtuHome/goDTUPage?nodeId=${dtu.dtu_sn}&type=6" data-title="${dtu.dtu_name}" href="javascript:void(0)">${dtu.dtu_name}</a></li>
                         </c:forEach>
                             <%-- <li><a _href="${basePath}userHome/myInfo" data-title="我的信息" href="javascript:void(0)">我的信息</a></li>--%>
                         <!--                    <li><a _href="${basePath }userHome/otherReply.do" data-title="非关键字回复" href="javascript:void(0)">非关键字回复</a></li>-->
