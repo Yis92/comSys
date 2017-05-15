@@ -112,7 +112,7 @@ function updDTUInfo() {
         data:{
             dtu_sn:dtu_sn,
             ucfg:ucfg,
-            uaddr:uaddr,
+            aaddr:uaddr,
             udescrib:udescrib,
             ux:ux,
             uy:uy,

@@ -24,7 +24,23 @@
                 console.log("不进行自动刷新");
                 return false;
             }
+
+           /* $('#copyBtn').click(function(){
+
+            });*/
         });
+
+        function copy(){
+            if ( window.clipboardData ) {
+                $('.copy_btn').click(function() {
+                    window.clipboardData.setData("Text", 'http://139.129.239.172:8080/comSys/dtuShare/goDataPage?nodeId=${dtu_sn}');
+                    alert('复制成功！');
+                });
+            }else{
+                $("#url_Dta").html("http://139.129.239.172:8080/comSys/dtuShare/goDataPage?nodeId=${dtu_sn}");
+                $("#synV").modal("show");
+            }
+        }
 
         function refresh(){
             location.reload();
@@ -36,11 +52,30 @@
         }
 
         function auto(date){
-            window.location.href = " ${basePath }dtuHome/goDataPage?nodeId=${dtu_sn}&type=1&timeR="+date;
+            window.location.href = "${basePath }dtuHome/goDataPage?nodeId=${dtu_sn}&type=1&timeR="+date;
         }
     </script>
 </head>
 <body style="font-family: '微软雅黑';">
+
+<%--一键同步弹窗--%>
+<div class="modal fade" id="synV">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">复制链接</h4>
+            </div>
+            <div class="modal-body">
+                对不起！由于浏览器兼容问题，请您手动选择链接进行复制：<br/><span id="url_Dta" style="color: #0000FF"></span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">确认</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <input id="basePath" value="${basePath }" type="hidden">
 <input type="hidden" value="${dtu_sn}" id="nodeId" />
 <input id="timeR" type="hidden" value="${timeR}">
@@ -57,6 +92,7 @@
             </li>
             <li><button type="button" style="" class="btn btn-info" onclick="autoRefresh();" id="autoId"><span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span>&nbsp;自动刷新</button>&nbsp;&nbsp;&nbsp;</li>
             <li><button type="button" style="" class="btn btn-primary" onclick="refresh();"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>&nbsp;刷新</button>&nbsp;&nbsp;&nbsp;</li>
+            <li id="copyBtn"><button type="button" class="btn btn-primary" onclick="copy();" ><span class="glyphicon glyphicon-link" aria-hidden="true"></span>&nbsp;分享链接</button>&nbsp;&nbsp;&nbsp;</li>
         </ul>
         <%--<button type="button" style="" class="btn btn-primary" onclick="refresh();"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>&nbsp;刷新</button>&nbsp;--%>
     </div>
