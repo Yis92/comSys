@@ -11,8 +11,8 @@
                 action: '${basePath }app/fileUpload',
                 name: 'uploadfile',
                 onSubmit: function(file, ext){
-                    if (! (ext && /^(jpg|png|jpeg|apk)$/.test(ext))){
-                        // extension is not allowed
+                    if (! (ext && /^(apk)$/.test(ext))){
+                        alert("请上传apk文件");
                         return false;
                     }
                 },

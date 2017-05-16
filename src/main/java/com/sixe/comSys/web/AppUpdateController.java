@@ -65,12 +65,8 @@ public class AppUpdateController {
         if (StringUtils.isBlank(tempPath)) {
             return "false";
         }
-        if(file.getBytes().length >2097152){
-            return "false";
-        }
+
         String fileName = "test_."+file.getOriginalFilename().substring(file.getOriginalFilename().indexOf(".")+1);
-        System.out.print(tempPath);
-        System.out.print(fileName);
         File out = new File(tempPath+"/"+fileName);
         FileOutputStream fos = null;
         try {
@@ -96,9 +92,10 @@ public class AppUpdateController {
      */
     @RequestMapping(value = "updateAppVersion")
     @ResponseBody
-    public String updateAppVersion(HttpServletRequest request, String versionCode){
+    public String updateAppVersion(HttpServletRequest request, String versionCode,String versionMessage){
        System.out.print("上传更新成功:verCode="+versionCode);
         InterfaceUtil.setValue("config/common.properties","verCode",versionCode);
+        InterfaceUtil.setValue("config/common.properties","versionMessage",versionMessage);
         Map<String,Object> dataMap =new HashedMap();
         dataMap.put("code","0");
         dataMap.put("message","更新成功");

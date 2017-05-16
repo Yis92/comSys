@@ -94,5 +94,6 @@ public class Contants {
     public static final String DEL_DTU_CTRL_NODE_INFO = "del_dtu_ctrl_node_info.php";
     /*删除传感器节点信息*/
     public static final String DEL_DTU_SENSOR_NODE_INFO = "del_dtu_sensor_node_info.php";
-
+    /*查询所有dtu并在百度地图上显示 */
+    public static final String QUERRY_ALL_DTUS_WITH_MAP = "querry_all_dtus_with_map.php";
 }
