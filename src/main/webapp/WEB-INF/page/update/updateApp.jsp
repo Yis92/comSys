@@ -46,15 +46,20 @@
 </head>
 <body style="font-family: '微软雅黑';">
     <form class="form-horizontal" method="post" id="inputForm">
-        <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+        <table class="table table-striped table-bordered table-hover" style="width: 80%;margin:0 auto; text-align: center;">
             <tr>
                 <td style="width: 35%;">版本号</td>
                 <td style="width: 65%;"><input type="text" name="versionCode" class="form-control" id="versionCode" placeholder="请输入用户名"></td>
             </tr>
             <tr>
-                <td style="width: 35%;">上传apk</td>
-                <td style="width: 65%;"><input type="text" name="apkFile" id="appFile" class="form-control"><div id="upload"><button  class="btn btn-primary"> 上传</button></div></td>
+                <td style="width: 35%;">更新内容</td>
+                <td style="width: 65%;"><input type="text" name="versionMessage" id="versionMessage" class="form-control"></td>
             </tr>
+            <tr>
+                <td style="width: 35%;">上传apk</td>
+                <td style="width: 65%;"><input type="text" name="apkFile" id="appFile" class="form-control"><button  id="upload" class="btn btn-primary"> 上传</button></td>
+            </tr>
+
             <tr>
                 <td colspan="2">
                     <button  class="btn btn-primary" id="submit">提交</button>

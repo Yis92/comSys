@@ -34,9 +34,11 @@ public class AppUpdateController {
         String verCode= InterfaceUtil.getValue("config/common.properties","verCode");
         String verName= InterfaceUtil.getValue("config/common.properties","verName");
         String appUrl= InterfaceUtil.getValue("config/common.properties","appUrl");
+        String verMessage= InterfaceUtil.getValue("config/common.properties","verMessage");
         System.out.println("app版本");
         Map<String,Object> dataMap =new HashedMap();
         dataMap.put("appName",appName);
+        dataMap.put("verMessage",verMessage);
         dataMap.put("verCode",verCode);
         dataMap.put("verName",verName);
         dataMap.put("appUrl",appUrl);
@@ -95,7 +97,7 @@ public class AppUpdateController {
     public String updateAppVersion(HttpServletRequest request, String versionCode,String versionMessage){
        System.out.print("上传更新成功:verCode="+versionCode);
         InterfaceUtil.setValue("config/common.properties","verCode",versionCode);
-        InterfaceUtil.setValue("config/common.properties","versionMessage",versionMessage);
+        InterfaceUtil.setValue("config/common.properties","verMessage",versionMessage);
         Map<String,Object> dataMap =new HashedMap();
         dataMap.put("code","0");
         dataMap.put("message","更新成功");
