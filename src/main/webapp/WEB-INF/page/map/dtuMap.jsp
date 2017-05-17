@@ -22,7 +22,7 @@
     var centerX = '${centerX}';
     var centerY = '${centerY}';
     var point = new BMap.Point(centerX, centerY);
-    map.centerAndZoom(point, 15);
+    map.centerAndZoom(point, 10);
     map.enableScrollWheelZoom(true);
     // 编写自定义函数,创建标注
     function addMarker(point,name,info){
@@ -52,7 +52,6 @@
         addMarker(point);
     }*/
     var dtuList=eval('${dtuList}');
-    alert(dtuList);
     for (var i = 0; i < dtuList.length; i++) {
         var point = new BMap.Point(dtuList[i].long, dtuList[i].lat);
         addMarker(point,dtuList[i].name+"("+dtuList[i].state+")",dtuList[i].info);
