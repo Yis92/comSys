@@ -3,6 +3,7 @@ package com.sixe.comSys.web;
 
 import com.google.gson.Gson;
 
+import com.sixe.comSys.base.SpringContextHolder;
 import com.sixe.comSys.service.DtuMapService;
 
 import com.sun.istack.internal.logging.Logger;
@@ -37,7 +38,7 @@ public class DtuMapController {
     @RequestMapping(value = "/dtuMap")
     public String groupingData(String userId, Model model){
         Map<String,String> map = new HashedMap();
-        map.put("user_id",userId);
+        map.put("user_id", SpringContextHolder.getCurrentUser().getResult().getUser_id());
 
         logger.info("请求参数："+map.toString());
         Map<String,Object> resultMap = dtuMapService.getDtuMap(map);
