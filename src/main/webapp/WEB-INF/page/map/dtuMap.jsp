@@ -22,7 +22,7 @@
     var centerX = '${centerX}';
     var centerY = '${centerY}';
     var point = new BMap.Point(centerX, centerY);
-    map.centerAndZoom(point, 10);
+    map.centerAndZoom(point, 11);
     map.enableScrollWheelZoom(true);
     // 编写自定义函数,创建标注
     function addMarker(point,name,info){
@@ -36,7 +36,7 @@
             enableMessage:true,//设置允许信息窗发送短息
             message:""
         }
-        var infoWindow = new BMap.InfoWindow("温度为:"+info, opts)
+        var infoWindow = new BMap.InfoWindow(info, opts)
         marker.addEventListener("click", function(){
             map.openInfoWindow(infoWindow,point); //开启信息窗口
         });
