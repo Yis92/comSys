@@ -68,7 +68,7 @@ public class AppUpdateController {
             return "false";
         }
 
-        String fileName = "test_."+file.getOriginalFilename().substring(file.getOriginalFilename().indexOf(".")+1);
+        String fileName = "app-release."+file.getOriginalFilename().substring(file.getOriginalFilename().indexOf(".")+1);
         File out = new File(tempPath+"/"+fileName);
         FileOutputStream fos = null;
         try {
