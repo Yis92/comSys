@@ -24,6 +24,13 @@
                 console.log("不进行自动刷新");
                 return false;
             }
+<<<<<<< Updated upstream
+=======
+
+           /* $('#copyBtn').click(function(){
+
+             });*/
+>>>>>>> Stashed changes
         });
 
         function refresh(){
