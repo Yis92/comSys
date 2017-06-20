@@ -10,6 +10,7 @@
 
   <properties>
     <spring.version>3.0.5.RELEASE</spring.version>
+    <poi.version>3.9</poi.version>
   </properties>
 
   <dependencies>
@@ -178,6 +179,22 @@
       <groupId>commons-httpclient</groupId>
       <artifactId>commons-httpclient</artifactId>
       <version>3.1</version>
+    </dependency>
+    <!-- poi office -->
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi</artifactId>
+      <version>${poi.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml</artifactId>
+      <version>${poi.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml-schemas</artifactId>
+      <version>${poi.version}</version>
     </dependency>
     <dependency>
       <groupId>commons-fileupload</groupId>
