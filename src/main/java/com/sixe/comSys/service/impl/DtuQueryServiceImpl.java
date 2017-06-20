@@ -12,6 +12,7 @@ import com.sixe.comSys.dto.QueryDtuCtrlNodeInfo.QueryDtuCtrlNodeInfoParam;
 import com.sixe.comSys.dto.QueryDtuGroupDataInfo.QueryDtuGroupDataParm;
 import com.sixe.comSys.dto.QueryDtuGroupingInfo.QueryDtuGroupingInfoParam;
 import com.sixe.comSys.dto.QueryDtuHisData.QueryDtuHisDataParm;
+import com.sixe.comSys.dto.QueryDtuHisData.QueryDtuHisDataParm2;
 import com.sixe.comSys.dto.QueryDtuWarningInfo.QueryDtuWarningInfoParm;
 import com.sixe.comSys.dto.QueryDtuWarningMsg.QueryDtuWarningMsgParam;
 import com.sixe.comSys.dto.QuerySensorNodeInfo.QuerySensorNodeInfoParam;
@@ -308,6 +309,36 @@ public class DtuQueryServiceImpl implements DtuQueryService {
             }else{
                 String message=jsonObj.getString("message");
                 logger.info("【查询DTU历史数据】请求失败【message】:"+message);
+                return null;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * 查询DTU历史数据
+     * @param map
+     * @return
+     */
+    public QueryDtuHisDataParm2 QueryDtuHisDataDisplay2(Map<String, String> map) {
+        String result;
+        try{
+            logger.info("【查询DTU历史数据 -多】请求参数："+map.toString());
+            result = HttpClientUtil.doHttpPost(ProperUtils.getVal("reqUrl") + Contants.QUERRY_DTU_HISTORY_DATA2, "UTF-8", map, 10000);
+            logger.info("【查询DTU历史数据 -多】返回结果:" + result);
+            JSONObject jsonObj = JSON.parseObject(result);
+            String state=jsonObj.getString("state");
+            if("200".equals(state)) {
+                logger.info("【查询DTU历史数据 -多】请求成功");
+                Gson gson = new Gson();
+
+                QueryDtuHisDataParm2 param = gson.fromJson(result,QueryDtuHisDataParm2.class);
+                return param;
+            }else{
+                String message=jsonObj.getString("message");
+                logger.info("【查询DTU历史数据 -多】请求失败【message】:"+message);
                 return null;
             }
         }catch (Exception e){
