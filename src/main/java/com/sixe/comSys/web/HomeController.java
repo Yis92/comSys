@@ -52,7 +52,7 @@ public class HomeController {
         System.out.println("进入登录页...");
         return "/login";
     }
-
+    
     /**
      * 图片验证码
      * @param request
