@@ -6,8 +6,11 @@
     <script type="text/javascript" src="${basePath }common/myjs/hisData.js?ran=<%=Math.random()%>"></script>
     <script type="text/javascript" src="${basePath }common/my97/WdatePicker.js"></script>
     <script type="text/javascript" src="${basePath }common/echarts/echarts.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+    <script type="text/javascript" src="${basePath }common/jquery/jquery.table2excel.min.js"></script>
+    <link rel="stylesheet" href="${basePath }common/css/bootstrap-select.min.css"/>
+    <script src="${basePath }common/bootstrap/js/bootstrap-select.min.js"></script>
+    <%--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>--%>
     <style>
         .open{
             width: 500px;
@@ -39,7 +42,7 @@
         </select>
     </div>&nbsp;&nbsp;--%>
 
-    <div class="form-group">
+    <div class="form-group" >
         <label for="dataType">数据类型</label>
         <select class="form-control" id="dataType">
                     <option value="1" checked = "checked">分钟数据</option>
@@ -60,13 +63,22 @@
         <button type="button" class="btn btn-danger" onclick="today();" ><span class="glyphicon glyphicon-time"></span>本日</button>&nbsp;&nbsp;&nbsp;&nbsp;
         <button type="button" class="btn btn-info" onclick="seven();" ><span class="glyphicon glyphicon-time"></span>近7天</button>&nbsp;&nbsp;&nbsp;&nbsp;
         <button type="button" class="btn btn-warning" onclick="san();" ><span class="glyphicon glyphicon-time"></span>近30天</button>&nbsp;&nbsp;&nbsp;&nbsp;
-        <button type="button" class="btn btn-primary" id="searchBtn" ><span class="glyphicon glyphicon-search"></span>查询</button>
+        <button type="button" class="btn btn-primary" id="searchBtn" ><span class="glyphicon glyphicon-search"></span>查询</button>&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-default" id="excelBtn" ><span class="glyphicon glyphicon-floppy-save"></span>导出</button>
     </div>
 </form>
 <div class="panel-body" id="show_div">
    <%-- <div style="width: 100%;    float: right;   padding-right: 40%;    padding-bottom: 20px;   padding-top: 10px; display: none;"><span id="dt" style="color:red;float: right;">观测时间:</span></div>--%>
     <div id="main" style="width: 100%;height:380px;">
     </div>
+</div>
+
+<div id="tb_div" style="display: none;">
+    <table id="tbl" style="display: none;">
+
+
+    </table>
+
 </div>
 
 </body>

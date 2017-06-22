@@ -112,7 +112,7 @@ public class DtuDataController {
         if("200".equals(parm.getState())){
             List<String> timeData = new ArrayList<String>();//时间x轴
             List<List<String>> dataList = new ArrayList<List<String>>();
-            String yAxisName ="("+parm.getResult().getUnitName()+")";//y轴单位    parm.getResult().getyAxisName();
+           // String yAxisName ="("+parm.getResult().getUnitName()+")";//y轴单位    parm.getResult().getyAxisName();
             String yMax = parm.getResult().getMax();    //最大值
             String yMin = parm.getResult().getMin();    //最小值
             List<Map<String,Object>> mapList = new ArrayList<Map<String, Object>>();
@@ -131,8 +131,8 @@ public class DtuDataController {
             String [] legendData = new String[arrSize];
             for(int i=0;i<parm.getResult().getyAxisName().size();i++){
                 Map<String,Object> seriesMap = new HashedMap();
-                legendData[i]=parm.getResult().getyAxisName().get(i);
-                seriesMap.put("name",parm.getResult().getyAxisName().get(i));
+                legendData[i]=parm.getResult().getyAxisName().get(i)+"("+parm.getResult().getUnitName().get(i)+")";
+                seriesMap.put("name",parm.getResult().getyAxisName().get(i)+"("+parm.getResult().getUnitName().get(i)+")");
                 seriesMap.put("type","line");
                 seriesMap.put("symbolSize",8);//hoverAnimation
                 seriesMap.put("hoverAnimation",false);
@@ -145,7 +145,7 @@ public class DtuDataController {
             rtMap.put("timeData",timeData);
 
             rtMap.put("legendData",legendData);
-            rtMap.put("yAxisName",yAxisName);
+            rtMap.put("yAxisName","");
 
             rtMap.put("yMax",yMax);
             rtMap.put("yMin",yMin);

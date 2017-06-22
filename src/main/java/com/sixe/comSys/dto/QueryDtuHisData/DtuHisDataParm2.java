@@ -13,7 +13,7 @@ public class DtuHisDataParm2 implements Serializable{
     private List<String> yAxisName;       //y轴名称
     private String max;             //y轴最大值
     private String min;             //y轴最小值
-    private String unitName;        //单位
+    private List<String> unitName;        //单位
     private List<HisDataParm2> result;
 
     public List<String> getTitle() {
@@ -48,11 +48,11 @@ public class DtuHisDataParm2 implements Serializable{
         this.min = min;
     }
 
-    public String getUnitName() {
+    public List<String> getUnitName() {
         return unitName;
     }
 
-    public void setUnitName(String unitName) {
+    public void setUnitName(List<String> unitName) {
         this.unitName = unitName;
     }
 

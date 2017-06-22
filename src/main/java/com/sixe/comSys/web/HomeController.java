@@ -169,7 +169,7 @@ public class HomeController {
         request.setAttribute("groupDataList",odata.getResult());
         request.setAttribute("dtu_sn",nodeId);
         request.setAttribute("pId",pId);
-        return "/dtu/data/mhisData";
+        return "/dtu/data/m2hisData";
     }
 
     @RequestMapping(value = "/hisTest")
@@ -195,7 +195,7 @@ public class HomeController {
      * @param dataType
      * @return
      */
-    @ResponseBody
+   /* @ResponseBody
     @RequestMapping(value = "/getHisData",method = RequestMethod.POST)
     public String getHisData(String dtu_sn,String pId,String startDate,String endDate,String dataType){
         System.out.println("选择要素【pId】:"+pId);
@@ -281,9 +281,9 @@ public class HomeController {
         rtMap.put("yMin","");
         rtMap.put("suc","SUC");
         return Tools.sendJson(rtMap);
-    }
+    }*/
 
-   /* @ResponseBody
+    @ResponseBody
     @RequestMapping(value = "/getHisData",method = RequestMethod.POST)
     public String getHisData(String dtu_sn,String pId,String startDate,String endDate,String dataType){
         //String [] timeData = {};
@@ -334,5 +334,112 @@ public class HomeController {
 
         System.out.println(rtMap.toString());
         return Tools.sendJson(rtMap);
-    }*/
+    }
+
+
+
+    @ResponseBody
+    @RequestMapping(value = "/getHisData2",method = RequestMethod.POST)
+    public String getHisData2(String dtu_sn,String pId,String startDate,String endDate,String dataType){
+        System.out.println("选择要素【pId】:"+pId);
+
+        Map<String,Object> rtMap = new HashedMap();
+        if("".equals(pId)||pId == null){
+            List<Map<String,Object>> mapList = new ArrayList<Map<String, Object>>();
+            Map<String,Object> seriesMap = new HashedMap();
+            seriesMap.put("name","");
+            seriesMap.put("type","line");
+            seriesMap.put("symbolSize",8);//hoverAnimation
+            seriesMap.put("hoverAnimation",false);
+            seriesMap.put("data",new ArrayList<String>());
+            mapList.add(seriesMap);
+            rtMap.put("seriesList",mapList);
+            rtMap.put("timeData",new ArrayList<String>());
+
+            rtMap.put("legendData",new String[0]);
+            rtMap.put("yAxisName","");
+            rtMap.put("yMax","");
+            rtMap.put("yMin","");
+            rtMap.put("suc","SUC");
+            return Tools.sendJson(rtMap);
+        }
+
+        String [] arr = pId.split(",");
+        int arrSize = arr.length;
+        //请求参数
+        Map<String,String> map = new HashedMap();
+        map.put("dtu_sn",dtu_sn);
+        for(int i = 1 ;i<=arr.length; i++){
+            map.put("data_no"+i,arr[i-1]);
+        }
+        map.put("data_num",arrSize+"");
+        map.put("start_dt",startDate);
+        map.put("end_dt",endDate);
+        map.put("data_type",dataType);
+        map.put("disp_type","1");
+        logger.info("请求参数："+map.toString());
+        QueryDtuHisDataParm2 parm = dtuQueryService.QueryDtuHisDataDisplay2(map);
+
+        if(parm == null){
+           // System.out.println("######系统异常");
+            rtMap.put("suc","FIL");
+            return Tools.sendJson(rtMap);
+        }
+
+        // Map<String,Object> rtMap = new HashedMap();
+        if("200".equals(parm.getState())){
+            List<String> timeData = new ArrayList<String>();//时间x轴
+            List<List<String>> dataList = new ArrayList<List<String>>();
+            // String yAxisName ="("+parm.getResult().getUnitName()+")";//y轴单位    parm.getResult().getyAxisName();
+            String yMax = parm.getResult().getMax();    //最大值
+            String yMin = parm.getResult().getMin();    //最小值
+            List<Map<String,Object>> mapList = new ArrayList<Map<String, Object>>();
+
+            for(int i=0;i<arrSize;i++){
+                dataList.add(new ArrayList<String>());
+            }
+
+            for(int n=0;n<parm.getResult().getResult().size();n++){
+                timeData.add(parm.getResult().getResult().get(n).getDate());
+                for(int i=0;i<parm.getResult().getResult().get(n).getValue().size();i++){
+                    dataList.get(i).add(parm.getResult().getResult().get(n).getValue().get(i));
+                }
+            }
+            System.out.println();
+            String [] legendData = new String[arrSize];
+            for(int i=0;i<parm.getResult().getyAxisName().size();i++){
+                Map<String,Object> seriesMap = new HashedMap();
+                legendData[i]=parm.getResult().getyAxisName().get(i)+"("+parm.getResult().getUnitName().get(i)+")";
+                seriesMap.put("name",parm.getResult().getyAxisName().get(i)+"("+parm.getResult().getUnitName().get(i)+")");
+                seriesMap.put("type","line");
+                seriesMap.put("symbolSize",8);//hoverAnimation
+                seriesMap.put("hoverAnimation",false);
+                seriesMap.put("data",dataList.get(i));
+                System.out.println();
+                mapList.add(seriesMap);
+            }
+
+            rtMap.put("seriesList",mapList);
+            rtMap.put("timeData",timeData);
+
+            rtMap.put("legendData",legendData);
+            rtMap.put("yAxisName","");
+
+            rtMap.put("yMax",yMax);
+            rtMap.put("yMin",yMin);
+            rtMap.put("suc","SUC");
+            return Tools.sendJson(rtMap);
+
+        }
+
+        rtMap.put("seriesList",new ArrayList<Map<String, Object>>());
+        rtMap.put("timeData",new ArrayList<String>());
+
+        rtMap.put("legendData",new String[0]);
+        rtMap.put("yAxisName","");
+        rtMap.put("yMax","");
+        rtMap.put("yMin","");
+        rtMap.put("suc","SUC");
+        return Tools.sendJson(rtMap);
+    }
 }

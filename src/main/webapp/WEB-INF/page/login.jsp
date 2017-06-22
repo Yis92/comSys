@@ -38,8 +38,8 @@
 <body class="lg_bg" scroll="no">
 <input id="basePath" value="${basePath}" type="hidden">
 <div class="lg_box">
-    <div class="lg_tit">DTU管理系统</div>
-    <div class="lg_tit2">六逸科技-未来世界</div>
+    <div class="lg_tit">迪辉科技物联网云平台</div>
+    <div class="lg_tit2"></div>
     <div class="login_bar">
         <div class="lg_list">
             <form action = "${basePath}home/doLogin" id="lgForm" method="POST">
