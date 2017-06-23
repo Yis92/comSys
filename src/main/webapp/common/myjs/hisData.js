@@ -369,8 +369,12 @@ $(function(){
 
                     console.log("点击导出");
                     //名称命名  尾部添加时间  防止命名重复
-                    var date = new Date();
-                    var dateName = date.getFullYear()+''+(date.getMonth() + 1)+''+date.getDate()+''+date.getHours()+''+date.getMinutes()+''+date.getSeconds();
+                    //var date = new Date();
+                    //var dateName = date.getFullYear()+''+(date.getMonth() + 1)+''+date.getDate();
+
+                    var star = startDate.replace(" 00:00:00", "").replace("-","").replace("-","");
+                    var end = endDate.replace(" 23:59:59", "").replace("-","").replace("-","");
+                    var dateName =star+"-"+end;
                     //alert("导出");
                     //$("#example").tableExport({ type: 'excel', escape: 'false' });
                     $("#tbl").table2excel({
@@ -379,7 +383,7 @@ $(function(){
                         // 导出的Excel文档的名称
                         name: "历史数据",
                         // Excel文件的名称
-                        filename: "历史数据"+dateName,
+                        filename: dateName+"-"+dtu_sn,
                         exclude_img: false,
                         exclude_links: false,
                         exclude_inputs: false
@@ -442,7 +446,7 @@ function showLine() {
 /*本日*/
 function today(){
     var end = new Date();
-    var today = new Date(end.getTime()- 24*60*60*1000);
+    var today = new Date();
 
     //alert(getTime(end));
     $("#startDate").val(getTime(today));

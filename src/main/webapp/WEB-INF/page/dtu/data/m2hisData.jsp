@@ -10,7 +10,7 @@
     <script src="${basePath }common/bootstrap/js/bootstrap-select.min.js"></script>
     <style>
         .open{
-            width: 500px;
+            width: 80%;
         }
     </style>
 </head>
@@ -21,7 +21,7 @@
 <%--<h4>历史数据</h4><hr/>--%>
 <form class="form-inline">
 
-    <div class="form-group" style="width: 650px;">
+    <div class="form-group" style="width: 80%;">
         <label for="dataNo" class="control-label">分组类型</label>
         <select id="dataNo" class="selectpicker show-tick form-control" multiple data-live-search="false">
             <%--<option value=""></option>--%>

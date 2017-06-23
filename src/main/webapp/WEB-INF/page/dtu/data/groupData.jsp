@@ -44,21 +44,20 @@
     </script>
 
     <style type="text/css">
-
         .table-a tr td {
-            padding: 8px;
+            padding: 0px;
             line-height: 2.428571;
             vertical-align: top;
             border-top: 0;
         }
         .table-a tbody  tr td {
-            padding: 8px;
+            padding: 0px;
             line-height: 1.42857143;
             vertical-align: top;
             border-top: 0;
         }
         .table-a  tfoot tr td{
-            padding: 8px;
+            padding: 0px;
             line-height: 1.42857143;
             vertical-align: top;
             border-top: 0;

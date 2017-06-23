@@ -65,7 +65,7 @@ $(function(){
             data:['前台（1）温度'],
             x: 'left'
         },
-        toolbox: {
+        /*toolbox: {
             feature: {
                 dataZoom: {
                     yAxisIndex: 'none'
@@ -73,7 +73,7 @@ $(function(){
                 restore: {},
                 saveAsImage: {}
             }
-        },
+        },*/
         axisPointer: {
             link: {xAxisIndex: 'all'}
         },
@@ -172,7 +172,7 @@ $(function(){
                 });
                 var max = result.yMax;
                 var min = result.yMin;
-                option.legend.data =  legendData;
+                //option.legend.data =  legendData;
                 option.yAxis.max = max;
                 option.yAxis.min = min;
                 option.yAxis.name = yAxisName;
@@ -260,7 +260,7 @@ $(function(){
                     });
                     var max = result.yMax;
                     var min = result.yMin;
-                    option.legend.data =  legendData;
+                   // option.legend.data =  legendData;
                     option.yAxis.max = max;
                     option.yAxis.min = min;
                     option.yAxis.name = yAxisName;
@@ -388,7 +388,7 @@ function showLine() {
                 });
                 var max = result.yMax;
                 var min = result.yMin;
-                option.legend.data =  legendData;
+                //option.legend.data =  legendData;
                 option.yAxis.max = max;
                 option.yAxis.min = min;
                 option.yAxis.name = yAxisName;
