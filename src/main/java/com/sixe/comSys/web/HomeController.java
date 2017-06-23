@@ -8,6 +8,7 @@ import com.sixe.comSys.base.SpringContextHolder;
 import com.sixe.comSys.base.imgCode.ValidateCode;
 import com.sixe.comSys.dto.DoLogin.DoLoginParam;
 import com.sixe.comSys.dto.QueryDtuGroupDataInfo.QueryDtuGroupDataParm;
+import com.sixe.comSys.dto.QueryDtuGroupingInfo.QueryDtuGroupingInfoParam;
 import com.sixe.comSys.dto.QueryDtuHisData.HisDataParm2;
 import com.sixe.comSys.dto.QueryDtuHisData.QueryDtuHisDataParm;
 import com.sixe.comSys.dto.QueryDtuHisData.QueryDtuHisDataParm2;
@@ -159,14 +160,20 @@ public class HomeController {
      * @return
      */
     @RequestMapping(value = "/goHisPage")
-    public String goHisPage(String nodeId,String pId,HttpServletRequest request, HttpServletResponse response){
+    public String goHisPage(String nodeId,String pId,String groupId,HttpServletRequest request, HttpServletResponse response){
         logger.info("goHisPage【nodeId】:"+nodeId);
         logger.info("goHisPage【pId】:"+pId);
+        if("".equals(groupId) || groupId == null){
+            return "";
+        }
+
         Map<String,String> map = new HashedMap();
         map.put("dtu_sn",nodeId);
+        map.put("group_id",groupId);
         logger.info("请求参数："+map.toString());
-        QueryDtuGroupDataParm odata = dtuQueryService.QueryDtuGroupDataInfo(map);
-        request.setAttribute("groupDataList",odata.getResult());
+        QueryDtuGroupingInfoParam odata = dtuQueryService.QueryDtuGroupingDataDisplay(map);
+        //QueryDtuGroupDataParm odata = dtuQueryService.QueryDtuGroupDataInfo(map);
+        request.setAttribute("groupDataList",odata.getResult().getGroupdata());
         request.setAttribute("dtu_sn",nodeId);
         request.setAttribute("pId",pId);
         return "/dtu/data/m2hisData";

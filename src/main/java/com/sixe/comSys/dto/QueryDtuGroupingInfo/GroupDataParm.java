@@ -12,6 +12,7 @@ public class GroupDataParm implements Serializable{
     private String unit;
     private String max;
     private String mini;
+    private String id;
 
     public String getMax() {
         return max;
@@ -36,8 +37,6 @@ public class GroupDataParm implements Serializable{
     public void setUnit(String unit) {
         this.unit = unit;
     }
-
-    private String id;
 
     public String getValue() {
         return value;
