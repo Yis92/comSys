@@ -383,7 +383,7 @@ public class HomeController {
         map.put("start_dt",startDate);
         map.put("end_dt",endDate);
         map.put("data_type",dataType);
-        map.put("disp_type","1");
+        map.put("disp_type","2");
         logger.info("请求参数："+map.toString());
         QueryDtuHisDataParm2 parm = dtuQueryService.QueryDtuHisDataDisplay2(map);
 

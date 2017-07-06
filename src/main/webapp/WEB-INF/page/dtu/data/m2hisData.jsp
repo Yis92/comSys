@@ -10,10 +10,10 @@
     <script src="${basePath }common/bootstrap/js/bootstrap-select.min.js"></script>
     <style>
         .open{
-            width: 80%;
+            width: 90%;
         }
         .bootstrap-select.form-control:not([class*=col-]) {
-            width: 80%;
+            width: 90%;
         }
     </style>
 </head>
@@ -24,7 +24,7 @@
 <%--<h4>历史数据</h4><hr/>--%>
 <form class="form-inline" style="margin-top: 15px; margin-left: 50px;">
 
-    <div class="form-group" style="width: 80%;">
+    <div class="form-group" style="width: 90%;">
         <label for="dataNo" >分组类型</label>
         <select id="dataNo" class="selectpicker show-tick form-control" multiple data-live-search="false">
             <%--<option value=""></option>--%>
@@ -43,7 +43,7 @@
         </select>
     </div>&nbsp;&nbsp;
     --%>
-    <div class="form-group" style="margin-top: 20px;width: 80%;">
+    <div class="form-group" style="margin-top: 20px;width: 90%;">
         <label for="dataType">数据类型</label>
         <select  class="selectpicker show-tick form-control" id="dataType"><%--class="form-control"--%>
             <option value="1" checked = "checked">分钟数据</option>
@@ -62,7 +62,7 @@
             <li><button type="button" style="" class="btn btn-primary" onclick="down(1);">后一天&nbsp;<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>&nbsp;&nbsp;&nbsp;</li>
         </ul>
     </div>
-        <div style="margin-left: 38%;margin-top: 0px;margin-bottom: 0px; display: none;" id="w_show">
+        <div style="margin-left: 50px;margin-top: 0px;margin-bottom: 0px; display: none;" id="w_show">
             <ul class="nav nav-pills">
                 <li><button type="button" style="" class="btn btn-info" onclick="up(7);" id="auto7Id"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>&nbsp;前一周</button>&nbsp;&nbsp;&nbsp;</li>
                 <li><button type="button" style="" class="btn btn-primary" onclick="down(7);">后一周&nbsp;<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>&nbsp;&nbsp;&nbsp;</li>
