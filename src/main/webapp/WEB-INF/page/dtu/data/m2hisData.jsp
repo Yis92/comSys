@@ -12,6 +12,9 @@
         .open{
             width: 80%;
         }
+        .bootstrap-select.form-control:not([class*=col-]) {
+            width: 80%;
+        }
     </style>
 </head>
 <body style="font-family: '微软雅黑';">
@@ -19,10 +22,10 @@
 <input type="hidden" value="${dtu_sn}" id="nodeId" />
 <input type="hidden" value="${pId}" id="pId">
 <%--<h4>历史数据</h4><hr/>--%>
-<form class="form-inline">
+<form class="form-inline" style="margin-top: 15px; margin-left: 50px;">
 
     <div class="form-group" style="width: 80%;">
-        <label for="dataNo" class="control-label">分组类型</label>
+        <label for="dataNo" >分组类型</label>
         <select id="dataNo" class="selectpicker show-tick form-control" multiple data-live-search="false">
             <%--<option value=""></option>--%>
             <c:forEach items="${groupDataList}" var="data">
@@ -40,18 +43,18 @@
         </select>
     </div>&nbsp;&nbsp;
     --%>
-    <div class="form-group" style="margin-top: 20px;">
+    <div class="form-group" style="margin-top: 20px;width: 80%;">
         <label for="dataType">数据类型</label>
-        <select class="form-control" id="dataType">
+        <select  class="selectpicker show-tick form-control" id="dataType"><%--class="form-control"--%>
             <option value="1" checked = "checked">分钟数据</option>
             <option value="2">小时数据</option>
         </select>
-    </div>&nbsp;&nbsp;&nbsp;&nbsp;
+    </div>&nbsp;&nbsp;<br/>
     <button type="button" class="btn btn-primary" id="searchBtn" style="margin-top: 20px;" ><span class="glyphicon glyphicon-search"></span>查询</button>
 </form>
 <div class="panel-body" id="show_div">
     <%-- <div style="width: 100%;    float: right;   padding-right: 40%;    padding-bottom: 20px;   padding-top: 10px; display: none;"><span id="dt" style="color:red;float: right;">观测时间:</span></div>--%>
-    <div id="main" style="width: 100%;height:480px;">
+    <div id="main" style="width: 100%;height:380px;">
     </div>
     <div style="margin-left: 38%;margin-top: 0px;margin-bottom: 0px; display: block;" id="d_show">
         <ul class="nav nav-pills">

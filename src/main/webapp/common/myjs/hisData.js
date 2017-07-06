@@ -451,6 +451,8 @@ function today(){
     //alert(getTime(end));
     $("#startDate").val(getTime(today));
     $("#endDate").val(getTimeE(end));
+    $("#dataType").val("1");
+    $("#dataType").attr("disabled","disabled");
 }
 /*近七天*/
 function seven(){
@@ -459,6 +461,8 @@ function seven(){
     //alert(getTime(end));
     $("#startDate").val(getTime(today));
     $("#endDate").val(getTimeE(end));
+    $("#dataType").val("2");
+    $("#dataType").attr("disabled","disabled");
 }
 /*近30天*/
 function san(){
@@ -467,6 +471,8 @@ function san(){
     //alert(getTime(end));
     $("#startDate").val(getTime(today));
     $("#endDate").val(getTimeE(end));
+    $("#dataType").val("2");
+    $("#dataType").attr("disabled","disabled");
 }
 
 function getTime(date){
