@@ -89,7 +89,8 @@ $(function(){
         grid: {
             left: 50,
             right: 50,
-            height: '65%'
+            //height: '95%'
+            containLabel: true
         },
         xAxis :
             {

@@ -183,9 +183,12 @@ function show(group_id,til) {
         success:function (data) {
             var result = eval('('+data+')') ;
             console.log(result);
+
+            for(var n=0;n<12;n++){
+                $("#t"+n).empty();
+            }
             $.each(result.groupdata,function (index, obj) {
                 //console.log(obj.name+"---"+obj.value);
-
                 $("#t"+index).empty();
                 $("#t"+index).html(obj.name);
 
