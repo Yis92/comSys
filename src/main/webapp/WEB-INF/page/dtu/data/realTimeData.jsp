@@ -31,6 +31,19 @@
              });*/
         });
 
+
+        function copy(){
+            if ( window.clipboardData ) {
+                $('.copy_btn').click(function() {
+                    window.clipboardData.setData("Text", 'http://139.129.239.172:8080/comSys/dtuShare/goDataPage?nodeId=${dtu_sn}');
+                    alert('复制成功！');
+                });
+            }else{
+                $("#url_Dta").html("http://139.129.239.172:8080/comSys/dtuShare/goDataPage?nodeId=${dtu_sn}");
+                $("#synV").modal("show");
+            }
+        }
+
         function refresh(){
             location.reload();
         }
