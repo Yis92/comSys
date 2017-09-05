@@ -196,7 +196,7 @@ function show(group_id,til) {
                     d = {
                         name: obj.name+'('+obj.unit+')',
                         type: 'gauge',
-                        center: ['15%', '55%'],    // 默认全局居中
+                        center: ['16.8%', '65%'],    // 默认全局居中
                         radius: '70%',
                         min: obj.mini,
                         max: obj.max,
@@ -257,7 +257,7 @@ function show(group_id,til) {
                             min: obj.mini,
                             max: obj.max,
                             splitNumber: 8,
-                            //center: ['50%', '60%'],
+                            center: ['50%', '65%'],
                             radius: '70%',
                             axisLine: {            // 坐标轴线
                                 lineStyle: {       // 属性lineStyle控制线条样式
@@ -309,7 +309,7 @@ function show(group_id,til) {
                     var b = {
                                 name:  obj.name+'('+obj.unit+')',
                                 type: 'gauge',
-                                center: ['85%', '55%'],    // 默认全局居中
+                                center: ['83.2%', '65%'],    // 默认全局居中
                                 radius: '70%',
                                 min: obj.mini,
                                 max: obj.max,
