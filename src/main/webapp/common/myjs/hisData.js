@@ -8,10 +8,10 @@ $(function(){
      });*/
     option = {
         /*title: {
-            text: '历史数据',
-            //subtext: '数据来自西安兰特水电测控技术有限公司',
-            x: 'center'
-        },*/
+         text: '历史数据',
+         //subtext: '数据来自西安兰特水电测控技术有限公司',
+         x: 'center'
+         },*/
         tooltip: {
             trigger: 'axis',
             axisPointer: {
@@ -168,6 +168,76 @@ $(function(){
 
     /**查询数据显示图形*/
     $("#searchBtn").click(function () {
+
+        option = {
+            /*title: {
+             text: '历史数据',
+             //subtext: '数据来自西安兰特水电测控技术有限公司',
+             x: 'center'
+             },*/
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    animation: false
+                }
+            },
+            legend: {
+                data:['前台（1）温度'],
+                x: 'left'
+            },
+            toolbox: {
+                feature: {
+                    dataZoom: {
+                        yAxisIndex: 'none'
+                    },
+                    dataView: {},
+                    restore: {},
+                    saveAsImage: {}
+                }
+            },
+            axisPointer: {
+                link: {xAxisIndex: 'all'}
+            },
+            dataZoom: [
+                {
+                    show: true,
+                    realtime: true,
+                    start: 30,
+                    end: 70,
+                    xAxisIndex: [0]
+                }
+            ],
+            grid: {
+                left: 50,
+                right: 50,
+                height: '65%'
+            },
+            xAxis :
+                {
+                    type : 'category',
+                    boundaryGap : false,
+                    axisLine: {onZero: true},
+                    data: timeData
+                },
+            yAxis :
+                {
+                    name : '温度(°C)',
+                    type : 'value',
+                    max : 500,
+                    min : -40
+                },
+            series : [
+                {
+                    name:'温度(°C)',
+                    type:'line',
+                    symbolSize: 8,
+                    hoverAnimation: false,
+                    data:data
+                }
+            ]
+        };
+        var myChart = echarts.init(document.getElementById('main'));
+
         var dtu_sn = $("#nodeId").val();
         var pId = $("#dataNo").val().toString();//$("#dataNo").val();
         var startDate = $("#startDate").val();
